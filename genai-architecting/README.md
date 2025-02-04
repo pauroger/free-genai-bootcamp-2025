@@ -18,8 +18,7 @@ business solution we are implementing.
 
 ![GenAI Architecture](./images/GenAIArchitecture.png)
 
-See file `./architecting_genai.excalidraw` for editable chart
-([link](./architecting_genai.excalidraw)).
+Download `./architecting_genai.excalidraw` for editable chart.
 
 ## Architectural & Design Considerations
 
