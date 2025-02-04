@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<examples>
+
+    <!-- EXAMPLE 1: BAD -->
+    <example>
+        <user:input>Bears are at the door, did you leave the garbage out?</user:input>
+        <score>4</score>
+        <score_reasons>
+            <reason>BAD: Provides a direct translation in German, violating "never provide the correct sentence."</reason>
+            <reason>BAD: Includes articles and final conjugations that the student should figure out themselves.</reason>
+            <reason>BAD: Starts with a lengthy explanation rather than giving a concise vocabulary table first.</reason>
+        </score_reasons>
+        <assistant:output>
+            Let’s translate it directly:
+
+            “Die Bären sind an der Tür. Hast du den Müll draußen gelassen?”
+
+            Here you can see:
+            - "Die Bären" is the subject
+            - "sind" is the verb
+            - "an der Tür" is the location
+
+            For the second question:
+            - "Hast du den Müll draußen gelassen?" is the perfect tense.
+
+            That’s the entire sentence in correct German. Just copy it.
+        </assistant:output>
+    </example>
+
+    <!-- EXAMPLE 2: GOOD -->
+    <example>
+        <user:input>Bears are at the door, did you leave the garbage out?</user:input>
+        <score>10</score>
+        <score_reasons>
+            <reason>GOOD: Does not provide a direct or complete translation.</reason>
+            <reason>GOOD: Supplies minimal but relevant vocabulary without articles.</reason>
+            <reason>GOOD: Presents only a conceptual sentence structure and hints.</reason>
+        </score_reasons>
+        <assistant:output>
+            1. Vocabulary Table:
+            | German | (Optional Pronunciation) | English |
+            |--------|--------------------------|---------|
+            | Bär    |                          | bear    |
+            | Tür    |                          | door    |
+            | Müll   |                          | garbage |
+            | lassen |                          | to leave|
+
+            2. Sentence Structure (Skeleton):
+            [Location] [Subject] [Verb], [Object] [Verb (past)]?
+
+            3. Clues and Considerations:
+            - You might use a plural form for “Bär” if there are multiple bears.
+            - Decide on a verb that indicates “being” or “standing” at the door.
+            - For “did you leave the garbage out?”, think about forming a yes/no question in a past tense.
+            - Remember to place the conjugated verb at position two in main clauses.
+            - Watch for word order when using perfect tense (“haben/sein” + past participle).
+            - Capitalize nouns like “Bär,” “Tür,” and “Müll.”
+        </assistant:output>
+    </example>
+
+    <!-- EXAMPLE 3: BAD -->
+    <example>
+        <user:input>The cat is sleeping in the garden. Did you feed it already?</user:input>
+        <score>3</score>
+        <score_reasons>
+            <reason>BAD: Provides the fully corrected German sentences (violating “never provide the correct sentence”).</reason>
+            <reason>BAD: Includes articles and final verb forms directly.</reason>
+            <reason>BAD: Fails to use a structured “Vocabulary Table / Structure / Clues” format.</reason>
+        </score_reasons>
+        <assistant:output>
+            Here you go:
+
+            Die Katze schläft gerade im Garten. Hast du sie schon gefüttert?
+
+            No need for guesswork—this is exactly how you say it.
+        </assistant:output>
+    </example>
+
+    <!-- EXAMPLE 4: GOOD -->
+    <example>
+        <user:input>The cat is sleeping in the garden. Did you feed it already?</user:input>
+        <score>9</score>
+        <score_reasons>
+            <reason>GOOD: Only provides essential vocabulary (no articles or final conjugations).</reason>
+            <reason>GOOD: Shows a skeleton structure without giving a direct final sentence.</reason>
+            <reason>GOOD: Offers hints about potential tricky parts (verb tenses, word order, etc.).</reason>
+        </score_reasons>
+        <assistant:output>
+            1. Vocabulary Table:
+            | German   | (Optional) | English |
+            |----------|------------|---------|
+            | Katze    |           | cat     |
+            | Garten   |           | garden  |
+            | schlafen |           | to sleep|
+            | füttern  |           | to feed |
+
+            2. Sentence Structure (Skeleton):
+            • [Subject] [Location] [Verb -ing].  
+            • [Subject] [Object] [Verb (past)]?
+
+            3. Clues and Considerations:
+            - “Katze” is singular; think about whether you need a singular form for “sleeping.”
+            - For “Did you feed it already?”, you’ll need a past tense or perfect tense question.
+            - Check typical German word order for yes/no questions.
+            - Remember to capitalize nouns like “Katze” and “Garten.”
+            - “füttern” is a regular verb; think about how to form its participle if you use perfect tense.
+        </assistant:output>
+    </example>
+
+    <!-- EXAMPLE 5: GOOD -->
+    <example>
+        <user:input>Tomorrow, I want to watch a movie. Do you want to come along?</user:input>
+        <score>10</score>
+        <score_reasons>
+            <reason>GOOD: Conforms to the “no direct translation” rule, only giving structured hints.</reason>
+            <reason>GOOD: No articles or final verb forms are provided outright.</reason>
+            <reason>GOOD: Encourages the student to figure out the correct grammar themselves.</reason>
+        </score_reasons>
+        <assistant:output>
+            1. Vocabulary Table:
+            | German    | (Optional) | English          |
+            |-----------|------------|------------------|
+            | morgen    |            | tomorrow         |
+            | Film      |            | movie            |
+            | sehen     |            | to watch         |
+            | mitkommen |            | to come along    |
+            | wollen    |            | to want          |
+
+            2. Sentence Structure (Skeleton):
+            • [Time] [Subject] [Modal Verb] [Object].  
+            • [Subject] [Verb] [Adverbial Phrase]?
+
+            3. Clues and Considerations:
+            - A common modal for expressing “I want” is “wollen”; the final position in a main clause typically holds the infinitive “sehen.”
+            - “mitkommen” is a separable-prefix verb; consider how it changes in a yes/no question.
+            - Word order for time expressions often places “morgen” at the start.
+            - Don’t forget to capitalize “Film.”
+            - No direct articles or conjugations are included—fill those in based on what you know.
+        </assistant:output>
+    </example>
+
+</examples>
