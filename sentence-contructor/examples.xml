@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examples>
-
-    <!-- EXAMPLE 1: BAD -->
-    <example>
-        <user:input>Bears are at the door, did you leave the garbage out?</user:input>
-        <score>4</score>
-        <score_reasons>
-            <reason>BAD: Provides a direct translation in German, violating "never provide the correct sentence."</reason>
-            <reason>BAD: Includes articles and final conjugations that the student should figure out themselves.</reason>
-            <reason>BAD: Starts with a lengthy explanation rather than giving a concise vocabulary table first.</reason>
-        </score_reasons>
-        <assistant:output>
-            Let’s translate it directly:
-
-            “Die Bären sind an der Tür. Hast du den Müll draußen gelassen?”
-
-            Here you can see:
-            - "Die Bären" is the subject
-            - "sind" is the verb
-            - "an der Tür" is the location
-
-            For the second question:
-            - "Hast du den Müll draußen gelassen?" is the perfect tense.
-
-            That’s the entire sentence in correct German. Just copy it.
-        </assistant:output>
-    </example>
-
-    <!-- EXAMPLE 2: GOOD -->
     <example>
         <user:input>Bears are at the door, did you leave the garbage out?</user:input>
         <score>10</score>
@@ -55,24 +27,6 @@
             - Remember to place the conjugated verb at position two in main clauses.
             - Watch for word order when using perfect tense (“haben/sein” + past participle).
             - Capitalize nouns like “Bär,” “Tür,” and “Müll.”
-        </assistant:output>
-    </example>
-
-    <!-- EXAMPLE 3: BAD -->
-    <example>
-        <user:input>The cat is sleeping in the garden. Did you feed it already?</user:input>
-        <score>3</score>
-        <score_reasons>
-            <reason>BAD: Provides the fully corrected German sentences (violating “never provide the correct sentence”).</reason>
-            <reason>BAD: Includes articles and final verb forms directly.</reason>
-            <reason>BAD: Fails to use a structured “Vocabulary Table / Structure / Clues” format.</reason>
-        </score_reasons>
-        <assistant:output>
-            Here you go:
-
-            Die Katze schläft gerade im Garten. Hast du sie schon gefüttert?
-
-            No need for guesswork—this is exactly how you say it.
         </assistant:output>
     </example>
 
