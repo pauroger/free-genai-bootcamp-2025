@@ -200,253 +200,504 @@
       "parts": ["of", "fen"]
     },
     {
-        "german": "anfangen",
-        "english": "to begin",
-        "parts": ["an", "fang", "en"]
+      "german": "schnell",
+      "english": "fast",
+      "parts": ["schnell"]
     },
     {
-        "german": "ankommen",
-        "english": "to arrive",
-        "parts": ["an", "komm", "en"]
+      "german": "langsam",
+      "english": "slow",
+      "parts": ["lang", "sam"]
     },
     {
-        "german": "aussehen",
-        "english": "to look; to appear",
-        "parts": ["aus", "seh", "en"]
+      "german": "klein",
+      "english": "small",
+      "parts": ["klein"]
     },
     {
-        "german": "bedienen",
-        "english": "to serve (someone)",
-        "parts": ["be", "dien", "en"]
+      "german": "groß",
+      "english": "big",
+      "parts": ["groß"]
     },
     {
-        "german": "befinden",
-        "english": "to be located; to find oneself",
-        "parts": ["be", "find", "en"]
+      "german": "alt",
+      "english": "old",
+      "parts": ["alt"]
     },
     {
-        "german": "begehen",
-        "english": "to commit (a crime)",
-        "parts": ["be", "geh", "en"]
+      "german": "jung",
+      "english": "young",
+      "parts": ["jung"]
     },
     {
-        "german": "begründen",
-        "english": "to justify",
-        "parts": ["be", "gründ", "en"]
+      "german": "schön",
+      "english": "beautiful",
+      "parts": ["schön"]
     },
     {
-        "german": "behandeln",
-        "english": "to treat",
-        "parts": ["be", "hand", "el", "n"]
+      "german": "hässlich",
+      "english": "ugly",
+      "parts": ["häss", "lich"]
     },
     {
-        "german": "bekommen",
-        "english": "to receive; to get",
-        "parts": ["be", "komm", "en"]
+      "german": "neu",
+      "english": "new",
+      "parts": ["neu"]
     },
     {
-        "german": "beschreiben",
-        "english": "to describe",
-        "parts": ["be", "schreib", "en"]
+      "german": "altmodisch",
+      "english": "old-fashioned",
+      "parts": ["alt", "mod", "isch"]
     },
     {
-        "german": "bestellen",
-        "english": "to order",
-        "parts": ["be", "stell", "en"]
+      "german": "modern",
+      "english": "modern",
+      "parts": ["mod", "ern"]
     },
     {
-        "german": "betreten",
-        "english": "to enter",
-        "parts": ["be", "tret", "en"]
+      "german": "interessant",
+      "english": "interesting",
+      "parts": ["inter", "ess", "ant"]
     },
     {
-        "german": "decken",
-        "english": "to cover; to set (a table)",
-        "parts": ["deck", "en"]
+      "german": "langweilig",
+      "english": "boring",
+      "parts": ["lang", "weil", "ig"]
     },
     {
-        "german": "dürfen",
-        "english": "to be allowed to; may",
-        "parts": ["dürf", "en"]
+      "german": "stark",
+      "english": "strong",
+      "parts": ["stark"]
     },
     {
-        "german": "empfangen",
-        "english": "to receive (guests, signals)",
-        "parts": ["emp", "fang", "en"]
+      "german": "schwach",
+      "english": "weak",
+      "parts": ["schwach"]
     },
     {
-        "german": "empfehlen",
-        "english": "to recommend",
-        "parts": ["emp", "fehl", "en"]
+      "german": "klug",
+      "english": "smart",
+      "parts": ["klug"]
     },
     {
-        "german": "entscheiden",
-        "english": "to decide",
-        "parts": ["ent", "scheid", "en"]
+      "german": "dumm",
+      "english": "stupid",
+      "parts": ["dumm"]
     },
     {
-        "german": "entschuldigen",
-        "english": "to excuse; to apologize (reflexive)",
-        "parts": ["ent", "schuld", "ig", "en"]
+      "german": "rein",
+      "english": "pure",
+      "parts": ["rein"]
     },
     {
-        "german": "erkennen",
-        "english": "to recognize",
-        "parts": ["er", "kenn", "en"]
+      "german": "schmutzig",
+      "english": "dirty",
+      "parts": ["schmutz", "ig"]
     },
     {
-        "german": "erklären",
-        "english": "to explain",
-        "parts": ["er", "klär", "en"]
+      "german": "sauber",
+      "english": "clean",
+      "parts": ["sau", "ber"]
     },
     {
-        "german": "ermöglichen",
-        "english": "to enable",
-        "parts": ["er", "möglich", "en"]
+      "german": "heiß",
+      "english": "hot",
+      "parts": ["heiß"]
     },
     {
-        "german": "eröffnen",
-        "english": "to open (an event, account, etc.)",
-        "parts": ["er", "öffn", "en"]
+      "german": "kalt",
+      "english": "cold",
+      "parts": ["kalt"]
     },
     {
-        "german": "erwarten",
-        "english": "to expect",
-        "parts": ["er", "wart", "en"]
+      "german": "warm",
+      "english": "warm",
+      "parts": ["warm"]
     },
     {
-        "german": "fahren",
-        "english": "to drive; to travel",
-        "parts": ["fahr", "en"]
+      "german": "kühl",
+      "english": "cool",
+      "parts": ["kühl"]
     },
     {
-        "german": "fallen",
-        "english": "to fall",
-        "parts": ["fall", "en"]
+      "german": "trocken",
+      "english": "dry",
+      "parts": ["trock", "en"]
     },
     {
-        "german": "fangen",
-        "english": "to catch",
-        "parts": ["fang", "en"]
+      "german": "nass",
+      "english": "wet",
+      "parts": ["nass"]
     },
     {
-        "german": "geben",
-        "english": "to give",
-        "parts": ["geb", "en"]
+      "german": "fett",
+      "english": "fat",
+      "parts": ["fett"]
     },
     {
-        "german": "gewinnen",
-        "english": "to win",
-        "parts": ["gewinn", "en"]
+      "german": "dünn",
+      "english": "thin",
+      "parts": ["dünn"]
     },
     {
-        "german": "gründen",
-        "english": "to found; to establish",
-        "parts": ["gründ", "en"]
+      "german": "reich",
+      "english": "rich",
+      "parts": ["reich"]
     },
     {
-        "german": "halten",
-        "english": "to hold; to stop",
-        "parts": ["halt", "en"]
+      "german": "arm",
+      "english": "poor",
+      "parts": ["arm"]
     },
     {
-        "german": "heben",
-        "english": "to lift; to raise",
-        "parts": ["heb", "en"]
+      "german": "glücklich",
+      "english": "happy",
+      "parts": ["glück", "lich"]
     },
     {
-        "german": "heißen",
-        "english": "to be called",
-        "parts": ["heiß", "en"]
+      "german": "traurig",
+      "english": "sad",
+      "parts": ["trau", "rig"]
     },
     {
-        "german": "klagen",
-        "english": "to complain; to sue",
-        "parts": ["klag", "en"]
+      "german": "lustig",
+      "english": "funny",
+      "parts": ["lust", "ig"]
     },
     {
-        "german": "lachen",
-        "english": "to laugh",
-        "parts": ["lach", "en"]
+      "german": "ernst",
+      "english": "serious",
+      "parts": ["ernst"]
     },
     {
-        "german": "lernen",
-        "english": "to learn; to study",
-        "parts": ["lern", "en"]
+      "german": "elegant",
+      "english": "elegant",
+      "parts": ["ele", "gant"]
     },
     {
-        "german": "lügen",
-        "english": "to lie (tell untruths)",
-        "parts": ["lüg", "en"]
+      "german": "ungewöhnlich",
+      "english": "unusual",
+      "parts": ["un", "ge", "wöhn", "lich"]
     },
     {
-        "german": "mieten",
-        "english": "to rent",
-        "parts": ["miet", "en"]
+      "german": "normal",
+      "english": "normal",
+      "parts": ["nor", "mal"]
     },
     {
-        "german": "öffnen",
-        "english": "to open",
-        "parts": ["öffn", "en"]
+      "german": "radikal",
+      "english": "radical",
+      "parts": ["ra", "di", "kal"]
     },
     {
-        "german": "passieren",
-        "english": "to happen",
-        "parts": ["passier", "en"]
+      "german": "kritisch",
+      "english": "critical",
+      "parts": ["krit", "isch"]
     },
     {
-        "german": "rechnen",
-        "english": "to calculate; to do math",
-        "parts": ["rechn", "en"]
+      "german": "optimistisch",
+      "english": "optimistic",
+      "parts": ["opti", "mis", "tisch"]
     },
     {
-        "german": "reduzieren",
-        "english": "to reduce",
-        "parts": ["reduzier", "en"]
+      "german": "pessimistisch",
+      "english": "pessimistic",
+      "parts": ["pessi", "mis", "tisch"]
     },
     {
-        "german": "regeln",
-        "english": "to regulate; to settle",
-        "parts": ["regel", "n"]
+      "german": "ehrlich",
+      "english": "honest",
+      "parts": ["ehr", "lich"]
     },
     {
-        "german": "reisen",
-        "english": "to travel",
-        "parts": ["reis", "en"]
+      "german": "unehrlich",
+      "english": "dishonest",
+      "parts": ["un", "ehr", "lich"]
     },
     {
-        "german": "reichen",
-        "english": "to reach; to be enough",
-        "parts": ["reich", "en"]
+      "german": "mutig",
+      "english": "brave",
+      "parts": ["mu", "tig"]
     },
     {
-        "german": "scheinen",
-        "english": "to seem; to shine",
-        "parts": ["schein", "en"]
+      "german": "verlegen",
+      "english": "shy",
+      "parts": ["ver", "legen"]
     },
     {
-        "german": "schicken",
-        "english": "to send",
-        "parts": ["schick", "en"]
+      "german": "aufgeregt",
+      "english": "excited",
+      "parts": ["auf", "ge", "reg", "t"]
     },
     {
-        "german": "stehen",
-        "english": "to stand; to suit (someone)",
-        "parts": ["steh", "en"]
+      "german": "ruhig",
+      "english": "calm",
+      "parts": ["ru", "hig"]
     },
     {
-        "german": "stellen",
-        "english": "to place; to put (upright)",
-        "parts": ["stell", "en"]
+      "german": "laut",
+      "english": "loud",
+      "parts": ["laut"]
     },
     {
-        "german": "trennen",
-        "english": "to separate",
-        "parts": ["trenn", "en"]
+      "german": "leise",
+      "english": "quiet",
+      "parts": ["lei", "se"]
     },
     {
-        "german": "zahlen",
-        "english": "to pay",
-        "parts": ["zahl", "en"]
+      "german": "hell",
+      "english": "bright",
+      "parts": ["hell"]
+    },
+    {
+      "german": "dunkel",
+      "english": "dark",
+      "parts": ["dun", "kel"]
+    },
+    {
+      "german": "farbig",
+      "english": "colorful",
+      "parts": ["farb", "ig"]
+    },
+    {
+      "german": "einfarbig",
+      "english": "monochrome",
+      "parts": ["ein", "farb", "ig"]
+    },
+    {
+      "german": "vielfältig",
+      "english": "diverse",
+      "parts": ["viel", "fäl", "tig"]
+    },
+    {
+      "german": "einfach",
+      "english": "simple",
+      "parts": ["ein", "fach"]
+    },
+    {
+      "german": "komplex",
+      "english": "complex",
+      "parts": ["kom", "plex"]
+    },
+    {
+      "german": "intensiv",
+      "english": "intense",
+      "parts": ["in", "ten", "siv"]
+    },
+    {
+      "german": "mild",
+      "english": "mild",
+      "parts": ["mild"]
+    },
+    {
+      "german": "heftig",
+      "english": "fierce",
+      "parts": ["heft", "ig"]
+    },
+    {
+      "german": "scharf",
+      "english": "sharp",
+      "parts": ["scharf"]
+    },
+    {
+      "german": "fabelhaft",
+      "english": "fabulous",
+      "parts": ["fa", "bel", "haft"]
+    },
+    {
+      "german": "wunderbar",
+      "english": "wonderful",
+      "parts": ["wun", "der", "bar"]
+    },
+    {
+      "german": "herrlich",
+      "english": "splendid",
+      "parts": ["herr", "lich"]
+    },
+    {
+      "german": "perfekt",
+      "english": "perfect",
+      "parts": ["per", "fekt"]
+    },
+    {
+      "german": "falsch",
+      "english": "wrong",
+      "parts": ["falsch"]
+    },
+    {
+      "german": "richtig",
+      "english": "correct",
+      "parts": ["rich", "tig"]
+    },
+    {
+      "german": "nützlich",
+      "english": "useful",
+      "parts": ["nütz", "lich"]
+    },
+    {
+      "german": "unnütz",
+      "english": "useless",
+      "parts": ["un", "nütz"]
+    },
+    {
+      "german": "praktisch",
+      "english": "practical",
+      "parts": ["prak", "tisch"]
+    },
+    {
+      "german": "theoretisch",
+      "english": "theoretical",
+      "parts": ["theo", "ret", "isch"]
+    },
+    {
+      "german": "romantisch",
+      "english": "romantic",
+      "parts": ["ro", "man", "tisch"]
+    },
+    {
+      "german": "rational",
+      "english": "rational",
+      "parts": ["ra", "tion", "al"]
+    },
+    {
+      "german": "emotional",
+      "english": "emotional",
+      "parts": ["e", "mo", "tion", "al"]
+    },
+    {
+      "german": "kreativ",
+      "english": "creative",
+      "parts": ["kre", "ativ"]
+    },
+    {
+      "german": "einfallsreich",
+      "english": "inventive",
+      "parts": ["ein", "falls", "reich"]
+    },
+    {
+      "german": "originell",
+      "english": "original",
+      "parts": ["o", "ri", "gin", "ell"]
+    },
+    {
+      "german": "traditionell",
+      "english": "traditional",
+      "parts": ["tra", "di", "tion", "ell"]
+    },
+    {
+      "german": "technisch",
+      "english": "technical",
+      "parts": ["tech", "nisch"]
+    },
+    {
+      "german": "künstlerisch",
+      "english": "artistic",
+      "parts": ["künst", "ler", "isch"]
+    },
+    {
+      "german": "inspirierend",
+      "english": "inspiring",
+      "parts": ["in", "spi", "rier", "end"]
+    },
+    {
+      "german": "motiviert",
+      "english": "motivated",
+      "parts": ["mo", "ti", "viert"]
+    },
+    {
+      "german": "entschlossen",
+      "english": "determined",
+      "parts": ["entschlos", "sen"]
+    },
+    {
+      "german": "zielstrebig",
+      "english": "purposeful",
+      "parts": ["ziel", "stre", "big"]
+    },
+    {
+      "german": "diszipliniert",
+      "english": "disciplined",
+      "parts": ["dis", "zip", "lin", "iert"]
+    },
+    {
+      "german": "organisiert",
+      "english": "organized",
+      "parts": ["or", "ga", "ni", "siert"]
+    },
+    {
+      "german": "strukturiert",
+      "english": "structured",
+      "parts": ["struk", "tu", "riert"]
+    },
+    {
+      "german": "tolerant",
+      "english": "tolerant",
+      "parts": ["tol", "erant"]
+    },
+    {
+      "german": "respektvoll",
+      "english": "respectful",
+      "parts": ["res", "pekt", "voll"]
+    },
+    {
+      "german": "aufmerksam",
+      "english": "attentive",
+      "parts": ["auf", "merk", "sam"]
+    },
+    {
+      "german": "nachdenklich",
+      "english": "thoughtful",
+      "parts": ["nach", "denk", "lich"]
+    },
+    {
+      "german": "philosophisch",
+      "english": "philosophical",
+      "parts": ["phi", "lo", "so", "phisch"]
+    },
+    {
+      "german": "pragmatisch",
+      "english": "pragmatic",
+      "parts": ["prag", "ma", "tisch"]
+    },
+    {
+      "german": "logisch",
+      "english": "logical",
+      "parts": ["lo", "gisch"]
+    },
+    {
+      "german": "systematisch",
+      "english": "systematic",
+      "parts": ["sys", "te", "ma", "tisch"]
+    },
+    {
+      "german": "analytisch",
+      "english": "analytical",
+      "parts": ["ana", "lyt", "isch"]
+    },
+    {
+      "german": "methodisch",
+      "english": "methodical",
+      "parts": ["me", "tho", "disch"]
+    },
+    {
+      "german": "effizient",
+      "english": "efficient",
+      "parts": ["ef", "fi", "zi", "ent"]
+    },
+    {
+      "german": "produktiv",
+      "english": "productive",
+      "parts": ["pro", "duk", "tiv"]
+    },
+    {
+      "german": "kompetent",
+      "english": "competent",
+      "parts": ["kom", "pe", "tent"]
+    },
+    {
+      "german": "qualifiziert",
+      "english": "qualified",
+      "parts": ["quali", "fi", "ziert"]
     }
-]
+  ]
+  

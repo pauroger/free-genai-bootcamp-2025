@@ -198,5 +198,505 @@
     "german": "zurechtkommen",
     "english": "to cope; to get by",
     "parts": ["zu", "recht", "komm", "en"]
+  },
+  {
+    "german": "beginnen",
+    "english": "to begin",
+    "parts": ["be", "gin", "nen"]
+  },
+  {
+    "german": "kaufen",
+    "english": "to buy",
+    "parts": ["kauf", "en"]
+  },
+  {
+    "german": "verkaufen",
+    "english": "to sell",
+    "parts": ["ver", "kauf", "en"]
+  },
+  {
+    "german": "essen",
+    "english": "to eat",
+    "parts": ["ess", "en"]
+  },
+  {
+    "german": "trinken",
+    "english": "to drink",
+    "parts": ["trink", "en"]
+  },
+  {
+    "german": "schlafen",
+    "english": "to sleep",
+    "parts": ["schlaf", "en"]
+  },
+  {
+    "german": "lesen",
+    "english": "to read",
+    "parts": ["les", "en"]
+  },
+  {
+    "german": "schreiben",
+    "english": "to write",
+    "parts": ["schreib", "en"]
+  },
+  {
+    "german": "lernen",
+    "english": "to learn",
+    "parts": ["lern", "en"]
+  },
+  {
+    "german": "verstehen",
+    "english": "to understand",
+    "parts": ["ver", "steh", "en"]
+  },
+  {
+    "german": "helfen",
+    "english": "to help",
+    "parts": ["helf", "en"]
+  },
+  {
+    "german": "fragen",
+    "english": "to ask",
+    "parts": ["frag", "en"]
+  },
+  {
+    "german": "antworten",
+    "english": "to answer",
+    "parts": ["antwort", "en"]
+  },
+  {
+    "german": "suchen",
+    "english": "to search",
+    "parts": ["such", "en"]
+  },
+  {
+    "german": "finden",
+    "english": "to find",
+    "parts": ["find", "en"]
+  },
+  {
+    "german": "gewinnen",
+    "english": "to win",
+    "parts": ["gewinn", "en"]
+  },
+  {
+    "german": "verlieren",
+    "english": "to lose",
+    "parts": ["verlier", "en"]
+  },
+  {
+    "german": "denken",
+    "english": "to think",
+    "parts": ["denk", "en"]
+  },
+  {
+    "german": "sprechen",
+    "english": "to speak",
+    "parts": ["sprech", "en"]
+  },
+  {
+    "german": "zeigen",
+    "english": "to show",
+    "parts": ["zeig", "en"]
+  },
+  {
+    "german": "hören",
+    "english": "to hear",
+    "parts": ["hör", "en"]
+  },
+  {
+    "german": "sehen",
+    "english": "to see",
+    "parts": ["seh", "en"]
+  },
+  {
+    "german": "fühlen",
+    "english": "to feel",
+    "parts": ["fühl", "en"]
+  },
+  {
+    "german": "lachen",
+    "english": "to laugh",
+    "parts": ["lach", "en"]
+  },
+  {
+    "german": "weinen",
+    "english": "to cry",
+    "parts": ["wein", "en"]
+  },
+  {
+    "german": "singen",
+    "english": "to sing",
+    "parts": ["sing", "en"]
+  },
+  {
+    "german": "tanzen",
+    "english": "to dance",
+    "parts": ["tanz", "en"]
+  },
+  {
+    "german": "spielen",
+    "english": "to play",
+    "parts": ["spiel", "en"]
+  },
+  {
+    "german": "arbeiten",
+    "english": "to work",
+    "parts": ["arbeit", "en"]
+  },
+  {
+    "german": "ruhen",
+    "english": "to rest",
+    "parts": ["ruh", "en"]
+  },
+  {
+    "german": "bewegen",
+    "english": "to move",
+    "parts": ["beweg", "en"]
+  },
+  {
+    "german": "rennen",
+    "english": "to run",
+    "parts": ["renn", "en"]
+  },
+  {
+    "german": "springen",
+    "english": "to jump",
+    "parts": ["spring", "en"]
+  },
+  {
+    "german": "fallen",
+    "english": "to fall",
+    "parts": ["fall", "en"]
+  },
+  {
+    "german": "tragen",
+    "english": "to carry",
+    "parts": ["trag", "en"]
+  },
+  {
+    "german": "werfen",
+    "english": "to throw",
+    "parts": ["werf", "en"]
+  },
+  {
+    "german": "ziehen",
+    "english": "to pull",
+    "parts": ["zieh", "en"]
+  },
+  {
+    "german": "schieben",
+    "english": "to push",
+    "parts": ["schieb", "en"]
+  },
+  {
+    "german": "biegen",
+    "english": "to bend",
+    "parts": ["bieg", "en"]
+  },
+  {
+    "german": "brechen",
+    "english": "to break",
+    "parts": ["brech", "en"]
+  },
+  {
+    "german": "reparieren",
+    "english": "to repair",
+    "parts": ["repar", "ier", "en"]
+  },
+  {
+    "german": "bauen",
+    "english": "to build",
+    "parts": ["bau", "en"]
+  },
+  {
+    "german": "zerstören",
+    "english": "to destroy",
+    "parts": ["zer", "stör", "en"]
+  },
+  {
+    "german": "malen",
+    "english": "to paint",
+    "parts": ["mal", "en"]
+  },
+  {
+    "german": "kochen",
+    "english": "to cook",
+    "parts": ["koch", "en"]
+  },
+  {
+    "german": "backen",
+    "english": "to bake",
+    "parts": ["back", "en"]
+  },
+  {
+    "german": "schneiden",
+    "english": "to cut",
+    "parts": ["schneid", "en"]
+  },
+  {
+    "german": "nähen",
+    "english": "to sew",
+    "parts": ["näh", "en"]
+  },
+  {
+    "german": "bügeln",
+    "english": "to iron",
+    "parts": ["bügel", "n"]
+  },
+  {
+    "german": "waschen",
+    "english": "to wash",
+    "parts": ["wasch", "en"]
+  },
+  {
+    "german": "putzen",
+    "english": "to clean",
+    "parts": ["putz", "en"]
+  },
+  {
+    "german": "schneien",
+    "english": "to snow",
+    "parts": ["schnei", "en"]
+  },
+  {
+    "german": "regnen",
+    "english": "to rain",
+    "parts": ["regn", "en"]
+  },
+  {
+    "german": "blitzen",
+    "english": "to flash",
+    "parts": ["blitz", "en"]
+  },
+  {
+    "german": "donnern",
+    "english": "to thunder",
+    "parts": ["donner", "n"]
+  },
+  {
+    "german": "leuchten",
+    "english": "to shine",
+    "parts": ["leuch", "ten"]
+  },
+  {
+    "german": "glitzern",
+    "english": "to sparkle",
+    "parts": ["glitzer", "n"]
+  },
+  {
+    "german": "frieren",
+    "english": "to freeze",
+    "parts": ["frier", "en"]
+  },
+  {
+    "german": "schmelzen",
+    "english": "to melt",
+    "parts": ["schmelz", "en"]
+  },
+  {
+    "german": "wachsen",
+    "english": "to grow",
+    "parts": ["wach", "sen"]
+  },
+  {
+    "german": "schrumpfen",
+    "english": "to shrink",
+    "parts": ["schrumpf", "en"]
+  },
+  {
+    "german": "atmen",
+    "english": "to breathe",
+    "parts": ["atm", "en"]
+  },
+  {
+    "german": "sterben",
+    "english": "to die",
+    "parts": ["sterb", "en"]
+  },
+  {
+    "german": "leben",
+    "english": "to live",
+    "parts": ["leb", "en"]
+  },
+  {
+    "german": "lieben",
+    "english": "to love",
+    "parts": ["lieb", "en"]
+  },
+  {
+    "german": "hassen",
+    "english": "to hate",
+    "parts": ["hass", "en"]
+  },
+  {
+    "german": "küssen",
+    "english": "to kiss",
+    "parts": ["küss", "en"]
+  },
+  {
+    "german": "umarmen",
+    "english": "to hug",
+    "parts": ["um", "arm", "en"]
+  },
+  {
+    "german": "treffen",
+    "english": "to meet",
+    "parts": ["treff", "en"]
+  },
+  {
+    "german": "verabschieden",
+    "english": "to say goodbye",
+    "parts": ["ver", "abschied", "en"]
+  },
+  {
+    "german": "begrüßen",
+    "english": "to greet",
+    "parts": ["be", "grüß", "en"]
+  },
+  {
+    "german": "danken",
+    "english": "to thank",
+    "parts": ["dank", "en"]
+  },
+  {
+    "german": "verzeihen",
+    "english": "to forgive",
+    "parts": ["ver", "zeih", "en"]
+  },
+  {
+    "german": "erzählen",
+    "english": "to tell",
+    "parts": ["erzähl", "en"]
+  },
+  {
+    "german": "diskutieren",
+    "english": "to discuss",
+    "parts": ["diskutier", "en"]
+  },
+  {
+    "german": "überlegen",
+    "english": "to deliberate",
+    "parts": ["überleg", "en"]
+  },
+  {
+    "german": "entscheiden",
+    "english": "to decide",
+    "parts": ["entscheid", "en"]
+  },
+  {
+    "german": "planen",
+    "english": "to plan",
+    "parts": ["plan", "en"]
+  },
+  {
+    "german": "organisieren",
+    "english": "to organize",
+    "parts": ["organisier", "en"]
+  },
+  {
+    "german": "studieren",
+    "english": "to study",
+    "parts": ["lern", "en"]
+  },
+  {
+    "german": "forschen",
+    "english": "to research",
+    "parts": ["forsch", "en"]
+  },
+  {
+    "german": "zahlen",
+    "english": "to pay",
+    "parts": ["zahl", "en"]
+  },
+  {
+    "german": "schicken",
+    "english": "to send",
+    "parts": ["schick", "en"]
+  },
+  {
+    "german": "bringen",
+    "english": "to bring",
+    "parts": ["bring", "en"]
+  },
+  {
+    "german": "holen",
+    "english": "to fetch",
+    "parts": ["hol", "en"]
+  },
+  {
+    "german": "setzen",
+    "english": "to set; to put",
+    "parts": ["setz", "en"]
+  },
+  {
+    "german": "legen",
+    "english": "to lay",
+    "parts": ["leg", "en"]
+  },
+  {
+    "german": "stellen",
+    "english": "to place",
+    "parts": ["stell", "en"]
+  },
+  {
+    "german": "klettern",
+    "english": "to climb",
+    "parts": ["kletter", "n"]
+  },
+  {
+    "german": "schwimmen",
+    "english": "to swim",
+    "parts": ["schwimm", "en"]
+  },
+  {
+    "german": "tauchen",
+    "english": "to dive",
+    "parts": ["tauch", "en"]
+  },
+  {
+    "german": "fliegen",
+    "english": "to fly",
+    "parts": ["flieg", "en"]
+  },
+  {
+    "german": "segeln",
+    "english": "to sail",
+    "parts": ["segel", "n"]
+  },
+  {
+    "german": "reiten",
+    "english": "to ride",
+    "parts": ["reit", "en"]
+  },
+  {
+    "german": "stoßen",
+    "english": "to bump",
+    "parts": ["stoß", "en"]
+  },
+  {
+    "german": "schütteln",
+    "english": "to shake",
+    "parts": ["schüttel", "n"]
+  },
+  {
+    "german": "wiegen",
+    "english": "to weigh",
+    "parts": ["wieg", "en"]
+  },
+  {
+    "german": "messen",
+    "english": "to measure",
+    "parts": ["mess", "en"]
+  },
+  {
+    "german": "vergleichen",
+    "english": "to compare",
+    "parts": ["vergleich", "en"]
+  },
+  {
+    "german": "zählen",
+    "english": "to count",
+    "parts": ["zähl", "en"]
   }
 ]

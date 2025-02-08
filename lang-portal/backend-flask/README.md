@@ -5,9 +5,9 @@ invoke init-db
 ```
 
 This will do the following:
-- create the words.db (Sqlite3 database)
-- run the migrations found in `seeds/`
-- run the seed data found in `seed/`
+- Create the words.db (Sqlite3 database)
+- Run the migrations found in `seeds/`
+- Run the seed data found in `seed/`
 
 Please note that migrations and seed data is manually coded to be imported in
 the `lib/db.py`. So you need to modify this code if you want to import other
@@ -23,4 +23,4 @@ Simply delete the `words.db` to clear entire database.
 python app.py 
 ```
 
-This should start the flask app on port `5000`
+This should start the flask app on port `5000`.
