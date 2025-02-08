@@ -4,7 +4,33 @@ from datetime import datetime
 import math
 
 def load(app):
-  # todo /study_sessions POST
+  # DONE /study_sessions POST
+  @app.route('/api/study-sessions', methods=['POST'])
+  @cross_origin()
+  def create_study_session():
+    try:
+      data = request.get_json()
+      group_id = data.get('group_id')
+      study_activity_id = data.get('study_activity_id')
+      if not group_id or not study_activity_id:
+        return jsonify({"error": "group_id and study_activity_id are required"}), 400
+      cursor = app.db.cursor()
+      created_at = datetime.utcnow().isoformat()
+      cursor.execute('''
+        INSERT INTO study_sessions (group_id, study_activity_id, created_at)
+        VALUES (?, ?, ?)
+      ''', (group_id, study_activity_id, created_at))
+      app.db.commit()
+      new_session_id = cursor.lastrowid
+      return jsonify({
+        "id": new_session_id,
+        "group_id": group_id,
+        "study_activity_id": study_activity_id,
+        "created_at": created_at
+      }), 201
+    except Exception as e:
+      return jsonify({"error": str(e)}), 500
+
 
   @app.route('/api/study-sessions', methods=['GET'])
   @cross_origin()
@@ -150,7 +176,36 @@ def load(app):
     except Exception as e:
       return jsonify({"error": str(e)}), 500
 
-  # todo POST /study_sessions/:id/review
+  # DONE POST /study_sessions/:id/review
+  @app.route('/api/study-sessions/<int:id>/review', methods=['POST'])
+  @cross_origin()
+  def review_study_session(id):
+    try:
+      data = request.get_json()
+      word_id = data.get('word_id')
+      correct = data.get('correct')
+      if word_id is None or correct is None:
+        return jsonify({"error": "word_id and correct are required"}), 400
+      cursor = app.db.cursor()
+      # Check if the study session exists
+      cursor.execute('SELECT id FROM study_sessions WHERE id = ?', (id,))
+      session = cursor.fetchone()
+      if not session:
+        return jsonify({"error": "Study session not found"}), 404
+      cursor.execute('''
+        INSERT INTO word_review_items (study_session_id, word_id, correct)
+        VALUES (?, ?, ?)
+      ''', (id, word_id, int(correct)))
+      app.db.commit()
+      new_item_id = cursor.lastrowid
+      return jsonify({
+        "id": new_item_id,
+        "study_session_id": id,
+        "word_id": word_id,
+        "correct": int(correct)
+      }), 201
+    except Exception as e:
+      return jsonify({"error": str(e)}), 500
 
   @app.route('/api/study-sessions/reset', methods=['POST'])
   @cross_origin()
