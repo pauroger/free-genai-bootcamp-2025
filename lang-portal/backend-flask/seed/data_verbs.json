@@ -1,0 +1,202 @@
+[
+  {
+    "german": "verbessern",
+    "english": "to improve",
+    "parts": ["ver", "besser", "n"]
+  },
+  {
+    "german": "besprechen",
+    "english": "to discuss",
+    "parts": ["be", "sprech", "en"]
+  },
+  {
+    "german": "teilnehmen",
+    "english": "to participate",
+    "parts": ["teil", "nehm", "en"]
+  },
+  {
+    "german": "erlauben",
+    "english": "to allow",
+    "parts": ["er", "laub", "en"]
+  },
+  {
+    "german": "unternehmen",
+    "english": "to undertake; to do (an activity)",
+    "parts": ["unter", "nehm", "en"]
+  },
+  {
+    "german": "vorbereiten",
+    "english": "to prepare",
+    "parts": ["vor", "berei", "ten"]
+  },
+  {
+    "german": "entwickeln",
+    "english": "to develop",
+    "parts": ["ent", "wickel", "n"]
+  },
+  {
+    "german": "erreichen",
+    "english": "to achieve; to reach",
+    "parts": ["er", "reich", "en"]
+  },
+  {
+    "german": "verwenden",
+    "english": "to use",
+    "parts": ["ver", "wend", "en"]
+  },
+  {
+    "german": "ausführen",
+    "english": "to carry out; to execute",
+    "parts": ["aus", "führ", "en"]
+  },
+  {
+    "german": "überwinden",
+    "english": "to overcome",
+    "parts": ["über", "wind", "en"]
+  },
+  {
+    "german": "widersprechen",
+    "english": "to contradict",
+    "parts": ["wider", "sprech", "en"]
+  },
+  {
+    "german": "mitmachen",
+    "english": "to join in; to participate",
+    "parts": ["mit", "mach", "en"]
+  },
+  {
+    "german": "einschätzen",
+    "english": "to assess; to estimate",
+    "parts": ["ein", "schätz", "en"]
+  },
+  {
+    "german": "feststellen",
+    "english": "to determine; to find out",
+    "parts": ["fest", "stell", "en"]
+  },
+  {
+    "german": "annehmen",
+    "english": "to assume; to accept",
+    "parts": ["an", "nehm", "en"]
+  },
+  {
+    "german": "vermeiden",
+    "english": "to avoid",
+    "parts": ["ver", "meid", "en"]
+  },
+  {
+    "german": "wiederholen",
+    "english": "to repeat",
+    "parts": ["wieder", "hol", "en"]
+  },
+  {
+    "german": "berichten",
+    "english": "to report",
+    "parts": ["be", "richt", "en"]
+  },
+  {
+    "german": "unterstützen",
+    "english": "to support",
+    "parts": ["unter", "stütz", "en"]
+  },
+  {
+    "german": "abbiegen",
+    "english": "to turn",
+    "parts": ["ab", "bieg", "en"]
+  },
+  {
+    "german": "anbieten",
+    "english": "to offer",
+    "parts": ["an", "biet", "en"]
+  },
+  {
+    "german": "aufhören",
+    "english": "to stop (doing something)",
+    "parts": ["auf", "hör", "en"]
+  },
+  {
+    "german": "ausgehen",
+    "english": "to go out",
+    "parts": ["aus", "geh", "en"]
+  },
+  {
+    "german": "beherrschen",
+    "english": "to master",
+    "parts": ["be", "herrsch", "en"]
+  },
+  {
+    "german": "beurteilen",
+    "english": "to judge; to evaluate",
+    "parts": ["be", "urteil", "en"]
+  },
+  {
+    "german": "durchführen",
+    "english": "to carry out; to conduct",
+    "parts": ["durch", "führ", "en"]
+  },
+  {
+    "german": "einfallen",
+    "english": "to occur (to someone); to come to mind",
+    "parts": ["ein", "fall", "en"]
+  },
+  {
+    "german": "einschlafen",
+    "english": "to fall asleep",
+    "parts": ["ein", "schlaf", "en"]
+  },
+  {
+    "german": "gelingen",
+    "english": "to succeed",
+    "parts": ["geling", "en"]
+  },
+  {
+    "german": "genehmigen",
+    "english": "to approve",
+    "parts": ["ge", "nehm", "ig", "en"]
+  },
+  {
+    "german": "hingehen",
+    "english": "to go there",
+    "parts": ["hin", "geh", "en"]
+  },
+  {
+    "german": "losfahren",
+    "english": "to set off; to depart",
+    "parts": ["los", "fahr", "en"]
+  },
+  {
+    "german": "nachdenken",
+    "english": "to think about; to reflect on",
+    "parts": ["nach", "denk", "en"]
+  },
+  {
+    "german": "scheitern",
+    "english": "to fail",
+    "parts": ["scheit", "er", "n"]
+  },
+  {
+    "german": "stattfinden",
+    "english": "to take place",
+    "parts": ["statt", "find", "en"]
+  },
+  {
+    "german": "verbinden",
+    "english": "to connect; to link",
+    "parts": ["ver", "bind", "en"]
+  },
+  {
+    "german": "vorschlagen",
+    "english": "to suggest",
+    "parts": ["vor", "schlag", "en"]
+  },
+  {
+    "german": "zustimmen",
+    "english": "to agree",
+    "parts": ["zu", "stimm", "en"]
+  },
+  {
+    "german": "zurechtkommen",
+    "english": "to cope; to get by",
+    "parts": ["zu", "recht", "komm", "en"]
+  }
+]

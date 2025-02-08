@@ -1,0 +1,452 @@
+[
+    {
+      "german": "zufrieden",
+      "english": "satisfied",
+      "parts": ["zu", "fried", "en"]
+    },
+    {
+      "german": "verantwortlich",
+      "english": "responsible",
+      "parts": ["ver", "antwort", "lich"]
+    },
+    {
+      "german": "zuverlässig",
+      "english": "reliable",
+      "parts": ["zu", "ver", "läss", "ig"]
+    },
+    {
+      "german": "spannend",
+      "english": "exciting",
+      "parts": ["spann", "end"]
+    },
+    {
+      "german": "entspannt",
+      "english": "relaxed",
+      "parts": ["ent", "spann", "t"]
+    },
+    {
+      "german": "ängstlich",
+      "english": "anxious",
+      "parts": ["ängst", "lich"]
+    },
+    {
+      "german": "neugierig",
+      "english": "curious",
+      "parts": ["neu", "gier", "ig"]
+    },
+    {
+      "german": "ehrgeizig",
+      "english": "ambitious",
+      "parts": ["ehr", "geiz", "ig"]
+    },
+    {
+      "german": "sparsam",
+      "english": "thrifty",
+      "parts": ["spar", "sam"]
+    },
+    {
+      "german": "großzügig",
+      "english": "generous",
+      "parts": ["groß", "züg", "ig"]
+    },
+    {
+      "german": "peinlich",
+      "english": "embarrassing",
+      "parts": ["pein", "lich"]
+    },
+    {
+      "german": "typisch",
+      "english": "typical",
+      "parts": ["typ", "isch"]
+    },
+    {
+      "german": "ausdauernd",
+      "english": "persevering",
+      "parts": ["aus", "dauer", "nd"]
+    },
+    {
+      "german": "bekannt",
+      "english": "well-known",
+      "parts": ["be", "kannt"]
+    },
+    {
+      "german": "seltsam",
+      "english": "strange",
+      "parts": ["selt", "sam"]
+    },
+    {
+      "german": "kompliziert",
+      "english": "complicated",
+      "parts": ["kompli", "ziert"]
+    },
+    {
+      "german": "witzig",
+      "english": "funny",
+      "parts": ["witz", "ig"]
+    },
+    {
+      "german": "merkwürdig",
+      "english": "strange; remarkable",
+      "parts": ["merk", "wür", "dig"]
+    },
+    {
+      "german": "schwierig",
+      "english": "difficult",
+      "parts": ["schwie", "rig"]
+    },
+    {
+      "german": "hilfsbereit",
+      "english": "helpful",
+      "parts": ["hilfs", "bereit"]
+    },
+    {
+      "german": "geduldig",
+      "english": "patient",
+      "parts": ["ge", "duld", "ig"]
+    },
+    {
+      "german": "höflich",
+      "english": "polite",
+      "parts": ["höf", "lich"]
+    },
+    {
+      "german": "vertrauenswürdig",
+      "english": "trustworthy",
+      "parts": ["vertrau", "ens", "würdig"]
+    },
+    {
+      "german": "eifersüchtig",
+      "english": "jealous",
+      "parts": ["eifer", "sücht", "ig"]
+    },
+    {
+      "german": "stolz",
+      "english": "proud",
+      "parts": ["stolz"]
+    },
+    {
+      "german": "gelassen",
+      "english": "calm",
+      "parts": ["ge", "lass", "en"]
+    },
+    {
+      "german": "egoistisch",
+      "english": "selfish",
+      "parts": ["ego", "ist", "isch"]
+    },
+    {
+      "german": "gemein",
+      "english": "mean",
+      "parts": ["ge", "mein"]
+    },
+    {
+      "german": "vernünftig",
+      "english": "sensible",
+      "parts": ["ver", "nünft", "ig"]
+    },
+    {
+      "german": "rücksichtsvoll",
+      "english": "considerate",
+      "parts": ["rück", "sicht", "voll"]
+    },
+    {
+      "german": "rücksichtslos",
+      "english": "reckless; inconsiderate",
+      "parts": ["rück", "sicht", "los"]
+    },
+    {
+      "german": "ausgezeichnet",
+      "english": "excellent",
+      "parts": ["aus", "ge", "zeich", "net"]
+    },
+    {
+      "german": "überzeugt",
+      "english": "convinced",
+      "parts": ["über", "zeug", "t"]
+    },
+    {
+      "german": "ordentlich",
+      "english": "tidy",
+      "parts": ["ord", "ent", "lich"]
+    },
+    {
+      "german": "schlampig",
+      "english": "sloppy",
+      "parts": ["schlamp", "ig"]
+    },
+    {
+      "german": "abwesend",
+      "english": "absent; preoccupied",
+      "parts": ["ab", "wes", "end"]
+    },
+    {
+      "german": "begeistert",
+      "english": "enthusiastic",
+      "parts": ["be", "geister", "t"]
+    },
+    {
+      "german": "flexibel",
+      "english": "flexible",
+      "parts": ["flex", "ib", "el"]
+    },
+    {
+      "german": "gewöhnt",
+      "english": "used to",
+      "parts": ["ge", "wohn", "t"]
+    },
+    {
+      "german": "offen",
+      "english": "open-minded",
+      "parts": ["of", "fen"]
+    },
+    {
+        "german": "anfangen",
+        "english": "to begin",
+        "parts": ["an", "fang", "en"]
+    },
+    {
+        "german": "ankommen",
+        "english": "to arrive",
+        "parts": ["an", "komm", "en"]
+    },
+    {
+        "german": "aussehen",
+        "english": "to look; to appear",
+        "parts": ["aus", "seh", "en"]
+    },
+    {
+        "german": "bedienen",
+        "english": "to serve (someone)",
+        "parts": ["be", "dien", "en"]
+    },
+    {
+        "german": "befinden",
+        "english": "to be located; to find oneself",
+        "parts": ["be", "find", "en"]
+    },
+    {
+        "german": "begehen",
+        "english": "to commit (a crime)",
+        "parts": ["be", "geh", "en"]
+    },
+    {
+        "german": "begründen",
+        "english": "to justify",
+        "parts": ["be", "gründ", "en"]
+    },
+    {
+        "german": "behandeln",
+        "english": "to treat",
+        "parts": ["be", "hand", "el", "n"]
+    },
+    {
+        "german": "bekommen",
+        "english": "to receive; to get",
+        "parts": ["be", "komm", "en"]
+    },
+    {
+        "german": "beschreiben",
+        "english": "to describe",
+        "parts": ["be", "schreib", "en"]
+    },
+    {
+        "german": "bestellen",
+        "english": "to order",
+        "parts": ["be", "stell", "en"]
+    },
+    {
+        "german": "betreten",
+        "english": "to enter",
+        "parts": ["be", "tret", "en"]
+    },
+    {
+        "german": "decken",
+        "english": "to cover; to set (a table)",
+        "parts": ["deck", "en"]
+    },
+    {
+        "german": "dürfen",
+        "english": "to be allowed to; may",
+        "parts": ["dürf", "en"]
+    },
+    {
+        "german": "empfangen",
+        "english": "to receive (guests, signals)",
+        "parts": ["emp", "fang", "en"]
+    },
+    {
+        "german": "empfehlen",
+        "english": "to recommend",
+        "parts": ["emp", "fehl", "en"]
+    },
+    {
+        "german": "entscheiden",
+        "english": "to decide",
+        "parts": ["ent", "scheid", "en"]
+    },
+    {
+        "german": "entschuldigen",
+        "english": "to excuse; to apologize (reflexive)",
+        "parts": ["ent", "schuld", "ig", "en"]
+    },
+    {
+        "german": "erkennen",
+        "english": "to recognize",
+        "parts": ["er", "kenn", "en"]
+    },
+    {
+        "german": "erklären",
+        "english": "to explain",
+        "parts": ["er", "klär", "en"]
+    },
+    {
+        "german": "ermöglichen",
+        "english": "to enable",
+        "parts": ["er", "möglich", "en"]
+    },
+    {
+        "german": "eröffnen",
+        "english": "to open (an event, account, etc.)",
+        "parts": ["er", "öffn", "en"]
+    },
+    {
+        "german": "erwarten",
+        "english": "to expect",
+        "parts": ["er", "wart", "en"]
+    },
+    {
+        "german": "fahren",
+        "english": "to drive; to travel",
+        "parts": ["fahr", "en"]
+    },
+    {
+        "german": "fallen",
+        "english": "to fall",
+        "parts": ["fall", "en"]
+    },
+    {
+        "german": "fangen",
+        "english": "to catch",
+        "parts": ["fang", "en"]
+    },
+    {
+        "german": "geben",
+        "english": "to give",
+        "parts": ["geb", "en"]
+    },
+    {
+        "german": "gewinnen",
+        "english": "to win",
+        "parts": ["gewinn", "en"]
+    },
+    {
+        "german": "gründen",
+        "english": "to found; to establish",
+        "parts": ["gründ", "en"]
+    },
+    {
+        "german": "halten",
+        "english": "to hold; to stop",
+        "parts": ["halt", "en"]
+    },
+    {
+        "german": "heben",
+        "english": "to lift; to raise",
+        "parts": ["heb", "en"]
+    },
+    {
+        "german": "heißen",
+        "english": "to be called",
+        "parts": ["heiß", "en"]
+    },
+    {
+        "german": "klagen",
+        "english": "to complain; to sue",
+        "parts": ["klag", "en"]
+    },
+    {
+        "german": "lachen",
+        "english": "to laugh",
+        "parts": ["lach", "en"]
+    },
+    {
+        "german": "lernen",
+        "english": "to learn; to study",
+        "parts": ["lern", "en"]
+    },
+    {
+        "german": "lügen",
+        "english": "to lie (tell untruths)",
+        "parts": ["lüg", "en"]
+    },
+    {
+        "german": "mieten",
+        "english": "to rent",
+        "parts": ["miet", "en"]
+    },
+    {
+        "german": "öffnen",
+        "english": "to open",
+        "parts": ["öffn", "en"]
+    },
+    {
+        "german": "passieren",
+        "english": "to happen",
+        "parts": ["passier", "en"]
+    },
+    {
+        "german": "rechnen",
+        "english": "to calculate; to do math",
+        "parts": ["rechn", "en"]
+    },
+    {
+        "german": "reduzieren",
+        "english": "to reduce",
+        "parts": ["reduzier", "en"]
+    },
+    {
+        "german": "regeln",
+        "english": "to regulate; to settle",
+        "parts": ["regel", "n"]
+    },
+    {
+        "german": "reisen",
+        "english": "to travel",
+        "parts": ["reis", "en"]
+    },
+    {
+        "german": "reichen",
+        "english": "to reach; to be enough",
+        "parts": ["reich", "en"]
+    },
+    {
+        "german": "scheinen",
+        "english": "to seem; to shine",
+        "parts": ["schein", "en"]
+    },
+    {
+        "german": "schicken",
+        "english": "to send",
+        "parts": ["schick", "en"]
+    },
+    {
+        "german": "stehen",
+        "english": "to stand; to suit (someone)",
+        "parts": ["steh", "en"]
+    },
+    {
+        "german": "stellen",
+        "english": "to place; to put (upright)",
+        "parts": ["stell", "en"]
+    },
+    {
+        "german": "trennen",
+        "english": "to separate",
+        "parts": ["trenn", "en"]
+    },
+    {
+        "german": "zahlen",
+        "english": "to pay",
+        "parts": ["zahl", "en"]
+    }
+]
