@@ -1,4 +1,4 @@
-## Setting up the database
+# Setting up the database
 
 ```sh
 invoke init-db

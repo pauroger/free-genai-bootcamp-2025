@@ -7,8 +7,8 @@ type SortKey = 'name' | 'word_count'
 
 export default function Groups() {
   const [groups, setGroups] = useState<Group[]>([])
-  const [sortKey, setSortKey] = useState<SortKey>('name')
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  const [sortKey, setSortKey] = useState<SortKey>('word_count')
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
