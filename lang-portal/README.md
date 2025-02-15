@@ -1,3 +1,5 @@
+# Commands
+
 ## Install
 
 ```sh

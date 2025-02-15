@@ -3,7 +3,7 @@ from flask_cors import cross_origin
 import math
 
 def load(app):
-    @app.route('/api/study-activities', methods=['GET'])
+    @app.route('/study-activities', methods=['GET'])
     @cross_origin()
     def get_study_activities():
         cursor = app.db.cursor()
@@ -17,7 +17,7 @@ def load(app):
             'preview_url': activity['preview_url']
         } for activity in activities])
 
-    @app.route('/api/study-activities/<int:id>', methods=['GET'])
+    @app.route('/study-activities/<int:id>', methods=['GET'])
     @cross_origin()
     def get_study_activity(id):
         cursor = app.db.cursor()
@@ -34,7 +34,7 @@ def load(app):
             'preview_url': activity['preview_url']
         })
 
-    @app.route('/api/study-activities/<int:id>/sessions', methods=['GET'])
+    @app.route('/study-activities/<int:id>/sessions', methods=['GET'])
     @cross_origin()
     def get_study_activity_sessions(id):
         cursor = app.db.cursor()
@@ -96,7 +96,7 @@ def load(app):
             'total_pages': math.ceil(total_count / per_page)
         })
 
-    @app.route('/api/study-activities/<int:id>/launch', methods=['GET'])
+    @app.route('/study-activities/<int:id>/launch', methods=['GET'])
     @cross_origin()
     def get_study_activity_launch_data(id):
         cursor = app.db.cursor()

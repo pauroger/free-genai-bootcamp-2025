@@ -215,11 +215,11 @@ def load(app):
 
       # Map frontend sort keys to database columns
       sort_mapping = {
-        'startTime': 'created_at',
-        'endTime': 'last_activity_time',
-        'activityName': 'a.name',
-        'groupName': 'g.name',
-        'reviewItemsCount': 'review_count'
+        'start_time': 'created_at',
+        'end_time': 'last_activity_time',
+        'activity_name': 'a.name',
+        'group_name': 'g.name',
+        'review_items_count': 'review_count'
       }
 
       # Use mapped sort column or default to created_at
