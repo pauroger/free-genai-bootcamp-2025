@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { BookOpen, Trophy, Clock, ArrowRight, Activity } from 'lucide-react'
+import { Trophy, Clock, ArrowRight, Activity } from 'lucide-react'
 import { fetchRecentStudySession, fetchStudyStats, type StudyStats, type RecentSession } from '@/services/api'
 
 interface DashboardCardProps {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import StudySessionsTable, { type StudySessionSortKey } from '../components/StudySessionsTable'
-import Pagination from '../components/Pagination'
 import { type StudySession, fetchStudySessions } from '../services/api'
 
 export default function Sessions() {

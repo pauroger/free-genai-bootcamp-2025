@@ -67,6 +67,7 @@ export default function StudyActivityLaunch() {
     try {
       // Create a study session first
       const result = await createStudySession(parseInt(selectedGroup), launchData.activity.id);
+      console.log("createStudySession result:", result);
       const sessionId = result.session_id;
       
       // Replace any instances of $group_id with the actual group id and add session_id

@@ -9,7 +9,7 @@ export default function Settings() {
   const handleReset = async () => {
     if (resetConfirmation.toLowerCase() === 'reset me') {
       try {
-        const response = await fetch('http://127.0.0.1:5000/study-sessions/reset', {
+        const response = await fetch('http://127.0.0.1:5000/study_sessions/reset', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

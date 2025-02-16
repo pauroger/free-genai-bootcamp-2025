@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useNavigation } from '@/context/NavigationContext'
 import WordsTable from '@/components/WordsTable'
 import Pagination from '@/components/Pagination'
 import type { Word } from '@/services/api'
@@ -45,7 +44,7 @@ export default function StudySessionShow() {
       setError(null)
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/study-sessions/${id}?page=${currentPage}&per_page=10`
+          `http://127.0.0.1:5000/study_sessions/${id}?page=${currentPage}&per_page=10`
         )
         if (!response.ok) {
           throw new Error('Failed to fetch session data')
