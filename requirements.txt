@@ -6,3 +6,5 @@ pytest-flask==1.3.0
 gtts
 pandas
 boto3
+fastapi
+comps
