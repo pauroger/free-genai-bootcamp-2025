@@ -2,3 +2,4 @@
 /lang-portal/backend-flask/words.db
 /lang-portal/backend-flask/routes/__pycache__/
 /lang-portal/backend-flask/lib/
+/lang-portal/frontend-react/node_modules
