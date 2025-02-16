@@ -10,7 +10,6 @@ curl -X POST http://localhost:8000/v1/example-service \
   -o response.json
 ```
 
-
 ```sh
   curl -X POST http://localhost:8000/v1/example-service \
   -H "Content-Type: application/json" \

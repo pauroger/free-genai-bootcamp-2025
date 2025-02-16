@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+import os
 from comps.cores.proto.api_protocol import (
     ChatCompletionRequest,
     ChatCompletionResponse,
@@ -8,7 +9,6 @@ from comps.cores.proto.api_protocol import (
 )
 from comps.cores.mega.constants import ServiceType, ServiceRoleType
 from comps import MicroService, ServiceOrchestrator
-import os
 
 EMBEDDING_SERVICE_HOST_IP = os.getenv("EMBEDDING_SERVICE_HOST_IP", "0.0.0.0")
 EMBEDDING_SERVICE_PORT = os.getenv("EMBEDDING_SERVICE_PORT", 6000)
