@@ -4,7 +4,9 @@
 
 ## Prompting Guides
 
+```bash
 https://platform.openai.com/docs/guides/prompt-engineering
+```
 
 ## Example
 
