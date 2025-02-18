@@ -282,8 +282,8 @@ class AudioGenerator:
             audio_parts = []
             
             # Pre-generate pauses
-            long_pause = self.generate_silence(3000)   # 3-second pause
-            short_pause = self.generate_silence(1000)
+            long_pause = self.generate_silence(2000)   # 2-second pause
+            short_pause = self.generate_silence(500)
             
             for i, (speaker, text, gender) in enumerate(parts):
                 # Check if this announcer part indicates a transition
