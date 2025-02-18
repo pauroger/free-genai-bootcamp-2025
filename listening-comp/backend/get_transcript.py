@@ -1,6 +1,6 @@
+import os
 from youtube_transcript_api import YouTubeTranscriptApi
 from typing import Optional, List, Dict
-
 
 class YouTubeTranscriptDownloader:
     def __init__(self, languages: List[str] = ["de", "en"]):
@@ -35,13 +35,11 @@ class YouTubeTranscriptDownloader:
         # Extract video ID if full URL is provided
         if "youtube.com" in video_id or "youtu.be" in video_id:
             video_id = self.extract_video_id(video_id)
-            
         if not video_id:
             print("Invalid video ID or URL")
             return None
 
         print(f"Downloading transcript for video ID: {video_id}")
-        
         try:
             return YouTubeTranscriptApi.get_transcript(video_id, languages=self.languages)
         except Exception as e:
@@ -59,8 +57,6 @@ class YouTubeTranscriptDownloader:
         Returns:
             bool: True if successful, False otherwise
         """
-        filename = f"./transcripts/{filename}.txt"
-        
         try:
             with open(filename, 'w', encoding='utf-8') as f:
                 for entry in transcript:
@@ -71,29 +67,22 @@ class YouTubeTranscriptDownloader:
             return False
 
 def main(video_url, print_transcript=False):
-    # Initialize downloader
     downloader = YouTubeTranscriptDownloader()
-    
-    # Get transcript
     transcript = downloader.get_transcript(video_url)
-    downloader.save_transcript(transcript, video_url)
+
     if transcript:
-        # Save transcript
         video_id = downloader.extract_video_id(video_url)
-        if downloader.save_transcript(transcript, video_id):
-            # Print transcript if True
-            print(f"Transcript saved successfully to {video_id}.txt")
+        filename = f"./data/transcripts/{video_id}.txt"
+        if downloader.save_transcript(transcript, filename):
+            print(f"Transcript saved successfully to {filename}")
             if print_transcript:
-                # Print transcript
                 for entry in transcript:
-                    print(f"{entry['text']}")
+                    print(entry['text'])
         else:
             print("Failed to save transcript")
-        
     else:
         print("Failed to get transcript")
 
 if __name__ == "__main__":
-    # Extract from URL:
-    video_id = "https://www.youtube.com/watch?v=J6B82SjPFYY&list=PLxNPzeuPCA7BWJ8Uy5XaSkCdkhei21FhO"
-    transcript = main(video_id, print_transcript=True)
+    video_url = "https://www.youtube.com/watch?v=J6B82SjPFYY&list=PLxNPzeuPCA7BWJ8Uy5XaSkCdkhei21FhO"
+    main(video_url, print_transcript=True)
