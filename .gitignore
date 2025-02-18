@@ -6,3 +6,5 @@
 /lang-portal/frontend-react/node_modules
 /lang-portal/backend-flask/__pycache__
 *.mp3
+/listening-comp/backend/backend/data/vectorstore/**
+/listening-comp/backend/__pycache__
