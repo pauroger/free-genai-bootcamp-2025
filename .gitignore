@@ -5,3 +5,4 @@
 /lang-portal/backend-flask/lib/
 /lang-portal/frontend-react/node_modules
 /lang-portal/backend-flask/__pycache__
+*.mp3
