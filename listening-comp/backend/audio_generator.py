@@ -1,30 +1,33 @@
 import boto3
 import json
 import os
+import wave
+import struct
 from typing import Dict, List, Tuple
 import tempfile
-import subprocess
 from datetime import datetime
+
+# MODEL_ID = "huggingface-asr-whisper-large-v3-turbo"
+MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
 
 class AudioGenerator:
     def __init__(self):
-        self.bedrock = boto3.client('bedrock-runtime', region_name="us-east-1")
+        # self.bedrock = boto3.client('bedrock-runtime', region_name="us-east-1")
+        self.bedrock = boto3.client('bedrock-runtime', region_name="eu-west-1")
         self.polly = boto3.client('polly')
-        self.model_id = "amazon.nova-micro-v1:0"
+        self.model_id = MODEL_ID
         
         # Define English and German neural voices by language and gender
         self.voices = {
             'en-US': {
-                'male': 'Matthew',
-                'female': 'Joanna',
-                'announcer': 'Matthew'
+                'male': 'Matthew', 'female': 'Joanna', 'announcer': 'Stephen'
             },
             'de-DE': {
-                'male': 'Hans',
-                'female': 'Marlene',
-                'announcer': 'Hans'
+                'male': 'Hans', 'female': 'Marlene', 'announcer': 'Vicki'
             }
         }
+
+
         # Default language code
         self.language_code = 'en-US'
         
@@ -61,8 +64,8 @@ class AudioGenerator:
 
     def validate_conversation_parts(self, parts: List[Tuple[str, str, str]]) -> bool:
         """
-        Validate that the conversation parts are properly formatted.
-        Returns True if valid, False otherwise.
+        Validate that the conversation parts are properly formatted. Returns
+        True if valid, False otherwise.
         """
         if not parts:
             print("Error: No conversation parts generated")
@@ -206,33 +209,30 @@ class AudioGenerator:
 
     def generate_audio_part(self, text: str, voice_name: str, language_code: str) -> str:
         """Generate audio for a single part using Amazon Polly"""
+        # Use neural for English; for German, use standard since that's what these voices support.
+        engine = "neural"
+        if language_code == "de-DE":
+            engine = "standard"
         response = self.polly.synthesize_speech(
-            text=text,
-            outputFormat='mp3',
-            voiceId=voice_name,
-            engine='neural',
-            languageCode=language_code
+            Text=text,
+            OutputFormat='mp3',
+            VoiceId=voice_name,
+            Engine=engine,
+            LanguageCode=language_code
         )
         with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as temp_file:
             temp_file.write(response['AudioStream'].read())
             return temp_file.name
 
-    def combine_audio_files(self, audio_files: List[str], output_file: str):
-        """Combine multiple audio files using ffmpeg"""
-        file_list = None
+    def combine_audio_files(self, audio_files: List[str], output_file: str) -> bool:
+        """Combine multiple MP3 audio files by concatenating their binary data."""
         try:
-            with tempfile.NamedTemporaryFile('w', suffix='.txt', delete=False) as f:
+            with open(output_file, 'wb') as wfd:
                 for audio_file in audio_files:
-                    f.write(f"file '{audio_file}'\n")
-                file_list = f.name
-            
-            subprocess.run([
-                'ffmpeg', '-f', 'concat', '-safe', '0',
-                '-i', file_list,
-                '-c', 'copy',
-                output_file
-            ], check=True)
-            
+                    with open(audio_file, 'rb') as fd:
+                        # Read the entire file and write it to the output file.
+                        data = fd.read()
+                        wfd.write(data)
             return True
         except Exception as e:
             print(f"Error combining audio files: {str(e)}")
@@ -240,8 +240,7 @@ class AudioGenerator:
                 os.unlink(output_file)
             return False
         finally:
-            if file_list and os.path.exists(file_list):
-                os.unlink(file_list)
+            # Clean up the temporary audio parts
             for audio_file in audio_files:
                 if os.path.exists(audio_file):
                     try:
@@ -250,15 +249,23 @@ class AudioGenerator:
                         print(f"Error cleaning up {audio_file}: {str(e)}")
 
     def generate_silence(self, duration_ms: int) -> str:
-        """Generate a silent audio file of specified duration"""
-        output_file = os.path.join(self.audio_dir, f'silence_{duration_ms}ms.mp3')
-        if not os.path.exists(output_file):
-            subprocess.run([
-                'ffmpeg', '-f', 'lavfi', '-i',
-                f'anullsrc=r=24000:cl=mono:d={duration_ms/1000}',
-                '-c:a', 'libmp3lame', '-b:a', '48k',
-                output_file
-            ])
+        """Generate a silent WAV file for the specified duration."""
+        output_file = os.path.join(self.audio_dir, f'silence_{duration_ms}ms.wav')
+        framerate = 24000  # samples per second
+        num_channels = 1   # mono
+        sampwidth = 2      # bytes per sample (16-bit)
+        num_frames = int(framerate * (duration_ms / 1000.0))
+        
+        # Create an array of zeroes for silence
+        silence_data = [0] * num_frames
+        
+        # Write the silent frames to a WAV file
+        with wave.open(output_file, 'w') as wav_file:
+            wav_file.setnchannels(num_channels)
+            wav_file.setsampwidth(sampwidth)
+            wav_file.setframerate(framerate)
+            wav_file.writeframes(struct.pack('<' + 'h' * num_frames, *silence_data))
+        
         return output_file
 
     def generate_audio(self, question: Dict, language_code: str = 'en-US') -> str:
@@ -273,20 +280,25 @@ class AudioGenerator:
         try:
             parts = self.parse_conversation(question)
             audio_parts = []
-            current_section = None
-            long_pause = self.generate_silence(2000)  # 2 second pause
-            short_pause = self.generate_silence(500)  # 0.5 second pause
             
-            for speaker, text, gender in parts:
-                if speaker.lower() == 'announcer':
-                    if 'conversation' in text.lower() or 'question' in text.lower():
-                        if current_section is not None:
+            # Pre-generate pauses
+            long_pause = self.generate_silence(3000)   # 3-second pause
+            short_pause = self.generate_silence(1000)
+            
+            for i, (speaker, text, gender) in enumerate(parts):
+                # Check if this announcer part indicates a transition
+                if speaker.lower() == 'announcer' or speaker.lower() == 'ntroduction':
+                    # If the text indicates the start of the question
+                    if "?" in text or "rage:" in text.lower() or "uestion:" in text.lower():
+                        # Insert a pause before this question if previous parts exist
+                        if audio_parts:
                             audio_parts.append(long_pause)
-                        current_section = 'intro'
-                elif current_section == 'intro':
-                    audio_parts.append(long_pause)
-                    current_section = 'conversation'
+                    # If the text indicates options (e.g., begins with "Option" or "Optionen")
+                    elif text.lower().startswith("option") or "optionen" in text.lower():
+                        # Insert a longer pause before the options
+                        audio_parts.append(long_pause)
                 
+                # Generate the audio for the current part
                 voice = self.get_voice_for_gender(speaker, gender, language_code)
                 print(f"Using voice {voice} for {speaker} ({gender})")
                 audio_file = self.generate_audio_part(text, voice, language_code)
@@ -294,7 +306,8 @@ class AudioGenerator:
                     raise Exception("Failed to generate audio part")
                 audio_parts.append(audio_file)
                 
-                if current_section == 'conversation':
+                # Add a short pause between parts, if not the last part
+                if i < len(parts) - 1:
                     audio_parts.append(short_pause)
             
             if not self.combine_audio_files(audio_parts, output_file):

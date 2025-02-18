@@ -4,21 +4,21 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.audio_generator import AudioGenerator
 
-# Test question data
+# German test question data
 test_question = {
-    "Introduction": "次の会話を聞いて、質問に答えてください。",
+    "Introduction": "Hören Sie sich das folgende Gespräch an und beantworten Sie die Frage.",
     "Conversation": """
-    男性: すみません、この電車は新宿駅に止まりますか。
-    女性: はい、次の駅が新宿です。
-    男性: ありがとうございます。何分くらいかかりますか。
-    女性: そうですね、5分くらいです。
+        male: Entschuldigen Sie, hält dieser Zug am Hauptbahnhof?
+        female: Ja, der nächste Halt ist der Hauptbahnhof.
+        male: Vielen Dank. Wie lange dauert die Fahrt?
+        female: Ungefähr 5 Minuten.
     """,
-    "Question": "新宿駅まで何分かかりますか。",
+    "Question": "Wie lange dauert die Fahrt zum Hauptbahnhof?",
     "Options": [
-        "3分です。",
-        "5分です。",
-        "10分です。",
-        "15分です。"
+        "3 Minuten",
+        "5 Minuten",
+        "10 Minuten",
+        "15 Minuten"
     ]
 }
 
@@ -36,7 +36,8 @@ def test_audio_generation():
         print("---")
     
     print("\nGenerating audio file...")
-    audio_file = generator.generate_audio(test_question)
+    # Pass the German language code so that German voices are used
+    audio_file = generator.generate_audio(test_question, language_code="de-DE")
     print(f"Audio file generated: {audio_file}")
     
     return audio_file
