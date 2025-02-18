@@ -287,14 +287,14 @@ class AudioGenerator:
             
             for i, (speaker, text, gender) in enumerate(parts):
                 # Check if this announcer part indicates a transition
-                if speaker.lower() == 'announcer' or speaker.lower() == 'ntroduction':
+                if speaker.lower() == 'announcer' or speaker.lower() == 'introduction':
                     # If the text indicates the start of the question
-                    if "?" in text or "rage:" in text.lower() or "uestion:" in text.lower():
+                    if "?" in text or "frage:" in text.lower() or "question:" in text.lower():
                         # Insert a pause before this question if previous parts exist
                         if audio_parts:
                             audio_parts.append(long_pause)
                     # If the text indicates options (e.g., begins with "Option" or "Optionen")
-                    elif text.lower().startswith("option") or "optionen" in text.lower():
+                    elif text.lower().startswith("option") or "optionen" in text.lower() or "conversation" in text.lower():
                         # Insert a longer pause before the options
                         audio_parts.append(long_pause)
                 
