@@ -9,3 +9,7 @@ boto3
 fastapi
 comps
 opea-comps
+streamlit
+boto3>=1.34.0
+youtube-transcript-api>=0.6.2
+chromadb>=0.4.22

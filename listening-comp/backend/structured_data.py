@@ -2,120 +2,88 @@ from typing import Optional, Dict, List
 import boto3
 import os
 
-# Model ID
-#MODEL_ID = "amazon.nova-micro-v1:0"
-MODEL_ID = "amazon.nova-lite-v1:0"
+
+# MODEL_ID = "amazon.titan-text-lite-v1" # Getting errors sometimes because the Max input tokens is: 4096
+# MODEL_ID = "amazon.titan-text-express-v1" # Misses a bunch of stuff from the transcript.
+MODEL_ID = "mistral.mistral-7b-instruct-v0:2" # Pretty results!!
+
+# Other enabled models:
+# MODEL_ID = "mistral.mixtral-8x7b-instruct-v0:1"
+# MODEL_ID = "mistral.mistral-large-2402-v1:0"
+# MODEL_ID = "meta.llama3-2-1b-instruct-v1:0"
+# MODEL_ID = "meta.llama3-2-3b-instruct-v1:0"
+
+VIDEO_ID = "J6B82SjPFYY"
 
 class TranscriptStructurer:
     def __init__(self, model_id: str = MODEL_ID):
-        """Initialize Bedrock client"""
-        self.bedrock_client = boto3.client('bedrock-runtime', region_name="us-east-1")
+        # Initialize Bedrock client
+        self.bedrock_client = boto3.client('bedrock-runtime', region_name="eu-west-1")
         self.model_id = model_id
         self.prompts = {
-            # (Not currently used, but updated for consistency)
-            1: """Extract questions from section 1 of this transcript where the answer can be determined solely from the conversation without needing visual aids.
-            
-            ONLY include questions that meet these criteria:
-            - The answer can be determined purely from the spoken dialogue
-            - No spatial/visual information is needed (like locations, layouts, or physical appearances)
-            - No physical objects or visual choices need to be compared
+            1: """
+                Extract and structure section 'Teil 1' from this transcript.
 
-            For example, INCLUDE questions about:
-            - Times and dates
-            - Numbers and quantities
-            - Spoken choices or decisions
-            - Clear verbal directions
+                Instructions:
+                - This section contains an example followed by 5 texts.
+                - For each text, generate 3 True or False statements that relate to the content of that text.
 
-            Format each question exactly like this:
-
-            <question>
-            Introduction:
-            [the situation setup in english]
-
-            Conversation:
-            [the dialogue in english]
-
-            Question:
-            [the question being asked in english]
-
-            Options:
-            1. [first option in english]
-            2. [second option in english]
-            3. [third option in english]
-            4. [fourth option in english]
-            </question>
-
-            Rules:
-            - Only extract questions from section 1
-            - Only include questions where answers can be determined from dialogue alone
-            - Ignore any practice examples (marked with e.g. "Example")
-            - Do not translate any english text
-            - Do not include any section descriptions or other text
-            - Output questions one after another with no extra text between them
+                Format for each text:
+                <Text>
+                Statement 1: [True/False]
+                Statement 2: [True/False]
+                Statement 3: [True/False]
             """,
-            2: """Extract questions from section 2 of this transcript where the answer can be determined solely from the conversation without needing visual aids.
-                        
-            ONLY include questions that meet these criteria:
-            - The answer can be determined purely from the spoken dialogue
-            - No spatial/visual information is needed (like locations, layouts, or physical appearances)
-            - No physical objects or visual choices need to be compared
+            2: """
+                Extract and structure section 'Teil 2' from this transcript.
 
-            For example, INCLUDE questions about:
-            - Times and dates
-            - Numbers and quantities
-            - Spoken choices or decisions
-            - Clear verbal directions
+                Instructions:
+                - Generate 5 questions based solely on the conversation.
+                - Each question must have 3 possible answers, with only one correct answer.
 
-            Format each question exactly like this:
-
-            <question>
-            Introduction:
-            [the situation setup in english]
-
-            Conversation:
-            [the dialogue in english]
-
-            Question:
-            [the question being asked in english]
-            </question>
-
-            Rules:
-            - Only extract questions from section 2
-            - Only include questions where answers can be determined from dialogue alone
-            - Ignore any practice examples (marked with e.g. "Example")
-            - Do not translate any english text
-            - Do not include any section descriptions or other text
-            - Output questions one after another with no extra text between them
+                Format for each question:
+                <question>
+                Question: [question text]
+                Options:
+                1. [option 1]
+                2. [option 2]
+                3. [option 3]
+                Answer: [correct option number]
+                </question>
             """,
-            3: """Extract all questions from section 3 of this transcript.
-            Format each question exactly like this:
+            3: """
+                Extract and structure section 'Teil 3' from this transcript.
 
-            <question>
-            Situation:
-            [the situation in german where a phrase is needed]
+                Instructions:
+                - Generate 6 True or False statements that are directly supported by the transcript.
 
-            Question:
-            Wie sagt man das?
-            </question>
+                Format for each statement:
+                <statement>
+                Text: [statement text]
+                Answer: [True/False]
+                </statement>
+            """,
+            4: """
+                Extract and structure section 'Teil 4' from this transcript.
 
-            Rules:
-            - Only extract questions from section 3
-            - Ignore any practice examples (marked with e.g. "Beispiel")
-            - Do not translate any german text
-            - Do not include any section descriptions or other text
-            - Output questions one after another with no extra text between them
+                Instructions:
+                - Generate 8 statements.
+                - For each statement, indicate which of the 3 participants in the conversation said it.
+
+                Format for each statement:
+                <statement>
+                Text: [statement text]
+                Speaker: [Name or identifier of the speaker]
+                </statement>
             """
         }
 
     def _invoke_bedrock(self, prompt: str, transcript: str) -> Optional[str]:
-        """Make a single call to Bedrock with the given prompt"""
         full_prompt = f"{prompt}\n\nHere's the transcript:\n{transcript}"
-        
         messages = [{
             "role": "user",
             "content": [{"text": full_prompt}]
         }]
-
         try:
             response = self.bedrock_client.converse(
                 modelId=self.model_id,
@@ -128,32 +96,28 @@ class TranscriptStructurer:
             return None
 
     def structure_transcript(self, transcript: str) -> Dict[int, str]:
-        """Structure the transcript into two sections (section 2 in English, section 3 in German) using separate prompts"""
         results = {}
-        for section_num in range(2, 4):
+        # Process all 4 sections (Teil 1 to Teil 4)
+        for section_num in range(1, 5):
             result = self._invoke_bedrock(self.prompts[section_num], transcript)
             if result:
                 results[section_num] = result
         return results
 
     def save_questions(self, structured_sections: Dict[int, str], base_filename: str) -> bool:
-        """Save each section to a separate file"""
         try:
-            # Create questions directory if it doesn't exist
+            # Create destination directory if it doesn't exist
             os.makedirs(os.path.dirname(base_filename), exist_ok=True)
-            
-            # Save each section
             for section_num, content in structured_sections.items():
-                filename = f"{os.path.splitext(base_filename)[0]}_section{section_num}.txt"
+                filename = f"{os.path.splitext(base_filename)[0]}_teil{section_num}.txt"
                 with open(filename, 'w', encoding='utf-8') as f:
                     f.write(content)
             return True
         except Exception as e:
-            print(f"Error saving questions: {str(e)}")
+            print(f"Error saving structured sections: {str(e)}")
             return False
 
     def load_transcript(self, filename: str) -> Optional[str]:
-        """Load transcript from a file"""
         try:
             with open(filename, 'r', encoding='utf-8') as f:
                 return f.read()
@@ -163,7 +127,7 @@ class TranscriptStructurer:
 
 if __name__ == "__main__":
     structurer = TranscriptStructurer()
-    transcript = structurer.load_transcript("backend/data/transcripts/sY7L5cfCWno.txt")
+    transcript = structurer.load_transcript(f"./data/transcripts/{VIDEO_ID}.txt")
     if transcript:
         structured_sections = structurer.structure_transcript(transcript)
-        structurer.save_questions(structured_sections, "backend/data/questions/sY7L5cfCWno.txt")
+        structurer.save_questions(structured_sections, f"./data/questions/{VIDEO_ID}.txt")

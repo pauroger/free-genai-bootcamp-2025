@@ -1,0 +1,106 @@
+ <question>
+Question: According to the text, where did the 65-year-old houseowner discover the fire?
+Options:
+1. In the kitchen
+2. In the living room
+3. In the bedroom
+Answer: 2
+</question>
+
+<question>
+Question: What did the 39-year-old son name his children?
+Options:
+1. John, Jane, and Jack
+2. Max, Mia, and Mark
+3. Tom, Tim, and Terry
+Answer: This information is not provided in the text.
+</question>
+
+<question>
+Question: What is the name of the museum where the special exhibition "Unser täglich Brot" is taking place?
+Options:
+1. Landesmuseum für Technik und Arbeit
+2. Museum für Moderne Kunst
+3. Deutsches Historisches Museum
+Answer: 1
+</question>
+
+<question>
+Question: What is the name of the bus stop where the passengers will get off?
+Options:
+1. Technoseum Nord
+2. Hauptbahnhof
+3. Grünes Gitter
+Answer: 3
+</question>
+
+<question>
+Question: What is the age of the woman in the bus who is talking about her fish?
+Options:
+1. 25
+2. 45
+3. 65
+Answer: 1
+</question>
+
+<question>
+Question: What is the name of the woman in the bus who is talking about her fish?
+Options:
+1. Tammy
+2. Anna
+3. Miriam
+Answer: 1
+</question>
+
+<question>
+Question: What is the name of the man in the bus who is talking about his fish?
+Options:
+1. Jürgen
+2. Timmy
+3. Janisch
+Answer: 1
+</question>
+
+<question>
+Question: What is the name of the woman in the studio who is a teacher?
+Options:
+1. Tammy
+2. Anna
+3. Miriam
+Answer: 2
+</question>
+
+<question>
+Question: What is the name of the man in the studio who is a skater?
+Options:
+1. Jürgen
+2. Timmy
+3. Janisch
+Answer: 1
+</question>
+
+<question>
+Question: What is the name of the music genre that is popular among skaters?
+Options:
+1. Hip hop
+2. Punk
+3. Classical
+Answer: 1 and 2
+</question>
+
+<question>
+Question: What is the name of the skater outfit that is popular among skaters?
+Options:
+1. T-shirts and jeans
+2. Sweaters and trousers
+3. Skater shoes and outfits
+Answer: 3
+</question>
+
+<question>
+Question: What is the name of the skater trick that is considered the coolest?
+Options:
+1. Ollie
+2. Kickflip
+3. Heelflip
+Answer: It depends on personal preference. All three are popular skater tricks.
