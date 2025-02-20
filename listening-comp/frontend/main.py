@@ -15,9 +15,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# Define a placeholder for audio near the top of your render function
-audio_placeholder = st.empty()
-
 def load_stored_questions():
     """Load previously stored questions from JSON file"""
     questions_file = os.path.join(
@@ -136,8 +133,7 @@ def render_interactive_stage():
         st.session_state.selected_answer = None
         save_question(new_question, practice_type, topic)
         st.session_state.current_audio = None
-    
-    # Display current question and interactive stage
+
     if st.session_state.current_question:
         st.subheader("Practice Scenario")
         
@@ -146,102 +142,98 @@ def render_interactive_stage():
             st.write("**Introduction:**")
             st.write(introduction if introduction else "—")
             
-            conversation = clean_text(st.session_state.current_question.get('Conversation', ''))
-            st.write("**Conversation:**")
-            st.write(format_conversation(conversation) if conversation else "—")
+            # Hide conversation until answer is submitted
+            if st.session_state.feedback:
+                conversation = clean_text(st.session_state.current_question.get('Conversation', ''))
+                prettified_conv = format_conversation(conversation)
+                st.write("**Conversation:**")
+                st.markdown(prettified_conv)
+            else:
+                st.info("The conversation will be revealed after you submit your answer.")
         else:
             situation = clean_text(st.session_state.current_question.get('Situation', ''))
             st.write("**Situation:**")
             st.write(situation if situation else "—")
         
+        # Automatically generate audio if not already generated
+        if st.session_state.current_audio is None:
+            with st.spinner("Generating audio..."):
+                try:
+                    if st.session_state.current_audio and os.path.exists(st.session_state.current_audio):
+                        try:
+                            os.unlink(st.session_state.current_audio)
+                        except Exception:
+                            pass
+                    st.session_state.current_audio = None
+                    audio_file = st.session_state.audio_generator.generate_audio(
+                        st.session_state.current_question
+                    )
+                    if not os.path.exists(audio_file):
+                        raise Exception("Audio file was not created")
+                    st.session_state.current_audio = audio_file
+                    save_question(
+                        st.session_state.current_question,
+                        st.session_state.current_practice_type,
+                        st.session_state.current_topic,
+                        audio_file
+                    )
+                except Exception as e:
+                    st.error(f"Error generating audio: {str(e)}")
+                    st.session_state.current_audio = None
+        
+        # Display audio widget under Practice Scenario
+        st.audio(st.session_state.current_audio)
+        
         st.write("**Question:**")
         question_text = clean_text(st.session_state.current_question.get('Question', ''))
         st.write(question_text if question_text else "—")
         
-        col1, col2 = st.columns([2, 1])
+        # Display answer options and handle response
+        raw_options = st.session_state.current_question.get('Options', [])
+        options = [clean_text(opt) for opt in raw_options if clean_text(opt) != ""]
         
-        with col1:
-            # Clean and filter options to remove "None"
-            raw_options = st.session_state.current_question.get('Options', [])
-            options = [clean_text(opt) for opt in raw_options if clean_text(opt) != ""]
+        if st.session_state.feedback:
+            correct = st.session_state.feedback.get('correct', False)
+            correct_answer = st.session_state.feedback.get('correct_answer', 1) - 1
+            selected_index = st.session_state.selected_answer - 1 if st.session_state.selected_answer else -1
             
-            if st.session_state.feedback:
-                correct = st.session_state.feedback.get('correct', False)
-                correct_answer = st.session_state.feedback.get('correct_answer', 1) - 1
-                selected_index = st.session_state.selected_answer - 1 if st.session_state.selected_answer else -1
-                
-                st.write("\n**Your Answer:**")
-                for i, option in enumerate(options):
-                    if i == correct_answer and i == selected_index:
-                        st.success(f"{i+1}. {option} ✓ (Correct!)")
-                    elif i == correct_answer and i != selected_index:
-                        st.info(f"{i+1}. {option} ✓ (Correct Answer)")
-                    elif i == selected_index and i != correct_answer:
-                        st.error(f"{i+1}. {option} ✗ (Your answer)")
-                    else:
-                        st.write(f"{i+1}. {option}")
-                
-                st.write("\n**Explanation:**")
-                explanation = clean_text(st.session_state.feedback.get('explanation', 'No feedback available'))
-                if correct:
-                    st.success(explanation)
+            st.write("\n**Your Answer:**")
+            for i, option in enumerate(options):
+                if i == correct_answer and i == selected_index:
+                    st.success(f"{i+1}. {option} ✓ (Correct!)")
+                elif i == correct_answer and i != selected_index:
+                    st.info(f"{i+1}. {option} ✓ (Correct Answer)")
+                elif i == selected_index and i != correct_answer:
+                    st.error(f"{i+1}. {option} ✗ (Your answer)")
                 else:
-                    st.error(explanation)
-                
-                if st.button("Try Another Question"):
-                    st.session_state.feedback = None
-                    st.session_state.selected_answer = None
-                    st.session_state.current_question = None
-                    st.session_state.current_audio = None
-                    audio_placeholder.audio(st.session_state.current_audio)
+                    st.write(f"{i+1}. {option}")
+            
+            st.write("\n**Explanation:**")
+            explanation = clean_text(st.session_state.feedback.get('explanation', 'No feedback available'))
+            if correct:
+                st.success(explanation)
             else:
-                selected = st.radio(
-                    "Choose your answer:",
-                    options,
-                    index=None,
-                    format_func=lambda x: f"{options.index(x) + 1}. {x}"
+                st.error(explanation)
+            
+            if st.button("Try Another Question"):
+                st.session_state.feedback = None
+                st.session_state.selected_answer = None
+                st.session_state.current_question = None
+                st.session_state.current_audio = None
+        else:
+            selected = st.radio(
+                "Choose your answer:",
+                options,
+                index=None,
+                format_func=lambda x: f"{options.index(x) + 1}. {x}"
+            )
+            if selected and st.button("Submit Answer"):
+                selected_index = options.index(selected) + 1
+                st.session_state.selected_answer = selected_index
+                st.session_state.feedback = st.session_state.question_generator.get_feedback(
+                    st.session_state.current_question,
+                    selected_index
                 )
-                if selected and st.button("Submit Answer"):
-                    selected_index = options.index(selected) + 1
-                    st.session_state.selected_answer = selected_index
-                    st.session_state.feedback = st.session_state.question_generator.get_feedback(
-                        st.session_state.current_question,
-                        selected_index
-                    )
-                    audio_placeholder.audio(st.session_state.current_audio)
-        
-        with col2:
-            st.subheader("Audio")
-            if st.session_state.current_audio:
-                st.audio(st.session_state.current_audio)
-            elif st.session_state.current_question:
-                if st.button("Generate Audio"):
-                    with st.spinner("Generating audio..."):
-                        try:
-                            if st.session_state.current_audio and os.path.exists(st.session_state.current_audio):
-                                try:
-                                    os.unlink(st.session_state.current_audio)
-                                except Exception:
-                                    pass
-                            st.session_state.current_audio = None
-                            audio_file = st.session_state.audio_generator.generate_audio(
-                                st.session_state.current_question
-                            )
-                            if not os.path.exists(audio_file):
-                                raise Exception("Audio file was not created")
-                            st.session_state.current_audio = audio_file
-                            save_question(
-                                st.session_state.current_question,
-                                st.session_state.current_practice_type,
-                                st.session_state.current_topic,
-                                audio_file
-                            )
-                            audio_placeholder.audio(st.session_state.current_audio)
-                        except Exception as e:
-                            st.error(f"Error generating audio: {str(e)}")
-                            st.session_state.current_audio = None
-            else:
-                st.info("Generate a question to create audio.")
     else:
         st.info("Click 'Generate New Question' to start practicing!")
 
