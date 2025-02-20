@@ -1,10 +1,12 @@
-# Run the frontend
+# Listening Comprehension
+
+## Run the frontend
 
 ```sh
 streamlit run frontend/main.py
 ```
 
-# Run the backend
+## Run the backend
 
 ```sh
 python backend/main.py

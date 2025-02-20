@@ -6,6 +6,7 @@ import struct
 from typing import Dict, List, Tuple
 import tempfile
 from datetime import datetime
+from pydub import AudioSegment
 
 # MODEL_ID = "huggingface-asr-whisper-large-v3-turbo"
 MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
@@ -224,48 +225,47 @@ class AudioGenerator:
             temp_file.write(response['AudioStream'].read())
             return temp_file.name
 
+    # def combine_audio_files(self, audio_files: List[str], output_file: str) -> bool:
+    #     """Combine multiple MP3 audio files by concatenating their binary data."""
+    #     try:
+    #         with open(output_file, 'wb') as wfd:
+    #             for audio_file in audio_files:
+    #                 with open(audio_file, 'rb') as fd:
+    #                     # Read the entire file and write it to the output file.
+    #                     data = fd.read()
+    #                     wfd.write(data)
+    #         return True
+    #     except Exception as e:
+    #         print(f"Error combining audio files: {str(e)}")
+    #         if os.path.exists(output_file):
+    #             os.unlink(output_file)
+    #         return False
+    #     finally:
+    #         # Clean up the temporary audio parts
+    #         for audio_file in audio_files:
+    #             if os.path.exists(audio_file):
+    #                 try:
+    #                     os.unlink(audio_file)
+    #                 except Exception as e:
+    #                     print(f"Error cleaning up {audio_file}: {str(e)}")
+
     def combine_audio_files(self, audio_files: List[str], output_file: str) -> bool:
-        """Combine multiple MP3 audio files by concatenating their binary data."""
         try:
-            with open(output_file, 'wb') as wfd:
-                for audio_file in audio_files:
-                    with open(audio_file, 'rb') as fd:
-                        # Read the entire file and write it to the output file.
-                        data = fd.read()
-                        wfd.write(data)
+            combined = AudioSegment.empty()
+            for file in audio_files:
+                segment = AudioSegment.from_mp3(file)
+                combined += segment
+            combined.export(output_file, format="mp3")
             return True
         except Exception as e:
             print(f"Error combining audio files: {str(e)}")
-            if os.path.exists(output_file):
-                os.unlink(output_file)
             return False
-        finally:
-            # Clean up the temporary audio parts
-            for audio_file in audio_files:
-                if os.path.exists(audio_file):
-                    try:
-                        os.unlink(audio_file)
-                    except Exception as e:
-                        print(f"Error cleaning up {audio_file}: {str(e)}")
 
     def generate_silence(self, duration_ms: int) -> str:
-        """Generate a silent WAV file for the specified duration."""
-        output_file = os.path.join(self.audio_dir, f'silence_{duration_ms}ms.wav')
-        framerate = 24000  # samples per second
-        num_channels = 1   # mono
-        sampwidth = 2      # bytes per sample (16-bit)
-        num_frames = int(framerate * (duration_ms / 1000.0))
-        
-        # Create an array of zeroes for silence
-        silence_data = [0] * num_frames
-        
-        # Write the silent frames to a WAV file
-        with wave.open(output_file, 'w') as wav_file:
-            wav_file.setnchannels(num_channels)
-            wav_file.setsampwidth(sampwidth)
-            wav_file.setframerate(framerate)
-            wav_file.writeframes(struct.pack('<' + 'h' * num_frames, *silence_data))
-        
+        """Generate a silent MP3 file for the specified duration."""
+        output_file = os.path.join(self.audio_dir, f'silence_{duration_ms}ms.mp3')
+        silence = AudioSegment.silent(duration=duration_ms)
+        silence.export(output_file, format="mp3", bitrate="64k")
         return output_file
 
     def generate_audio(self, question: Dict, language_code: str = 'en-US') -> str:
@@ -282,8 +282,8 @@ class AudioGenerator:
             audio_parts = []
             
             # Pre-generate pauses
-            long_pause = self.generate_silence(2000)   # 2-second pause
-            short_pause = self.generate_silence(500)
+            long_pause = self.generate_silence(3000)
+            short_pause = self.generate_silence(1000)
             
             for i, (speaker, text, gender) in enumerate(parts):
                 # Check if this announcer part indicates a transition
