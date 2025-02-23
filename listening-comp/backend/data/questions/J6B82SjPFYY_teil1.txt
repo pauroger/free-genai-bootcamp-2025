@@ -1,0 +1,59 @@
+ Text 1:
+
+Statement 1: The text is about a woman named Carolin who shares her experience of her first day at university. [True]
+Statement 2: The text mentions that Carolin had her first lecture at 12 o'clock. [True]
+Statement 3: The text states that Carolin made two new friends at the university. [True]
+
+Text 2:
+
+Statement 1: The text is about a fire incident and the rescue operation by the fire department. [True]
+Statement 2: The fire broke out in a two-family house at 13 o'clock. [True]
+Statement 3: The cause of the fire was a defective television. [True]
+
+Text 3:
+
+Statement 1: The text is about the weather forecast for Berlin. [True]
+Statement 2: It is expected to rain on Friday. [True]
+Statement 3: The temperature on Sunday is predicted to reach up to 4 degrees Celsius. [False, it is predicted to be between 0 and 4 degrees Celsius]
+
+Text 4:
+
+Statement 1: The text is a conversation between a man and a woman about pets. [True]
+Statement 2: The man expresses his desire to buy a dog. [False, he expresses his desire to buy a cat instead]
+Statement 3: The woman mentions that she has a fish tank at home. [True]
+
+Text 5:
+
+Statement 1: The text is about a bus ride and a conversation between passengers. [True]
+Statement 2: A woman and a man discuss their pets on the bus. [True]
+Statement 3: The man mentions that he has a fish tank at home. [False]
+
+Text 6:
+
+Statement 1: The text is a discussion between a moderator, a 15-year-old boy named Jürgen, and a teacher named Frau Unterberger about skateboarding. [True]
+Statement 2: Jürgen describes skateboarding as a sport with tricks and fun. [True]
+Statement 3: Frau Unterberger considers skateboarding a fashion trend. [True]
+
+Text 7:
+
+Statement 1: The text is about a woman named Anna Unterberger and her opinion on skateboarding. [True]
+Statement 2: Anna Unterberger believes that skateboarding is a fashion trend. [True]
+Statement 3: Anna Unterberger thinks that skateboarding is not a sport. [False]
+
+Text 8:
+
+Statement 1: The text is about a man named Jürgen and his opinion on skateboarding. [True]
+Statement 2: Jürgen describes skateboarding as a sport with tricks and fun. [True]
+Statement 3: Jürgen believes that skateboarding is a fashion trend. [True]
+
+Text 9:
+
+Statement 1: The text is about a man named Jürgen and his desire to buy a cat. [False, he expresses his desire to buy a dog instead]
+Statement 2: Jürgen mentions that he has a fish tank at home. [True]
+Statement 3: Jürgen's friends visit him at his home. [False]
+
+Text 10:
+
+Statement 1: The text is about a man named Jürgen and his desire to buy a dog. [True]
+Statement 2: Jürgen mentions that he has a fish tank at home. [True]
+Statement 3: Jürgen's friends visit him at his home. [False]
