@@ -1,0 +1,217 @@
+2025-02-12 18:57:46,157 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 18:57:46,171 - INFO - Loaded 120 words
+2025-02-12 18:58:16,465 - DEBUG - Getting random word and generating sentence
+2025-02-12 18:58:16,466 - DEBUG - Generating sentence for word: 止める
+2025-02-12 18:58:18,018 - INFO - Generated sentence: あなたがその行動を止めるべきです。
+2025-02-12 19:00:16,362 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:00:16,380 - INFO - Loaded 120 words
+2025-02-12 19:00:18,571 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:00:18,577 - DEBUG - Generating sentence for word: 書く
+2025-02-12 19:00:20,113 - INFO - Generated sentence: 私は毎日日記を書く習慣があります。
+2025-02-12 19:02:36,403 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:02:36,403 - DEBUG - Generating sentence for word: 行く
+2025-02-12 19:02:38,194 - INFO - Generated sentence: 明日、私は東京に行く予定です。
+2025-02-12 19:02:59,675 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:02:59,695 - INFO - Loaded 120 words
+2025-02-12 19:03:07,756 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:03:07,758 - DEBUG - Generating sentence for word: 起きる
+2025-02-12 19:03:09,407 - INFO - Generated sentence: 毎朝6時に起きるのはとても辛いです。
+2025-02-12 19:09:12,558 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:09:12,571 - INFO - Loaded 120 words
+2025-02-12 19:09:29,488 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:09:29,490 - DEBUG - Generating sentence for word: 待つ
+2025-02-12 19:09:30,758 - INFO - Generated sentence: 彼女が公園で私を待つことになっています。
+2025-02-12 19:17:10,746 - ERROR - Error in grade_submission: cannot import name 'Tensor' from 'torch' (unknown location)
+2025-02-12 19:18:38,891 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:18:38,912 - INFO - Loaded 120 words
+2025-02-12 19:18:43,263 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:18:43,264 - DEBUG - Generating sentence for word: 勉強する
+2025-02-12 19:18:44,542 - INFO - Generated sentence: 毎日、日本語を勉強することが大切です。
+2025-02-12 19:19:05,692 - ERROR - Error in grade_submission: cannot import name 'Tensor' from 'torch' (unknown location)
+2025-02-12 19:20:44,032 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:20:44,047 - INFO - Loaded 120 words
+2025-02-12 19:20:48,655 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:20:48,656 - DEBUG - Generating sentence for word: 来る
+2025-02-12 19:20:50,295 - INFO - Generated sentence: 明日、私の友達が遊びに来る予定です。
+2025-02-12 19:21:26,339 - INFO - Initializing MangaOCR
+2025-02-12 19:21:38,717 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:21:38,971 - DEBUG - Transcription result: 彼女が最後を待つことによっては、
+2025-02-12 19:21:38,975 - INFO - Getting literal translation
+2025-02-12 19:21:40,306 - DEBUG - Translation: By her waiting for the end,
+2025-02-12 19:21:40,306 - INFO - Getting grade and feedback
+2025-02-12 19:21:40,306 - ERROR - Error in grade_submission: name 'st' is not defined
+2025-02-12 19:23:10,692 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:23:10,705 - INFO - Loaded 120 words
+2025-02-12 19:23:17,367 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:23:17,368 - DEBUG - Generating sentence for word: 乗る
+2025-02-12 19:23:18,777 - INFO - Generated sentence: 私は毎朝電車に乗ることが習慣になっています。
+2025-02-12 19:23:24,170 - INFO - Initializing MangaOCR
+2025-02-12 19:23:28,909 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:23:29,147 - DEBUG - Transcription result: 彼女が最後を待つことによっては、
+2025-02-12 19:23:29,150 - INFO - Getting literal translation
+2025-02-12 19:23:30,254 - DEBUG - Translation: By her waiting for the end,
+2025-02-12 19:23:30,254 - INFO - Getting grade and feedback
+2025-02-12 19:23:35,058 - INFO - Grading complete: C
+2025-02-12 19:23:35,059 - DEBUG - Feedback: The student's Japanese sentence is grammatically correct and makes sense on its own, but it does not match the target English sentence at all. The target sentence is about a daily habit of riding the train, while the student's sentence is about a woman waiting for the end. The student needs to focus on understanding and accurately translating the given English sentence. The correct translation should be "私は毎朝電車に乗ることが習慣になっています".
+2025-02-12 19:24:57,122 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:24:57,138 - INFO - Loaded 120 words
+2025-02-12 19:25:05,303 - DEBUG - Getting random word and generating sentence
+2025-02-12 19:25:05,305 - DEBUG - Generating sentence for word: 起きる
+2025-02-12 19:25:06,805 - INFO - Generated sentence: 毎朝、6時に起きることにしています。
+2025-02-12 19:25:28,693 - INFO - Initializing MangaOCR
+2025-02-12 19:25:33,097 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:25:33,321 - DEBUG - Transcription result: 彼女が最後を待つことによっては、
+2025-02-12 19:25:33,326 - INFO - Getting literal translation
+2025-02-12 19:25:34,170 - DEBUG - Translation: By her waiting for the end,
+2025-02-12 19:25:34,170 - INFO - Getting grade and feedback
+2025-02-12 19:25:37,139 - INFO - Grading complete: C
+2025-02-12 19:25:37,140 - DEBUG - Feedback: Your sentence does not match the target English sentence at all. The target sentence is "I make it a rule to wake up at 6 every morning," but your sentence translates to "By her waiting for the end." Please make sure to understand the target sentence correctly and try again. Also, your sentence is grammatically correct but it does not make sense in the context provided. Please focus on the content of the target sentence when translating.
+2025-02-12 19:27:53,137 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:27:53,153 - INFO - Loaded 120 words
+2025-02-12 19:31:26,045 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:31:26,053 - INFO - Loaded 120 words
+2025-02-12 19:31:43,114 - DEBUG - Getting random word
+2025-02-12 19:33:41,588 - DEBUG - Getting random word
+2025-02-12 19:35:24,488 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:35:24,501 - INFO - Loaded 120 words
+2025-02-12 19:36:04,807 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:36:04,818 - INFO - Loaded 120 words
+2025-02-12 19:37:16,746 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:37:16,759 - INFO - Loaded 120 words
+2025-02-12 19:38:03,728 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:38:03,740 - INFO - Loaded 120 words
+2025-02-12 19:38:11,868 - DEBUG - Getting random word
+2025-02-12 19:38:31,049 - INFO - Initializing MangaOCR
+2025-02-12 19:38:36,122 - ERROR - Error in grade_submission: 'dict' object has no attribute 'split'
+2025-02-12 19:40:10,940 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:40:10,949 - INFO - Loaded 120 words
+2025-02-12 19:40:15,865 - DEBUG - Getting random word
+2025-02-12 19:40:17,882 - DEBUG - Getting random word
+2025-02-12 19:40:22,978 - DEBUG - Getting random word
+2025-02-12 19:40:37,670 - INFO - Initializing MangaOCR
+2025-02-12 19:40:42,667 - ERROR - Error in grade_submission: 'dict' object has no attribute 'split'
+2025-02-12 19:41:19,220 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:41:19,236 - INFO - Loaded 120 words
+2025-02-12 19:41:23,880 - DEBUG - Getting random word
+2025-02-12 19:41:34,030 - INFO - Initializing MangaOCR
+2025-02-12 19:41:37,870 - ERROR - Error in grade_submission: 'dict' object has no attribute '__array_interface__'
+2025-02-12 19:42:02,431 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:42:02,446 - INFO - Loaded 120 words
+2025-02-12 19:42:06,534 - DEBUG - Getting random word
+2025-02-12 19:42:08,148 - DEBUG - Getting random word
+2025-02-12 19:42:17,708 - INFO - Initializing MangaOCR
+2025-02-12 19:42:21,932 - ERROR - Error in grade_submission: 'dict' object has no attribute '__array_interface__'
+2025-02-12 19:42:47,305 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:42:47,319 - INFO - Loaded 120 words
+2025-02-12 19:42:52,003 - DEBUG - Getting random word
+2025-02-12 19:42:53,063 - DEBUG - Getting random word
+2025-02-12 19:43:01,195 - INFO - Initializing MangaOCR
+2025-02-12 19:43:05,739 - INFO - Image type: <class 'dict'>
+2025-02-12 19:43:05,740 - INFO - Image content: {'background': <PIL.Image.Image image mode=RGBA size=800x800 at 0x7F9B3DC25610>, 'layers': [<PIL.Image.Image image mode=RGBA size=800x800 at 0x7F9B3DC25550>], 'composite': <PIL.Image.Image image mode=RGBA size=800x800 at 0x7F9B3DC243E0>}
+2025-02-12 19:43:05,740 - INFO - Image dict keys: dict_keys(['background', 'layers', 'composite'])
+2025-02-12 19:43:05,741 - ERROR - Error in grade_submission: expected string or buffer
+2025-02-12 19:43:38,245 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:43:38,256 - INFO - Loaded 120 words
+2025-02-12 19:44:06,185 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:44:06,205 - INFO - Loaded 120 words
+2025-02-12 19:44:16,240 - INFO - Initializing MangaOCR
+2025-02-12 19:44:20,104 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:44:20,250 - DEBUG - Transcription result: くるま
+2025-02-12 19:44:20,255 - INFO - Getting grade and feedback
+2025-02-12 19:44:20,255 - ERROR - Error in grade_submission: 'NoneType' object has no attribute 'get'
+2025-02-12 19:45:38,146 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:45:38,161 - INFO - Loaded 120 words
+2025-02-12 19:46:03,340 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:46:03,349 - INFO - Loaded 120 words
+2025-02-12 19:46:21,507 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:46:21,522 - INFO - Loaded 120 words
+2025-02-12 19:46:25,046 - DEBUG - Getting random word
+2025-02-12 19:46:49,036 - INFO - Initializing MangaOCR
+2025-02-12 19:46:53,022 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:46:53,168 - DEBUG - Transcription result: くるま
+2025-02-12 19:46:53,173 - INFO - Getting grade and feedback
+2025-02-12 19:46:58,147 - INFO - Grading complete: C
+2025-02-12 19:46:58,147 - DEBUG - Feedback: Your writing needs significant improvement. The word you were asked to write was '降りる', but you wrote 'くるま', which means 'car'. It seems there has been a misunderstanding in the word you were supposed to write. 
+
+In terms of handwriting, your characters are clear and easy to read, which is good. However, the accuracy of the content is very important. Please make sure to double-check the word you are supposed to write. 
+
+In terms of stroke order, it's hard to evaluate since the written word was not the one assigned. 
+
+Please continue practicing and pay close attention to the words you are asked to write. Keep up the hard work!
+2025-02-12 19:50:17,724 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:50:17,739 - INFO - Loaded 120 words
+2025-02-12 19:50:20,620 - DEBUG - Getting random word
+2025-02-12 19:50:29,091 - INFO - Initializing MangaOCR
+2025-02-12 19:50:32,848 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:50:32,986 - DEBUG - Transcription result: くるま
+2025-02-12 19:50:32,990 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:51:12,810 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:51:12,823 - INFO - Loaded 120 words
+2025-02-12 19:51:16,355 - DEBUG - Getting random word
+2025-02-12 19:51:19,538 - INFO - Initializing MangaOCR
+2025-02-12 19:51:23,386 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:51:23,536 - DEBUG - Transcription result: くるま
+2025-02-12 19:51:23,541 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:52:57,593 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:52:57,606 - INFO - Loaded 120 words
+2025-02-12 19:52:57,607 - ERROR - Failed to create study session. Status code: 500
+2025-02-12 19:53:02,491 - DEBUG - Getting random word
+2025-02-12 19:53:11,874 - INFO - Initializing MangaOCR
+2025-02-12 19:53:15,639 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:53:15,776 - DEBUG - Transcription result: くるま
+2025-02-12 19:53:15,779 - ERROR - Missing study session ID or current word
+2025-02-12 19:53:15,780 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:53:57,773 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:53:57,918 - DEBUG - Transcription result: くるま
+2025-02-12 19:53:57,921 - ERROR - Missing study session ID or current word
+2025-02-12 19:53:57,921 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:54:13,356 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:54:13,373 - INFO - Loaded 120 words
+2025-02-12 19:54:13,375 - ERROR - Failed to create study session. Status code: 500
+2025-02-12 19:54:22,696 - DEBUG - Getting random word
+2025-02-12 19:54:26,887 - INFO - Initializing MangaOCR
+2025-02-12 19:54:32,175 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:54:32,317 - DEBUG - Transcription result: くるま
+2025-02-12 19:54:32,321 - ERROR - Missing study session ID or current word
+2025-02-12 19:54:32,321 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:55:39,229 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:55:39,238 - INFO - Loaded 120 words
+2025-02-12 19:55:39,240 - ERROR - Failed to create study session. Status code: 500
+2025-02-12 19:55:52,935 - DEBUG - Getting random word
+2025-02-12 19:55:56,370 - INFO - Initializing MangaOCR
+2025-02-12 19:56:00,117 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:56:00,264 - DEBUG - Transcription result: くるま
+2025-02-12 19:56:00,269 - DEBUG - Current word: {'english': 'to hang; to call (phone)', 'id': 20, 'kanji': '掛ける', 'parts': [{'kanji': '掛', 'romaji': ['ka']}, {'kanji': 'け', 'romaji': ['ke']}, {'kanji': 'る', 'romaji': ['ru']}], 'romaji': 'kakeru'}
+2025-02-12 19:56:00,270 - DEBUG - Transcription: くるま, Target: , Is correct: False
+2025-02-12 19:56:00,270 - DEBUG - Attempting to submit result. Session ID: None, Word: {'english': 'to hang; to call (phone)', 'id': 20, 'kanji': '掛ける', 'parts': [{'kanji': '掛', 'romaji': ['ka']}, {'kanji': 'け', 'romaji': ['ke']}, {'kanji': 'る', 'romaji': ['ru']}], 'romaji': 'kakeru'}
+2025-02-12 19:56:00,270 - ERROR - Missing study session ID or current word
+2025-02-12 19:56:00,271 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 19:59:43,210 - DEBUG - Using session_id: None
+2025-02-12 19:59:43,210 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 19:59:43,219 - INFO - Loaded 120 words
+2025-02-12 19:59:46,285 - DEBUG - Getting random word
+2025-02-12 19:59:49,919 - INFO - Initializing MangaOCR
+2025-02-12 19:59:53,654 - INFO - Transcribing image with MangaOCR
+2025-02-12 19:59:53,796 - DEBUG - Transcription result: くるま
+2025-02-12 19:59:53,801 - DEBUG - Current word: {'english': 'to ride', 'id': 15, 'kanji': '乗る', 'parts': [{'kanji': '乗', 'romaji': ['no']}, {'kanji': 'る', 'romaji': ['ru']}], 'romaji': 'noru'}
+2025-02-12 19:59:53,801 - DEBUG - Transcription: くるま, Target: , Is correct: False
+2025-02-12 19:59:53,802 - DEBUG - Attempting to submit result. Session ID: None, Word: {'english': 'to ride', 'id': 15, 'kanji': '乗る', 'parts': [{'kanji': '乗', 'romaji': ['no']}, {'kanji': 'る', 'romaji': ['ru']}], 'romaji': 'noru'}
+2025-02-12 19:59:53,802 - ERROR - Missing study session ID or current word
+2025-02-12 19:59:53,802 - INFO - Grading complete: ✗ Incorrect
+2025-02-12 20:01:56,152 - DEBUG - Using session_id: 1
+2025-02-12 20:01:56,153 - DEBUG - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-12 20:01:56,162 - INFO - Loaded 120 words
+2025-02-12 20:02:02,066 - DEBUG - Getting random word
+2025-02-12 20:02:02,727 - INFO - Initializing MangaOCR
+2025-02-12 20:02:06,623 - INFO - Transcribing image with MangaOCR
+2025-02-12 20:02:06,775 - DEBUG - Transcription result: くるま
+2025-02-12 20:02:06,780 - DEBUG - Current word: {'english': 'to receive', 'id': 149, 'kanji': 'もらう', 'parts': [{'kanji': 'も', 'romaji': ['mo']}, {'kanji': 'ら', 'romaji': ['ra']}, {'kanji': 'う', 'romaji': ['u']}], 'romaji': 'morau'}
+2025-02-12 20:02:06,780 - DEBUG - Transcription: くるま, Target: , Is correct: False
+2025-02-12 20:02:06,780 - DEBUG - Attempting to submit result. Session ID: 1, Word: {'english': 'to receive', 'id': 149, 'kanji': 'もらう', 'parts': [{'kanji': 'も', 'romaji': ['mo']}, {'kanji': 'ら', 'romaji': ['ra']}, {'kanji': 'う', 'romaji': ['u']}], 'romaji': 'morau'}
+2025-02-12 20:02:06,781 - DEBUG - Submitting to URL: http://localhost:5000/study_sessions/1/review with data: {'word_id': 149, 'correct': False}
+2025-02-12 20:02:06,812 - DEBUG - Response status: 200, content: {
+  "message": "Review logged successfully"
+}
+
+2025-02-12 20:02:06,813 - INFO - Successfully submitted result for word 149
+2025-02-12 20:02:06,813 - INFO - Grading complete: ✗ Incorrect

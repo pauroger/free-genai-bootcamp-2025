@@ -1,0 +1,20 @@
+2025-02-12 18:47:22,839 - MY_APP - Initializing Japanese Learning App...
+2025-02-12 18:47:22,839 - MY_APP - http://localhost:5000/api/groups/1/words/raw
+2025-02-12 18:47:22,849 - MY_APP - Response status: 200
+2025-02-12 18:47:22,849 - MY_APP - Received data for group: Core Verbs
+2025-02-12 18:47:22,850 - MY_APP - Entering render_setup_state
+2025-02-12 18:47:22,892 - MY_APP - Generate button state: False
+2025-02-12 18:47:24,358 - MY_APP - Initializing Japanese Learning App...
+2025-02-12 18:47:24,359 - MY_APP - http://localhost:5000/api/groups/1/words/raw
+2025-02-12 18:47:24,372 - MY_APP - Response status: 200
+2025-02-12 18:47:24,372 - MY_APP - Received data for group: Core Verbs
+2025-02-12 18:49:04,751 - MY_APP - Initializing Japanese Learning App...
+2025-02-12 18:49:04,751 - MY_APP - http://localhost:5000/api/groups/1/words/raw
+2025-02-12 18:49:04,762 - MY_APP - Response status: 200
+2025-02-12 18:49:04,763 - MY_APP - Received data for group: Core Verbs
+2025-02-12 18:49:04,763 - MY_APP - Entering render_setup_state
+2025-02-12 18:49:04,790 - MY_APP - Generate button state: False
+2025-02-12 18:49:08,239 - MY_APP - Initializing Japanese Learning App...
+2025-02-12 18:49:08,239 - MY_APP - http://localhost:5000/api/groups/1/words/raw
+2025-02-12 18:49:08,250 - MY_APP - Response status: 200
+2025-02-12 18:49:08,250 - MY_APP - Received data for group: Core Verbs
