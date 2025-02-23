@@ -30,7 +30,7 @@ class AudioGenerator:
 
 
         # Default language code
-        self.language_code = 'en-US'
+        self.language_code = 'de-DE'
         
         # Create audio output directory
         self.audio_dir = os.path.join(
@@ -207,15 +207,21 @@ class AudioGenerator:
             return self.voices[lang]['male']
         else:
             return self.voices[lang]['female']
-
+        
     def generate_audio_part(self, text: str, voice_name: str, language_code: str) -> str:
-        """Generate audio for a single part using Amazon Polly"""
         # Use neural for English; for German, use standard since that's what these voices support.
         engine = "neural"
         if language_code == "de-DE":
             engine = "standard"
+            # Wrap text in SSML tags for German pronunciation
+            text = f'<speak><lang xml:lang="de-DE">{text}</lang></speak>'
+            text_type = "ssml"
+        else:
+            text_type = "text"
+        
         response = self.polly.synthesize_speech(
             Text=text,
+            TextType=text_type,
             OutputFormat='mp3',
             VoiceId=voice_name,
             Engine=engine,
@@ -225,29 +231,6 @@ class AudioGenerator:
             temp_file.write(response['AudioStream'].read())
             return temp_file.name
 
-    # def combine_audio_files(self, audio_files: List[str], output_file: str) -> bool:
-    #     """Combine multiple MP3 audio files by concatenating their binary data."""
-    #     try:
-    #         with open(output_file, 'wb') as wfd:
-    #             for audio_file in audio_files:
-    #                 with open(audio_file, 'rb') as fd:
-    #                     # Read the entire file and write it to the output file.
-    #                     data = fd.read()
-    #                     wfd.write(data)
-    #         return True
-    #     except Exception as e:
-    #         print(f"Error combining audio files: {str(e)}")
-    #         if os.path.exists(output_file):
-    #             os.unlink(output_file)
-    #         return False
-    #     finally:
-    #         # Clean up the temporary audio parts
-    #         for audio_file in audio_files:
-    #             if os.path.exists(audio_file):
-    #                 try:
-    #                     os.unlink(audio_file)
-    #                 except Exception as e:
-    #                     print(f"Error cleaning up {audio_file}: {str(e)}")
 
     def combine_audio_files(self, audio_files: List[str], output_file: str) -> bool:
         try:
@@ -268,7 +251,7 @@ class AudioGenerator:
         silence.export(output_file, format="mp3", bitrate="64k")
         return output_file
 
-    def generate_audio(self, question: Dict, language_code: str = 'en-US') -> str:
+    def generate_audio(self, question: Dict, language_code: str = 'de-DE') -> str:
         """
         Generate audio for the entire question.
         Returns the path to the generated audio file.
