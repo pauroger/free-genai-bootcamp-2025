@@ -27,7 +27,7 @@ def generate_target_sentence():
         accept='application/json',
         body=json.dumps({
             "messages": messages,
-            "max_tokens": 256,
+            "max_tokens": 1000,
         })
     )
     result = parse_response(response)
@@ -35,15 +35,24 @@ def generate_target_sentence():
         return result["choices"][0]["message"]["content"].strip()
     return "No sentence generated."
 
+
 def grade_submission(target_sentence, submission):
     messages = [
         {"role": "user", "content": (
-            f"Grade this German writing sample:\n"
-            f"Target English sentence: {target_sentence}\n"
-            f"Student's German: {submission}\n\n"
-            "Provide your assessment in this format:\n"
-            "Grade: [S/A/B/C]\n"
-            "Feedback: [Your detailed feedback]"
+            f"Grade this German writing sample:\n\n"
+            f"Target English sentence:\n{target_sentence}\n\n"
+            f"Student's German translation:\n{submission}\n\n"
+            "Grading Criteria:\n"
+            "- Accuracy of translation compared to the target sentence\n"
+            "- Grammar correctness\n"
+            "- Writing style and naturalness\n\n"
+            "Grading scale:\n"
+            "S: Perfect or near-perfect\n"
+            "A: Very good with minor issues\n"
+            "B: Good but needs improvement\n"
+            "C: Significant issues to address\n\n"
+            "Please provide your grade (S/A/B/C) and detailed feedback including whether the attempt was accurate to the English sentence and suggestions for improvement."
+            "*Correct Sentence:*"
         )}
     ]
     response = client.invoke_model(
