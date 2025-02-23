@@ -1,0 +1,38 @@
+ <statement>
+Text: In this section, the participants listen to five short texts, each text is heard twice. For each text, they need to solve two tasks and choose the correct solution. They have ten seconds to read each text and the instructions.
+Speaker: Narrator
+</statement>
+
+<statement>
+Text: Carolin shares her experience of her first day at university. She attended her first lecture and was surprised by the professor's welcome and the semester plan. She also mentions a weekly study consultation for first-semester students.
+Speaker: Carolin
+</statement>
+
+<statement>
+Text: There is a fire in a two-family house. The fire was discovered by a 65-year-old houseowner and her 39-year-old son with his three children. They all managed to leave the house unharmed. The cause of the fire was a defective television.
+Speaker: Narrator
+</statement>
+
+<statement>
+Text: The weather forecast for Berlin from Friday to Sunday includes windy weather with rain on Friday, a tranquil day on Saturday with light snow expected, and a sunny day on Sunday with a slight temperature increase.
+Speaker: Narrator
+</statement>
+
+<statement>
+Text: Miriam invites Janisch to Neumeier's birthday party but forgets to pick up her dress from the cleaners. She asks Janisch to help her out.
+Speaker: Miriam
+</statement>
+
+<statement>
+Text: A discussion about skaters and their role in society. Some people view skating as a fashion trend, while others see it as a sport and a form of self-expression.
+Speaker: Narrator
+</statement>
+
+<statement>
+Text: Jürgen, a skater, explains that skating is a sport with tricks and fun, and sometimes pain. He also mentions that skaters often listen to hip hop and punk music.
+Speaker: Jürgen
+</statement>
+
+<statement>
+Text: Anna, a teacher, shares her opinion that skating is a fashion trend and not a sustainable movement. She also mentions that skaters often wear specific outfits.
+Speaker: Anna

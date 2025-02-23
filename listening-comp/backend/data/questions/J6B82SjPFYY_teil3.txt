@@ -1,0 +1,34 @@
+ <statement>
+Text: In this section, listeners hear a conversation between a teacher and a student about skaters and their culture.
+Statement: This section is about a conversation between a teacher and a student discussing skaters and their culture.
+Answer: True.
+</statement>
+
+<statement>
+Text: The teacher, Frau Unterberger, believes that skating is a fashion trend and not a sustainable movement or culture.
+Statement: Frau Unterberger thinks that skating is just a fashion trend and not a real movement or culture.
+Answer: True.
+</statement>
+
+<statement>
+Text: Skaters often listen to hip hop and punk music.
+Statement: Most skaters listen to hip hop and punk music.
+Answer: Partly false. While some skaters do listen to hip hop and punk music, it's not accurate to say that all or even most do.
+</statement>
+
+<statement>
+Text: Skaters often wear specific outfits to be recognized as part of the skater community.
+Statement: Skaters wear specific outfits to be recognized as part of the skater community.
+Answer: True.
+</statement>
+
+<statement>
+Text: Skating is a dangerous sport that requires no fear of injury.
+Statement: Skating is a dangerous sport that requires no fear of injury.
+Answer: False. While skating can be dangerous, it's important for skaters to have a healthy respect for the risks involved and take precautions to minimize the chances of injury.
+</statement>
+
+<statement>
+Text: Skating is only for the young.
+Statement: Skating is only for the young.
+Answer: False. People of all ages can and do enjoy skating.
