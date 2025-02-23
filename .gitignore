@@ -8,4 +8,5 @@
 *.mp3
 /listening-comp/backend/backend/data/vectorstore/**
 /listening-comp/backend/__pycache__
-/writing-practice/.streamlit/*
+/writing-practice/__pycache__
+/writing-practice/.streamlit
