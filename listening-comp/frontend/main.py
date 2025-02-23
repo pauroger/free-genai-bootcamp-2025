@@ -10,7 +10,7 @@ from backend.audio_generator import AudioGenerator
 
 # Page config
 st.set_page_config(
-    page_title="German Practice",
+    page_title="German Practice 🇩🇪🇨🇭🇦🇹",
     page_icon="🎧",
     layout="wide"
 )
@@ -114,11 +114,10 @@ def render_interactive_stage():
     # Practice type and topic selection
     practice_type = st.selectbox(
         "Select Practice Type",
-        ["Dialogue Practice", "Phrase Matching"]
+        ["Dialogue Practice"]
     )
     topics = {
         "Dialogue Practice": ["Daily Conversation", "Shopping", "Restaurant", "Travel", "School/Work"],
-        "Phrase Matching": ["Announcements", "Instructions", "Weather Reports", "News Updates"]
     }
     topic = st.selectbox("Select Topic", topics[practice_type])
     
@@ -135,7 +134,7 @@ def render_interactive_stage():
         st.session_state.current_audio = None
 
     if st.session_state.current_question:
-        st.subheader("Practice Scenario")
+        st.subheader("🎧 Practice Scenario")
         
         if practice_type == "Dialogue Practice":
             introduction = clean_text(st.session_state.current_question.get('Introduction', ''))
@@ -238,7 +237,7 @@ def render_interactive_stage():
         st.info("Click 'Generate New Question' to start practicing!")
 
 def main():
-    st.title("German Practice")
+    st.title("German Practice 🇩🇪🇨🇭🇦🇹")
     render_interactive_stage()
 
 if __name__ == "__main__":

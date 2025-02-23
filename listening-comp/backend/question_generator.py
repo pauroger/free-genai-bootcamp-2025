@@ -5,6 +5,8 @@ from typing import Dict, Optional
 from backend.vector_store import QuestionVectorStore
 
 MODEL_ID = "mistral.mistral-7b-instruct-v0:2"
+# MODEL_ID = "mistral.mixtral-8x7b-instruct-v0:1"
+# MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
 
 class QuestionGenerator:
     def __init__(self):
@@ -34,8 +36,8 @@ class QuestionGenerator:
 
     def _split_multiple_markers(self, line: str) -> list:
         """
-        If a single line contains multiple markers (e.g. 'Einleitung:' and 'Unterhaltung:'),
-        split them so each marker becomes it
+        If a single line contains multiple markers (e.g. 'Einleitung:' and
+        'Unterhaltung:'), split them so each marker becomes it
         """
         markers = [
             "Einleitung:", "Introduction:",
@@ -191,47 +193,50 @@ class QuestionGenerator:
             context += "\n"
 
         if section_num == 2:
-            # Dialogue Practice prompt with random names, extra blank lines, ~200-350 words
+            # Dialogue Practice prompt with random names, extra blank lines,
+            # ~200-350 words.
             prompt = f"""
-            Basierend auf den folgenden Beispielen zum Goethe B1 Hörverständnis,
-            erstelle bitte eine neue Frage zum Thema "{topic}" in deutscher Sprache.
-            Die Frage soll dem gleichen Format folgen, aber von den Beispielen abweichen.
-            Achte darauf, dass die Frage das Hörverständnis testet und eine klare
-            richtige Antwort hat.
+                Basierend auf den folgenden Beispielen zum Goethe B1
+                Hörverständnis, erstelle bitte eine neue Frage zum Thema
+                "{topic}" in deutscher Sprache. Die Frage soll dem gleichen
+                Format folgen, aber von den Beispielen abweichen. Achte darauf,
+                dass die Frage das Hörverständnis testet und eine klare richtige
+                Antwort hat.
 
-            {context}
+                {context}
 
-            Generiere bitte eine neue Frage im exakt gleichen Format:
-            Einleitung, Unterhaltung, Frage und Antwortmöglichkeiten.
+                Generiere bitte eine neue Frage im exakt gleichen Format:
+                Einleitung, Unterhaltung, Frage und Antwortmöglichkeiten.
 
-            Anforderungen:
-            - Verwende zwei zufällige deutsche Vornamen (keine "None" oder leere Namen):
-              Person A (männlich) und Person B (weiblich).
-            - Die Unterhaltung soll ca. 200-350 Wörter lang sein.
-            - Füge eine leere Zeile ein, wenn der Sprecher wechselt (z.B. Person A -> Person B).
-            - Stelle sicher, dass die richtige Antwort eindeutig aus dem Gespräch hervorgeht.
+                Anforderungen: - Verwende zwei zufällige deutsche Vornamen
+                (keine "None" oder leere Namen): Person A (männlich) und Person
+                B (weiblich). - Die Unterhaltung soll ca. 200-350 Wörter lang
+                sein. - Füge eine leere Zeile ein, wenn der Sprecher wechselt
+                (z.B. Person A -> Person B). - Stelle sicher, dass die richtige
+                Antwort eindeutig aus dem Gespräch hervorgeht.
 
-            Gib NUR die Frage ohne zusätzlichen Text zurück.
+                Gib NUR die Frage ohne zusätzlichen Text zurück.
 
-            Neue Frage:
+                Neue Frage:
             """
         else:
             # Phrase Matching
             prompt = f"""
-            Basierend auf den folgenden Beispielen zum Goethe B1 Hörverständnis,
-            erstelle bitte eine neue Frage zum Thema "{topic}" in deutscher Sprache.
-            Die Frage soll dem gleichen Format folgen, aber von den Beispielen abweichen.
-            Achte darauf, dass die Frage das Hörverständnis testet und eine klare
-            richtige Antwort hat.
+                Basierend auf den folgenden Beispielen zum Goethe B1
+                Hörverständnis, erstelle bitte eine neue Frage zum Thema
+                "{topic}" in deutscher Sprache. Die Frage soll dem gleichen
+                Format folgen, aber von den Beispielen abweichen. Achte darauf,
+                dass die Frage das Hörverständnis testet und eine klare richtige
+                Antwort hat.
 
-            {context}
+                {context}
 
-            Generiere bitte eine neue Frage im exakt gleichen Format:
-            Situation, Frage und Antwortmöglichkeiten.
-            Stelle sicher, dass man die richtige Antwort aus der Situation
-            klar erkennen kann. Gib NUR die Frage ohne zusätzlichen Text zurück.
+                Generiere bitte eine neue Frage im exakt gleichen Format:
+                Situation, Frage und Antwortmöglichkeiten. Stelle sicher, dass
+                man die richtige Antwort aus der Situation klar erkennen kann.
+                Gib NUR die Frage ohne zusätzlichen Text zurück.
 
-            Neue Frage:
+                Neue Frage:
             """
 
         response = self._invoke_bedrock(prompt)
@@ -244,9 +249,9 @@ class QuestionGenerator:
 
     def generate_question(self, section_num: int, topic: str) -> Dict:
         """
-        Generate a new B1 Goethe-level question. 
-        1) Try to find a similar question.
-        2) If none found, fallback to brand-new question in the correct format.
+            Generate a new B1 Goethe-level question. 
+            1) Try to find a similar question.
+            2) If none found, fallback to brand-new question in the correct format.
         """
         question = self.generate_similar_question(section_num, topic)
         if question is not None:
@@ -260,8 +265,8 @@ class QuestionGenerator:
             im exakten Format:
 
             Einleitung: [Kurzer Kontext, z.B. "Zwei Freunde sprechen über ein neues Fahrrad."]
-            Unterhaltung: [Dialog, z.B. "Person A: ...\n\nPerson B: ...", basierend auf der Einleitung.
-                           Stelle sicher, dass man die richtige Antwort aus dem Gespräch erkennt.]
+            Unterhaltung: [Dialog\n\n, z.B. "Person A: ...\n\nPerson B: ...\n\n", basierend auf der Einleitung.
+                           Stelle sicher, dass man die richtige Antwort aus dem Gespräch erkennt.\n\n]
             Frage: [Eine präzise Frage zum Hörverständnis, nur eine korrekte Antwort.]
             Antwortmöglichkeiten:
             1. Option eins
