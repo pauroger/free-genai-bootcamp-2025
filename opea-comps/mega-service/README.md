@@ -1,4 +1,4 @@
-## How to run the LLM Service
+# How to run the LLM Service
 
 We are using Ollama which is being delivered via docker compose.
 
@@ -13,7 +13,7 @@ LLM_ENDPOINT_PORT=9000 docker compose up
 When you start the Ollama it doesn't have the model downloade.
 So we'll need to download the model via the API for ollama.
 
-### Download (Pull) a model
+## Download (Pull) a model
 
 ```sh
 curl http://localhost:9000/api/pull -d '{
@@ -38,34 +38,42 @@ python app.py
 ## Testing the App
 
 Install Jq so we can pretty JSON on output.
+
 ```sh
 sudo apt-get install jq
 ```
+
 https://jqlang.org/download/
 
-
 cd opea-comps/mega-service
-```sh
-curl -X POST http://localhost:8000/v1/example-service \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "llama3.2:1b",
-    "messages": "Hello, how are you?"
-  }' | jq '.' > output/$(date +%s)-response.json
-```
 
 ```sh
-  curl -X POST http://localhost:8000/v1/example-service \
+  curl -s -X POST http://localhost:8000/v1/example-service \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
       {
         "role": "user",
-        "content": "Hello, this is a test message"
+        "content": "Hello, Who are you and what are your parameters?"
       }
     ],
     "model": "llama3.2:1b",
     "max_tokens": 100,
     "temperature": 0.7
-  }' | jq '.' > output/$(date +%s)-response.json
+  }' | grep '^data: {' | sed 's/^data: //' | jq --slurp '.' > output/$(date +%s)-response.json
+```
+
+Request with combination of the response in the end:
+
+```sh
+curl -s -X POST http://localhost:8000/v1/example-service \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      {"role": "user", "content": "Hello, Who are you and what are your parameters?"}
+    ],
+    "model": "llama3.2:1b",
+    "max_tokens": 100,
+    "temperature": 0.7
+  }' | grep '^data: {' | sed 's/^data:[ ]*//' | jq --slurp '{chunks: ., combined: ([.[] | .choices[].delta.content] | join(""))}' > output/$(date +%s)-response.json
 ```
