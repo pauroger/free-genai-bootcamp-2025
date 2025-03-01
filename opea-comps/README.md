@@ -4,34 +4,38 @@
 
 You can get the model_id that ollama will launch from the [Ollama Library](https://ollama.com/library).
 
-```bash
 https://ollama.com/library/llama3.2
-```
 
 eg. LLM_MODEL_ID="llama3.2:1b"
 
 ### Getting the Host IP
 
+#### Mac
+
+```sh
+docker compose up
+```
+
 #### Linux
 
-Get your IP address
+Get your IP address:
 
 ```sh
 sudo apt install net-tools
 ifconfig
 ```
 
-Or you can try this way `$(hostname -I | awk '{print $1}')`
+Or you can try this way `$(hostname -I | awk '{print $1}')`:
 
+```sh
 HOST_IP=$(hostname -I | awk '{print $1}') NO_PROXY=localhost LLM_ENDPOINT_PORT=9000 LLM_MODEL_ID="llama3.2:1b" docker compose up
+```
 
 ### Ollama API
 
 Once the Ollama server is running we can make API calls to the ollama API
 
-```bash
 https://github.com/ollama/ollama/blob/main/docs/api.md
-```
 
 ## Download (Pull) a model
 

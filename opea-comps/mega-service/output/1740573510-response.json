@@ -1,0 +1,396 @@
+{
+  "chunks": [
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "I"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "'m"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " an"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " artificial"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " intelligence"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " model"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " known"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " as"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " L"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "lama"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "."
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " L"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "lama"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " stands"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " for"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " \""
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": "Large"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573510,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " Language"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573511,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " Model"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573511,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " Meta"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573511,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": " AI"
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573511,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": ".\""
+          },
+          "finish_reason": null
+        }
+      ]
+    },
+    {
+      "id": "chatcmpl-478",
+      "object": "chat.completion.chunk",
+      "created": 1740573511,
+      "model": "llama3.2:1b",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "delta": {
+            "role": "assistant",
+            "content": ""
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    }
+  ],
+  "combined": "I'm an artificial intelligence model known as Llama. Llama stands for \"Large Language Model Meta AI.\""
+}
