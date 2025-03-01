@@ -1,5 +1,6 @@
 [
   {"name": "Typing Tutor", "url": "http://127.0.0.1:5000", "preview_url": "/assets/study_activities/vocabulary-tutor.png"},
   {"name": "Vocabulary Tutor", "url": "http://127.0.0.1:7860", "preview_url": "/assets/study_activities/vocabulary-tutor.png"},
-  {"name": "Writing Tutor", "url": "http://localhost:8081", "preview_url": "/assets/study_activities/vocabulary-tutor.png"}
+  {"name": "Writing Tutor", "url": "http://localhost:8081", "preview_url": "/assets/study_activities/vocabulary-tutor.png"},
+  {"name": "Sing Along Tutor", "url": "http://localhost:8501", "preview_url": "/assets/study_activities/singing-tutor.png"}
 ]
