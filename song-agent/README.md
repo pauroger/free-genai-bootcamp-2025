@@ -4,6 +4,10 @@ A Streamlit application that helps you learn a new language through songs. This
 app analyzes songs in a foreign language, extracts vocabulary, provides meanings
 and example sentences, and summarizes the theme of the song.
 
+Sample Song:
+
+![App Sample Screenshot](images/Song%20Language%20Tutor.png)
+
 ## 🚀 Features
 
 - 🔍 Search for song lyrics in different languages
