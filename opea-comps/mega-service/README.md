@@ -37,16 +37,6 @@ python app.py
 
 ## Testing the App
 
-Install Jq so we can pretty JSON on output.
-
-```sh
-sudo apt-get install jq
-```
-
-https://jqlang.org/download/
-
-cd opea-comps/mega-service
-
 ```sh
   curl -s -X POST http://localhost:8000/v1/example-service \
   -H "Content-Type: application/json" \
