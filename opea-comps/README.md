@@ -50,7 +50,8 @@ curl http://localhost:8008/api/pull -d '{
 ```bash
 curl http://localhost:8008/api/generate -d '{
   "model": "llama3.2:1b",
-  "prompt": "Why is the sky blue?"
+  "prompt": "Why is the sky blue?",
+  "stream": false
 }'
 ```
 

@@ -1,44 +1,36 @@
-import streamlit as st
-import json
+# First import the necessary standard libraries
+import sys
 import os
+from pathlib import Path
+import json
 import re
-from agent import run_language_tutor
 import pandas as pd
 
-# Page configuration
+# Add parent directory to path for imports before any Streamlit code
+sys.path.append(str(Path(__file__).parent.parent))
+
+# Now import any non-Streamlit modules
+from agent import run_language_tutor
+# Import themes without executing any Streamlit commands
+# Careful: don't use "from themes import *" as it might run Streamlit code
+from themes.streamlit_theme import apply_custom_theme, info_box, success_box, warning_box, error_box, card, highlight
+
+# Finally, import Streamlit - this must be after all other imports
+import streamlit as st
+
+# Set page config as the VERY FIRST Streamlit command
 st.set_page_config(
     page_title="Song Language Tutor",
     page_icon="🎵",
     layout="wide",
 )
 
-# Custom styling with the requested color scheme
+# Now apply the custom theme
+apply_custom_theme(primary_color="#90cdec")
+
+# Only add custom styling for specific components not covered by the theme
 st.markdown("""
 <style>
-    .main {
-        background-color: #f0f8ff;
-    }
-    .stApp {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    h1, h2, h3 {
-        color: #90cdec;
-    }
-    .highlight {
-        background-color: #90cdec20;
-        padding: 10px;
-        border-radius: 5px;
-        border-left: 5px solid #90cdec;
-    }
-    .vocab-card {
-        background-color: white;
-        padding: 15px;
-        border-radius: 10px;
-        margin: 10px 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border-left: 4px solid #90cdec;
-    }
     .lyrics-container {
         height: 5px;
         overflow-y: auto;
@@ -46,6 +38,15 @@ st.markdown("""
         background-color: white;
         border-radius: 10px;
         border: 1px solid #e0e0e0;
+    }
+    
+    .vocab-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-left: 4px solid #90cdec;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -63,10 +64,10 @@ def load_song_analysis(song_title):
         with open(filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        st.error(f"File not found: {filename}")
+        error_box(f"File not found: {filename}")
         return None
     except json.JSONDecodeError:
-        st.error(f"Invalid JSON in file: {filename}")
+        error_box(f"Invalid JSON in file: {filename}")
         return None
 
 def display_song_analysis(analysis_data):
@@ -76,7 +77,7 @@ def display_song_analysis(analysis_data):
     
     # Display song title and language info
     st.title(f"🎵 Analysis of '{st.session_state.song_title}'")
-    st.markdown(f"<div class='highlight'>🔍 From {st.session_state.foreign_language} to {st.session_state.user_language}</div>", unsafe_allow_html=True)
+    highlight(f"🔍 From {st.session_state.foreign_language} to {st.session_state.user_language}")
     
     # Create tabs for different sections
     tab1, tab2, tab3, tab4 = st.tabs(["📝 Lyrics & Intent", "📚 Vocabulary", "🔍 Search Results", "📄 Source Content"])
@@ -93,7 +94,7 @@ def display_song_analysis(analysis_data):
         
         with col2:
             st.subheader("🧠 Meaning & Context")
-            st.markdown(f"<div class='highlight'>{analysis_data['intent']}</div>", unsafe_allow_html=True)
+            highlight(analysis_data['intent'])
     
     with tab2:
         st.subheader("📚 Key Vocabulary")
@@ -145,10 +146,7 @@ if not os.path.exists('songs'):
 
 # Main app layout
 st.title("🎵 Song Language Tutor")
-st.markdown("""
-Learn a new language by exploring songs! Enter a song title below, and we'll fetch lyrics 
-and provide vocabulary explanations to help you understand and learn.
-""")
+info_box("Learn a new language by exploring songs! Enter a song title below, and we'll fetch lyrics and provide vocabulary explanations to help you understand and learn.")
 
 # Sidebar for settings
 with st.sidebar:
@@ -203,10 +201,10 @@ if st.button("Analyze Song", type="primary") and song_title_input:
     
     with st.spinner("Loading song analysis..."):
         if check_if_song_exists(song_title_input):
-            st.success(f"Found existing analysis for '{song_title_input}'!")
+            success_box(f"Found existing analysis for '{song_title_input}'!")
             analysis_data = load_song_analysis(song_title_input)
         else:
-            st.info(f"Analyzing new song: '{song_title_input}'...")
+            info_box(f"Analyzing new song: '{song_title_input}'...")
             # Import the agent function
             try:
                 # This function should return the analysis results
@@ -215,9 +213,9 @@ if st.button("Analyze Song", type="primary") and song_title_input:
                     user_language=st.session_state.user_language,
                     foreign_language=st.session_state.foreign_language
                 )
-                st.success("Analysis complete!")
+                success_box("Analysis complete!")
             except Exception as e:
-                st.error(f"Error analyzing song: {str(e)}")
+                error_box(f"Error analyzing song: {str(e)}")
                 analysis_data = None
         
         if analysis_data:
@@ -229,4 +227,4 @@ elif st.session_state.song_title:
     if analysis_data:
         display_song_analysis(analysis_data)
     else:
-        st.warning("Couldn't load analysis data. Please try analyzing the song again.")
+        warning_box("Couldn't load analysis data. Please try analyzing the song again.")
