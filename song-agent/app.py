@@ -6,16 +6,19 @@ import json
 import re
 import pandas as pd
 
-# Add parent directory to path for imports before any Streamlit code
 sys.path.append(str(Path(__file__).parent.parent))
 
-# Now import any non-Streamlit modules
 from agent import run_language_tutor
-# Import themes without executing any Streamlit commands
-# Careful: don't use "from themes import *" as it might run Streamlit code
-from themes.streamlit_theme import apply_custom_theme, info_box, success_box, warning_box, error_box, card, highlight
+from themes.streamlit_theme import (
+    apply_custom_theme,
+    info_box,
+    success_box,
+    warning_box,
+    error_box,
+    card,
+    highlight
+)
 
-# Finally, import Streamlit - this must be after all other imports
 import streamlit as st
 
 # Set page config as the VERY FIRST Streamlit command
