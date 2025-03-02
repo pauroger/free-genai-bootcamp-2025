@@ -28,7 +28,6 @@ st.set_page_config(
     layout="wide",
 )
 
-# Now apply the custom theme
 apply_custom_theme(primary_color="#90cdec")
 
 # Only add custom styling for specific components not covered by the theme

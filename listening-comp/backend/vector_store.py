@@ -9,6 +9,7 @@ import glob
 
 MODEL_ID = "amazon.titan-embed-text-v2:0" 
 
+
 class BedrockEmbeddingFunction(embedding_functions.EmbeddingFunction):
     def __init__(self, model_id=MODEL_ID):
         """Initialize Bedrock embedding function (using region eu-west-1)"""
@@ -36,7 +37,7 @@ class BedrockEmbeddingFunction(embedding_functions.EmbeddingFunction):
         return embeddings
 
 class QuestionVectorStore:
-    def __init__(self, persist_directory: str = "backend/data/vectorstore"):
+    def __init__(self, persist_directory: str = "../backend/data/vectorstore"):
         """Initialize the vector store for Goethe B1 listening exercises (Sections 1-4)"""
         self.persist_directory = persist_directory
         

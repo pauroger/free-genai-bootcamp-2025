@@ -1,19 +1,39 @@
-import streamlit as st
 import sys
 import os
+from pathlib import Path
 import json
 from datetime import datetime
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+current_file_path = Path(__file__)
+app_directory = current_file_path.parent  # frontend directory
+listening_comp_directory = app_directory.parent  # listening-comp directory
+project_root = listening_comp_directory.parent  # project root
+
+sys.path.append(str(listening_comp_directory))
+sys.path.append(str(project_root))
 
 from backend.question_generator import QuestionGenerator
 from backend.audio_generator import AudioGenerator
 
-# Page config
+from themes.streamlit_theme import (
+    apply_custom_theme,
+    info_box,
+    success_box,
+    warning_box,
+    error_box,
+    card,
+    highlight
+)
+
+import streamlit as st
+
 st.set_page_config(
     page_title="German Practice 🇩🇪🇨🇭🇦🇹",
     page_icon="🎧",
     layout="wide"
 )
+
+apply_custom_theme(primary_color="#90cdec")
 
 def load_stored_questions():
     """Load previously stored questions from JSON file"""
