@@ -1,36 +1,20 @@
-import gradio as gr
+import sys
+import os
+from pathlib import Path
 import requests
 import random
-from gradio.themes import GoogleFont
 
-# Create a custom theme:
-# - Use Nunito as the font.
-# - Set primary button background to #55CD02 in both light and dark modes.
-# - In dark mode, set the body background to #333333.
-theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
-    button_primary_background_fill="#55CD02",
-    button_primary_background_fill_dark="#55CD02",
-    body_background_fill_dark="#333333"
-)
+sys.path.append(str(Path(__file__).parent.parent))
+
+from themes.gradio_theme import apply_custom_theme
+
+# Apply our custom theme (replace the current theme definition)
+theme = apply_custom_theme(primary_color="#90cdec")
+
+import gradio as gr
 
 # Backend URL
 BACKEND_URL = "http://127.0.0.1:5000"
-
-# def fetch_random_word(current_group):
-#     try:
-#         response = requests.get(f"{BACKEND_URL}/groups/{current_group}/words/raw")
-#         response.raise_for_status()
-#         data = response.json()
-#         words = data.get("raw_words", [])
-#         if not words:
-#             return None, "🟡 No words found for this group.", None
-#         random_word = random.choice(words)
-#         english = random_word.get("english", "Unknown")
-#         german = random_word.get("german", "Unknown")
-#         word_id = random_word.get("word_id", None)
-#         return english, german, word_id
-#     except requests.exceptions.RequestException as e:
-#         return None, f"❌ Error fetching data: {e}", None
 
 def log_message(message):
     with open("log.txt", "a") as logfile:

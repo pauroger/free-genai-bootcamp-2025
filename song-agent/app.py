@@ -1,4 +1,3 @@
-# First import the necessary standard libraries
 import sys
 import os
 from pathlib import Path
