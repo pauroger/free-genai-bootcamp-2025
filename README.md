@@ -14,12 +14,6 @@ same educational approach as the main course but will focus on German. I will
 also adjust it to my current German level, which is low but not that of a
 complete beginner.
 
-🛠️ Tech Stack
-
-For both projects, I will leverage **ChatGPT-4o**, as I have a paid
-subscription. The model will be fine-tuned to emphasize educational guidance
-over direct problem-solving.
-
 📌 Goals
 
 - Gain hands-on experience with GenAI development.
