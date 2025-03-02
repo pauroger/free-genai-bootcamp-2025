@@ -25,25 +25,25 @@ def log_message(message):
 
 def fetch_random_word(current_group):
     try:
-        log_message(f"Fetching random word for group: {current_group}")
+        # log_message(f"Fetching random word for group: {current_group}")
         response = requests.get(f"{BACKEND_URL}/groups/{current_group}/words/raw")
-        log_message(f"HTTP GET request to: {BACKEND_URL}/groups/{current_group}/words/raw, status code: {response.status_code}")
+        # log_message(f"HTTP GET request to: {BACKEND_URL}/groups/{current_group}/words/raw, status code: {response.status_code}")
         response.raise_for_status()
         data = response.json()
         words = data.get("raw_words", [])
         if not words:
-            log_message("No words found for this group.")
+            # log_message("No words found for this group.")
             return None, "🟡 No words found for this group.", None
         random_word = random.choice(words)
-        log_message("\nSelected random word: " + str(random_word))
+        # log_message("\nSelected random word: " + str(random_word))
         english = random_word.get("english", "Unknown")
-        log_message("\nSelected random word english: " + str(english))
+        # log_message("\nSelected random word english: " + str(english))
         german = random_word.get("german", "Unknown")
         word_id = random_word.get("id", None)
-        log_message(f"Returning word - English: {english}, German: {german}, ID: {word_id}")
+        # log_message(f"Returning word - English: {english}, German: {german}, ID: {word_id}")
         return english, german, word_id  # Fixed: changed 'id' to 'word_id'
     except requests.exceptions.RequestException as e:
-        log_message(f"❌ Error fetching data: {e}")
+        # log_message(f"❌ Error fetching data: {e}")
         return None, f"❌ Error fetching data: {e}", None
 
 

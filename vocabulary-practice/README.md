@@ -1,8 +1,8 @@
-# Writing Practice
+# Vocabulary Practice
 
-Sample Question:
+Sample Exwercise:
 
-![App Sample Screenshot](images/vocabulary-tutor.png)
+![App Sample Screenshot](images/Example.png)
 
 ## Run Gradio App
 
