@@ -8,13 +8,16 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from themes.gradio_theme import apply_custom_theme
 
-# Apply our custom theme (replace the current theme definition)
 theme = apply_custom_theme(primary_color="#90cdec")
 
 import gradio as gr
 
 # Backend URL
 BACKEND_URL = "http://127.0.0.1:5000"
+
+# Create absolute path to the image file
+SCRIPT_DIR = Path(__file__).parent
+IMAGE_PATH = SCRIPT_DIR / "images" / "Writing Practice.png"
 
 def log_message(message):
     with open("log.txt", "a") as logfile:
@@ -38,7 +41,7 @@ def fetch_random_word(current_group):
         german = random_word.get("german", "Unknown")
         word_id = random_word.get("id", None)
         log_message(f"Returning word - English: {english}, German: {german}, ID: {word_id}")
-        return english, german, id
+        return english, german, word_id  # Fixed: changed 'id' to 'word_id'
     except requests.exceptions.RequestException as e:
         log_message(f"❌ Error fetching data: {e}")
         return None, f"❌ Error fetching data: {e}", None
@@ -48,7 +51,7 @@ def generate_word(current_group):
     english_word, correct_german, word_id = fetch_random_word(current_group)
     if not english_word:
         return "", "", correct_german, None
-    return english_word, "", correct_german, id
+    return english_word, "", correct_german, word_id  # Fixed: changed 'id' to 'word_id'
 
 def init_game(request: gr.Request):
     params = dict(request.query_params)
@@ -63,31 +66,31 @@ def init_game(request: gr.Request):
 
 def check_answer(user_input, english_word, correct_german, review_items, current_word_id):
     correct = user_input.strip().lower() == correct_german.lower()
-    log_message(f"\n\current_id: {current_word_id}")
-    log_message(f"\n\correct: {correct}")
+    # log_message(f"\n\current_id: {current_word_id}")
+    # log_message(f"\n\correct: {correct}")
     if correct:
         message = f"<p style='color:green;'>✅ Correct! '{english_word}' in German is '{correct_german}'.</p>"
     else:
         message = f"<p style='color:red;'>❌ Incorrect. '{english_word}' in German is '{correct_german}'.</p>"
     review_items = review_items or []
     review_items.append({"word_id": current_word_id, "correct": correct})
-    log_message(f"\n\review_items: {review_items}")
+    # log_message(f"\n\review_items: {review_items}")
     if correct:
         return gr.update(value=message, visible=True), gr.update(value="", visible=False), review_items
     else:
         return gr.update(value="", visible=False), gr.update(value=message, visible=True), review_items
 
 def save_study_session(study_session_id, review_items, current_group):
-    log_message(f"\n\study_session_id: {study_session_id}")
-    log_message(f"\nreview_items: {review_items}")
-    log_message(f"\n\current_group: {current_group}")
+    # log_message(f"\n\study_session_id: {study_session_id}")
+    # log_message(f"\nreview_items: {review_items}")
+    # log_message(f"\n\current_group: {current_group}")
     if not review_items:
         return study_session_id, []
     if not study_session_id:
         payload = {"group_id": current_group, "study_activity_id": 2}
         try:
             response = requests.post(f"{BACKEND_URL}/study_sessions", json=payload)
-            log_message(f"\n\response: {response}")
+            # log_message(f"\n\response: {response}")
             response.raise_for_status()
             data = response.json()
             study_session_id = data["word_id"]
@@ -95,11 +98,11 @@ def save_study_session(study_session_id, review_items, current_group):
             raise gr.Error(f"Failed to create study session: {e}")
     for item in review_items:
         payload = {"word_id": item["word_id"], "correct": item["correct"]}
-        log_message(f"\n\npayload: {payload}")
+        # log_message(f"\n\npayload: {payload}")
         try:
             response = requests.post(f"{BACKEND_URL}/study_sessions/{study_session_id}/review", json=payload)
             response.raise_for_status()
-            log_message(f"\n\response: {response}")
+            # log_message(f"\n\response: {response}")
         except Exception as e:
             raise gr.Error("Failed to save study session")
     gr.Info("💾 Study session saved!", duration=2)
@@ -115,7 +118,7 @@ with gr.Blocks(
     width: 50%;
 }
 """) as demo:
-    gr.HTML("<h1> ✍🏼 English to german Writing Practice </h1>")
+    gr.HTML("<h1> ✍🏼 English to German Writing Practice </h1>")
     
     # States for study session, review items, and current group.
     study_session_state = gr.State(None)
@@ -153,7 +156,7 @@ with gr.Blocks(
     gr.Markdown("Save progress and close the tab when finished.")
     with gr.Row(elem_classes="center"):
         gr.Image(
-            value="Writing Practice.png", 
+            value=str(IMAGE_PATH),  # Use the absolute path
             show_label=False,
             show_download_button=False,
             show_fullscreen_button=False,
