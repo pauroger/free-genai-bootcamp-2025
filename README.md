@@ -18,3 +18,7 @@ complete beginner.
 
 - Gain hands-on experience with GenAI development.
 - Build projects that promote active learning rather than passive consumption.
+
+## Currently Supported Apps
+
+![Apps](./lang-portal/frontend-react/public/SuportedApps.png)
