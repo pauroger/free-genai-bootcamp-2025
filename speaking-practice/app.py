@@ -265,6 +265,23 @@ with right_section:
             st.markdown("🔴 **Recording in progress...**")
     
     # WebRTC streamer for audio with custom UI
+    # webrtc_ctx = webrtc_streamer(
+    #     key="audio-recorder",
+    #     mode=WebRtcMode.SENDONLY,
+    #     audio_receiver_size=256,
+    #     media_stream_constraints={"video": False, "audio": True},
+    #     async_processing=True,
+    #     rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    #     in_recorder_factory=None,  # Disable the default START button
+    #     video_html_attrs={"style": {"display": "none"}},  # Hide video UI
+    #     audio_processor_factory=lambda: st.session_state.audio_processor if hasattr(st.session_state, 'audio_processor') else None
+    # )
+
+    ### DEBUG
+
+    # Replace the WebRTC and frame processing sections with this code
+
+    # WebRTC streamer without custom processor
     webrtc_ctx = webrtc_streamer(
         key="audio-recorder",
         mode=WebRtcMode.SENDONLY,
@@ -272,10 +289,82 @@ with right_section:
         media_stream_constraints={"video": False, "audio": True},
         async_processing=True,
         rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-        in_recorder_factory=None,  # Disable the default START button
         video_html_attrs={"style": {"display": "none"}},  # Hide video UI
-        audio_processor_factory=lambda: st.session_state.audio_processor if hasattr(st.session_state, 'audio_processor') else None
     )
+
+    # Initialize audio chunks in session state if not present
+    if 'audio_chunks' not in st.session_state:
+        st.session_state.audio_chunks = []
+
+    # Direct frame capture from WebRTC
+    if webrtc_ctx.state.playing and st.session_state.recording and webrtc_ctx.audio_receiver:
+        logger.info("WebRTC is playing and recording is active")
+        try:
+            audio_frames = webrtc_ctx.audio_receiver.get_frames(timeout=1)
+            logger.info(f"Received {len(audio_frames)} audio frames")
+            
+            # Process and store frames
+            for audio_frame in audio_frames:
+                try:
+                    sound = pydub.AudioSegment(
+                        data=audio_frame.to_ndarray().tobytes(),
+                        sample_width=audio_frame.format.bytes,
+                        frame_rate=audio_frame.sample_rate,
+                        channels=len(audio_frame.layout.channels)
+                    )
+                    st.session_state.audio_chunks.append(sound)
+                    logger.info(f"Added audio chunk, total: {len(st.session_state.audio_chunks)}")
+                except Exception as e:
+                    logger.error(f"Error processing frame: {str(e)}")
+                    logger.error(traceback.format_exc())
+        except Exception as e:
+            logger.error(f"Error getting frames: {str(e)}")
+            logger.error(traceback.format_exc())
+
+    # Then modify the Stop Recording section to use st.session_state.audio_chunks instead
+    # of the audio processor's chunks
+    else:
+        # Stop recording
+        logger.info("Stopping recording")
+        st.session_state.recording = False
+        
+        # If we have audio chunks, save them
+        if 'audio_chunks' in st.session_state and st.session_state.audio_chunks:
+            try:
+                chunks_count = len(st.session_state.audio_chunks)
+                logger.info(f"Found {chunks_count} audio chunks to save")
+                st.sidebar.write(f"Found {chunks_count} audio chunks to save")
+                
+                # Combine all audio chunks
+                combined = sum(st.session_state.audio_chunks, pydub.AudioSegment.empty())
+                logger.info(f"Combined audio: duration={combined.duration_seconds:.2f}s")
+                
+                # Save to file
+                os.makedirs(os.path.dirname(st.session_state.audio_file), exist_ok=True)
+                logger.info(f"Saving to {st.session_state.audio_file}")
+                combined.export(st.session_state.audio_file, format="mp3")
+                
+                # Verify file was created
+                if os.path.exists(st.session_state.audio_file):
+                    file_size = os.path.getsize(st.session_state.audio_file)
+                    logger.info(f"File saved successfully: {file_size} bytes")
+                    st.success(f"Recording saved to {st.session_state.audio_file}")
+                else:
+                    logger.error(f"File was not created: {st.session_state.audio_file}")
+                    st.error("Failed to save recording")
+                
+                # Clear chunks
+                st.session_state.audio_chunks = []
+            except Exception as e:
+                logger.error(f"Error saving audio: {str(e)}")
+                logger.error(traceback.format_exc())
+                st.error("Failed to save recording")
+        else:
+            warning_msg = "No audio chunks to save"
+            logger.warning(warning_msg)
+            st.sidebar.warning(warning_msg)
+
+    ###
 
     # Logging for debugging
     st.sidebar.markdown("### Debug Info")
