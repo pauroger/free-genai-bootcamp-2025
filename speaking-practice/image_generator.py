@@ -2,7 +2,7 @@ import boto3
 import json
 import os
 import base64
-from typing import Dict, List
+from typing import Dict, List, Optional
 from datetime import datetime
 import tempfile
 from PIL import Image
@@ -32,6 +32,13 @@ class ImageGenerator:
             "A savanna at sunset with elephants walking in the distance, golden hour lighting, atmospheric",
             "A snowy mountain range with wolves standing on a ridge, dramatic lighting, high detail"
         ]
+        
+        # Category-specific base prompts
+        self.category_prompts = {
+            "landscape": "Create a whimsical landscape, with mountains and trees. Feature some animals doing an activity.",
+            "city": "Busy city life, add some extreme weather conditions, they can be good or bad.",
+            "interaction": "Realistic image of a group of people doing an interaction."
+        }
 
     def _invoke_bedrock(self, prompt: str) -> bytes:
         """Invoke Bedrock with the given prompt using the image generation model"""
@@ -81,6 +88,11 @@ class ImageGenerator:
         """Returns a random landscape prompt"""
         import random
         return random.choice(self.landscape_prompts)
+    
+    def get_category_prompt(self, category: str) -> str:
+        """Returns the base prompt for a specific category"""
+        category = category.lower()
+        return self.category_prompts.get(category, self.category_prompts["landscape"])
 
     def customize_prompt(self, base_prompt: str, features: Dict = None) -> str:
         """
@@ -133,20 +145,35 @@ class ImageGenerator:
         
         return customized
 
-    def generate_image(self, custom_prompt: str = None, features: Dict = None) -> str:
+    def generate_image(self, custom_prompt: str = None, features: Dict = None, category: str = None) -> str:
         """
         Generate an image based on a prompt.
-        Returns the path to the generated image file.
+        
+        Args:
+            custom_prompt: A fully formed custom prompt to use directly
+            features: Dict with features to customize a base prompt
+            category: Category to use for base prompt if no custom prompt provided
+            
+        Returns:
+            Path to the generated image file
         """
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = os.path.join(self.image_dir, f"landscape_{timestamp}.png")
+        output_file = os.path.join(self.image_dir, f"generated_{timestamp}.png")
         
         try:
-            # Use custom prompt if provided, otherwise get a random one
-            base_prompt = custom_prompt if custom_prompt else self.get_random_prompt()
+            # Determine which prompt to use
+            if custom_prompt:
+                # Use the provided custom prompt directly
+                final_prompt = custom_prompt
+            elif category:
+                # Get base prompt for category and customize if features provided
+                base_prompt = self.get_category_prompt(category)
+                final_prompt = self.customize_prompt(base_prompt, features)
+            else:
+                # Use random landscape prompt as fallback and customize
+                base_prompt = self.get_random_prompt()
+                final_prompt = self.customize_prompt(base_prompt, features)
             
-            # Customize the prompt if features are provided
-            final_prompt = self.customize_prompt(base_prompt, features)
             print(f"Generating image with prompt: {final_prompt}")
             
             # Generate the image
@@ -163,7 +190,7 @@ class ImageGenerator:
                 os.unlink(output_file)
             raise Exception(f"Image generation failed: {str(e)}")
 
-    def batch_generate(self, count: int = 3, features: Dict = None) -> List[str]:
+    def batch_generate(self, count: int = 3, custom_prompt: str = None, features: Dict = None, category: str = None) -> List[str]:
         """
         Generate multiple images.
         Returns a list of paths to the generated image files.
@@ -171,7 +198,7 @@ class ImageGenerator:
         image_paths = []
         for _ in range(count):
             try:
-                image_path = self.generate_image(features=features)
+                image_path = self.generate_image(custom_prompt=custom_prompt, features=features, category=category)
                 image_paths.append(image_path)
             except Exception as e:
                 print(f"Error generating image: {str(e)}")
@@ -196,6 +223,15 @@ if __name__ == "__main__":
     
     custom_image = generator.generate_image(features=features)
     print(f"Generated custom image: {custom_image}")
+    
+    # Generate with category
+    category_image = generator.generate_image(category="city")
+    print(f"Generated category image: {category_image}")
+    
+    # Generate with fully custom prompt
+    custom_prompt = "A futuristic city skyline at night with neon lights and flying cars, cyberpunk style"
+    prompt_image = generator.generate_image(custom_prompt=custom_prompt)
+    print(f"Generated custom prompt image: {prompt_image}")
     
     # Batch generate
     batch_paths = generator.batch_generate(count=2)
