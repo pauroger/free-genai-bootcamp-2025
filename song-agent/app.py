@@ -29,7 +29,6 @@ st.set_page_config(
 
 apply_custom_theme(primary_color="#90cdec")
 
-# Only add custom styling for specific components not covered by the theme
 st.markdown("""
 <style>
     .lyrics-container {

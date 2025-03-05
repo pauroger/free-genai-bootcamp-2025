@@ -29,7 +29,7 @@ complete beginner.
 
 ### Writting Tutor
 
-![Apps](./lang-portal/frontend-react/public/WrittingTutor.png)
+![Apps](./lang-portal/frontend-react/public/WritingTutor.png)
 
 ### Listening Tutor
 
