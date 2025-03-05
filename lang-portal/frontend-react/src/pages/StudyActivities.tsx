@@ -32,18 +32,22 @@ export default function StudyActivities() {
   }, [])
 
   if (loading) {
-    return <div className="text-center">Loading study activities...</div>
+    return <div className="text-center text-muted-foreground">Loading study activities...</div>
   }
 
   if (error) {
-    return <div className="text-red-500">Error: {error}</div>
+    return <div className="text-destructive">Error: {error}</div>
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {activities.map((activity) => (
-        <StudyActivity key={activity.id} activity={activity} />
-      ))}
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold text-foreground">Study Activities</h1>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activities.map((activity) => (
+          <StudyActivity key={activity.id} activity={activity} />
+        ))}
+      </div>
     </div>
   )
 }

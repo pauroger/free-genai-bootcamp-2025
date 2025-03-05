@@ -11,5 +11,5 @@ Sample Answer:
 ## Run the frontend
 
 ```sh
-streamlit run frontend/main.py
+streamlit run frontend/main.py --server.port=8502
 ```

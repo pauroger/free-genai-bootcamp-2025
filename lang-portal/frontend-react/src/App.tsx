@@ -12,14 +12,16 @@ import {
 
 export default function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="system" storageKey="language-portal-theme">
       <NavigationProvider>
         <Router>
           <SidebarProvider>
             <AppSidebar />
-            <SidebarInset>
+            <SidebarInset className="px-6 py-4">
               <Breadcrumbs />
-              <AppRouter />
+              <div className="pt-4">
+                <AppRouter />
+              </div>
             </SidebarInset>
           </SidebarProvider>  
         </Router>

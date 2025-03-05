@@ -12,10 +12,10 @@ type ActivityProps = {
 
 export default function StudyActivity({ activity }: ActivityProps) {
   return (
-    <div className="bg-sidebar rounded-lg shadow-md overflow-hidden">
+    <div className="bg-card border border-border rounded-lg shadow-md overflow-hidden">
       <img src={activity.preview_url} alt={activity.title} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{activity.title}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-card-foreground">{activity.title}</h3>
         <div className="flex justify-between">
           <Button asChild>
             <Link to={`/study-activities/${activity.id}/launch`}>

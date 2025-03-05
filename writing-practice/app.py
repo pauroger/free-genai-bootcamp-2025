@@ -1,11 +1,33 @@
-import streamlit as st
 import boto3
 import json
+import sys
+from pathlib import Path
 
 # Initialize the Bedrock runtime client in the eu-west-1 region
 client = boto3.client('bedrock-runtime', region_name='eu-west-1')
 MODEL_ID = "mistral.mistral-large-2402-v1:0"
 # MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+
+sys.path.append(str(Path(__file__).parent.parent))
+
+from themes.streamlit_theme import (
+    apply_custom_theme,
+    info_box,
+    success_box,
+    warning_box,
+    error_box,
+    card,
+    highlight
+)
+
+import streamlit as st
+
+st.set_page_config(
+    page_title="Writting Tutor",
+    page_icon="✍️",
+)
+
+apply_custom_theme(primary_color="#90cdec")
 
 def parse_response(response):
     raw_body = response.get("body")
@@ -27,7 +49,7 @@ def generate_target_sentence():
         accept='application/json',
         body=json.dumps({
             "messages": messages,
-            "max_tokens": 1000,
+            "max_tokens": 5000,
         })
     )
     result = parse_response(response)
@@ -68,7 +90,6 @@ def grade_submission(target_sentence, submission):
     if "choices" in result and result["choices"]:
         return result["choices"][0]["message"]["content"].strip()
     return "No assessment provided."
-
 
 # Initialize session state if not present
 if "target_sentence" not in st.session_state:

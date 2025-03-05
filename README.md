@@ -22,3 +22,23 @@ complete beginner.
 ## Currently Supported Apps
 
 ![Apps](./lang-portal/frontend-react/public/SuportedApps.png)
+
+### Vocabulary Tutor
+
+![Apps](./lang-portal/frontend-react/public/VocabularyTutor.png)
+
+### Writting Tutor
+
+![Apps](./lang-portal/frontend-react/public/WritingTutor.png)
+
+### Listening Tutor
+
+![Apps](./lang-portal/frontend-react/public/ListeningTutor1.png)
+
+### Singing Tutor
+
+![Apps](./lang-portal/frontend-react/public/SingingTutor.png)
+
+### Speaking Tutor
+
+![Apps](./lang-portal/frontend-react/public/SpeakingTutor.png)

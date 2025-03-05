@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronUp, ChevronDown } from 'lucide-react'
 import { Word } from '../services/api'
@@ -14,14 +13,14 @@ interface WordsTableProps {
 
 export default function WordsTable({ words, sortKey, sortDirection, onSort }: WordsTableProps) {
   return (
-    <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow">
-      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead className="bg-gray-50 dark:bg-gray-900">
+    <div className="overflow-x-auto bg-card rounded-lg shadow border border-border">
+      <table className="min-w-full divide-y divide-border">
+        <thead className="bg-muted">
           <tr>
             {(['german', 'english', 'correct_count', 'wrong_count'] as const).map((key) => (
               <th
                 key={key}
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-accent"
                 onClick={() => onSort(key)}
               >
                 <div className="flex items-center space-x-1">
@@ -38,27 +37,24 @@ export default function WordsTable({ words, sortKey, sortDirection, onSort }: Wo
             ))}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+        <tbody className="bg-card divide-y divide-border">
           {words.map((word) => (
-            <tr key={word.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+            <tr key={word.id} className="hover:bg-accent/50">
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link
                   to={`/words/${word.id}`}
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
-                  {word.english}
+                  {word.german}
                 </Link>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                {word.german}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-card-foreground">
                 {word.english}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-green-500 dark:text-green-400">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-success-500 font-medium">
                 {word.correct_count}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 dark:text-red-400">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-destructive font-medium">
                 {word.wrong_count}
               </td>
             </tr>
