@@ -62,7 +62,12 @@ export default function StudyActivityLaunch() {
   }, [setCurrentStudyActivity])
 
   const handleLaunch = async () => {
-    if (!launchData?.activity) return;
+    if (!launchData?.activity) {
+      console.error("No activity data available");
+      return;
+    }
+    console.log("Launch data:", launchData);
+    console.log("Launch URL from data:", launchData.activity.launch_url);
     
     // If activity is not id 1, or if a group is selected when required
     if (launchData.activity.id !== 1 || selectedGroup) {

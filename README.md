@@ -33,7 +33,7 @@ complete beginner.
 
 ### Listening Tutor
 
-![Apps](./lang-portal/frontend-react/public/ListeningTutor.png)
+![Apps](./lang-portal/frontend-react/public/ListeningTutor1.png)
 
 ### Singing Tutor
 

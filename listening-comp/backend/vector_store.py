@@ -37,7 +37,7 @@ class BedrockEmbeddingFunction(embedding_functions.EmbeddingFunction):
         return embeddings
 
 class QuestionVectorStore:
-    def __init__(self, persist_directory: str = "../backend/data/vectorstore"):
+    def __init__(self, persist_directory: str = "./backend/data/vectorstore"):
         """Initialize the vector store for Goethe B1 listening exercises (Sections 1-4)"""
         self.persist_directory = persist_directory
         
