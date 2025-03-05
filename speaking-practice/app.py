@@ -317,16 +317,16 @@ with gr.Blocks(theme=theme, css=css) as demo:
         
         # Right column: German practice
         with gr.Column():
-            gr.Markdown("### 2 - Practice Speaking German")
+            gr.Markdown("### 2 - Practice Speaking")
             gr.Markdown("Record yourself describing the image in German. Your recording will be transcribed and evaluated.")
             
             # Audio component with just recording interface
             audio_component = gr.Audio(
                 source="microphone",
                 type="filepath",
-                label="Record your description (max 1 min)",
+                label="Record your description (max 2 min)",
                 format="wav",
-                duration=60,
+                duration=120,
                 interactive=True
             )
             

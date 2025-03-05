@@ -4,6 +4,7 @@ import { useNavigation } from '@/context/NavigationContext'
 import StudySessionsTable from '@/components/StudySessionsTable'
 import Pagination from '@/components/Pagination'
 import { StudySessionSortKey } from '@/components/StudySessionsTable'
+import { Button } from '@/components/ui/button'
 
 type Session = {
   id: number
@@ -69,7 +70,7 @@ export default function StudyActivityShow() {
         }
         const sessionsData = await sessionsResponse.json()
         setSessionData({
-          items: sessionsData.items.map((item: Session) => ({ // Here I had any instead of Session
+          items: sessionsData.items.map((item: Session) => ({
             id: item.id,
             group_name: item.group_name,
             group_id: item.group_id,
@@ -111,51 +112,49 @@ export default function StudyActivityShow() {
   }
 
   if (loading) {
-    return <div className="text-center py-4">Loading...</div>
+    return <div className="text-center py-4 text-muted-foreground">Loading...</div>
   }
 
   if (error || !activity) {
-    return <div className="text-red-500 text-center py-4">{error || 'Activity not found'}</div>
+    return <div className="text-destructive text-center py-4">{error || 'Activity not found'}</div>
   }
 
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white">{activity.title}</h1>
-        <Link
-          to="/study-activities"
-          className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
-        >
-          Back to Activities
-        </Link>
+        <h1 className="text-3xl font-bold text-foreground">{activity.title}</h1>
+        <Button variant="outline" asChild>
+          <Link to="/study-activities">
+            Back to Activities
+          </Link>
+        </Button>
       </div>
       
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+      <div className="bg-card text-card-foreground rounded-lg shadow-md overflow-hidden border border-border">
         <div className="relative">
           <img 
             src={activity.preview_url} 
             alt={activity.title} 
-            className="inset-0 w-[600px] h-[400px] aspect-ratio bg-gray-900"
+            className="inset-0 w-[600px] h-[400px] aspect-ratio bg-muted"
           />
         </div>
         <div className="p-6">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">{activity.description}</p>
+          <p className="text-card-foreground mb-4">{activity.description}</p>
           <div className="space-y-4">
             <div className="flex">
-              <Link
-                to={`/study-activities/${id}/launch`}
-                className="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md"
-              >
-                Launch
-              </Link>
+              <Button asChild>
+                <Link to={`/study-activities/${id}/launch`}>
+                  Launch
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
       </div>
 
       {sessionData && sessionData.items.length > 0 && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4">Study Sessions</h2>
+        <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 border border-border">
+          <h2 className="text-xl font-semibold mb-4 text-foreground">Study Sessions</h2>
           <StudySessionsTable
             sessions={sessionData.items}
             sortKey={sortKey}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import WordsTable from '@/components/WordsTable'
 import Pagination from '@/components/Pagination'
+import { Button } from '@/components/ui/button'
 import type { Word } from '@/services/api'
 import { type WordSortKey } from '@/components/WordsTable'
 
@@ -73,52 +74,51 @@ export default function StudySessionShow() {
   }
 
   if (loading) {
-    return <div className="text-center py-4">Loading...</div>
+    return <div className="text-center py-4 text-muted-foreground">Loading...</div>
   }
 
   if (error || !session) {
-    return <div className="text-red-500 text-center py-4">{error || 'Session not found'}</div>
+    return <div className="text-destructive text-center py-4">{error || 'Session not found'}</div>
   }
 
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Study Session Details</h1>
-        <Link
-          to="/sessions"
-          className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
-        >
-          Back to Sessions
-        </Link>
+        <h1 className="text-3xl font-bold text-foreground">Study Session Details</h1>
+        <Button variant="outline" asChild>
+          <Link to="/sessions">
+            Back to Sessions
+          </Link>
+        </Button>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-4">
+      <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 space-y-4 border border-border">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400">Activity</h2>
-            <Link to={`/study-activities/${session.activity_id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+            <h2 className="text-sm font-medium text-muted-foreground">Activity</h2>
+            <Link to={`/study-activities/${session.activity_id}`} className="text-primary hover:underline">
               {session.activity_name}
             </Link>
           </div>
           <div>
-            <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400">Group</h2>
-            <Link to={`/groups/${session.group_id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+            <h2 className="text-sm font-medium text-muted-foreground">Group</h2>
+            <Link to={`/groups/${session.group_id}`} className="text-primary hover:underline">
               {session.group_name}
             </Link>
           </div>
           <div>
-            <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400">Start Time</h2>
-            <p className="text-gray-900 dark:text-gray-100">{session.start_time}</p>
+            <h2 className="text-sm font-medium text-muted-foreground">Start Time</h2>
+            <p className="text-card-foreground">{session.start_time}</p>
           </div>
           <div>
-            <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400">Review Items</h2>
-            <p className="text-gray-900 dark:text-gray-100">{session.review_items_count}</p>
+            <h2 className="text-sm font-medium text-muted-foreground">Review Items</h2>
+            <p className="text-card-foreground">{session.review_items_count}</p>
           </div>
         </div>
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Words Reviewed</h2>
+        <h2 className="text-xl font-semibold text-foreground">Words Reviewed</h2>
         <WordsTable
           words={words}
           sortKey={sortKey}

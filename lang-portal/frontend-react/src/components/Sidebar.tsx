@@ -34,19 +34,37 @@ export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sid
   }
   
   return (
-    <Sidebar {...props}>
-      <SidebarHeader>
-        LangPortal
+    <Sidebar className="bg-sidebar border-r border-sidebar-border" {...props}>
+      <SidebarHeader className="p-4 border-b border-sidebar-border">
+        <div className="flex items-center space-x-2">
+          <img 
+            src="/icon.png" 
+            alt="Language Portal Logo" 
+            className="h-8 w-8 rounded-md shadow-sm"
+          />
+          <h1 className="text-xl font-bold font-heading text-sidebar-primary-foreground">
+            Language Portal
+          </h1>
+        </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="py-2">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton asChild isActive={isActive(item.path)}>
-                    <Link to={item.path}>
-                      <item.icon />
+                <SidebarMenuItem key={item.name} className="mb-1">
+                  <SidebarMenuButton 
+                    asChild 
+                    isActive={isActive(item.path)}
+                    className={`
+                      px-4 py-2 rounded-md transition-colors duration-200
+                      ${isActive(item.path) 
+                        ? 'bg-sidebar-accent text-sidebar-primary font-medium border-l-4 border-sidebar-primary' 
+                        : 'text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-primary-foreground'}
+                    `}
+                  >
+                    <Link to={item.path} className="flex items-center gap-3">
+                      <item.icon className={`h-5 w-5 ${isActive(item.path) ? 'text-sidebar-primary' : 'text-sidebar-foreground/70'}`} />
                       <span>{item.name}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -56,7 +74,7 @@ export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sid
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarRail />
+      <SidebarRail className="bg-sidebar-accent/30" />
     </Sidebar>
   )
 }

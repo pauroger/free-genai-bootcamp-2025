@@ -18,15 +18,15 @@ export default function StudySessionsTable({
   onSort 
 }: StudySessionsTableProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead className="bg-gray-50 dark:bg-gray-900">
+    <div className="bg-card rounded-lg shadow overflow-x-auto border border-border">
+      <table className="min-w-full divide-y divide-border">
+        <thead className="bg-muted">
           <tr>
             {(['id', 'activity_name', 'group_name', 'start_time', 'end_time', 'review_items_count'] as const).map((key) => (
               <th
                 key={key}
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-accent"
                 onClick={() => onSort(key)}
               >
                 <div className="flex items-center">
@@ -39,27 +39,27 @@ export default function StudySessionsTable({
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody className="divide-y divide-border">
           {sessions.map((session) => (
-            <tr key={session.id} className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
+            <tr key={session.id} className="bg-card hover:bg-accent/50">
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link to={`/sessions/${session.id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link to={`/sessions/${session.id}`} className="text-primary hover:underline">
                   {session.id}
                 </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link to={`/study-activities/${session.activity_id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link to={`/study-activities/${session.activity_id}`} className="text-primary hover:underline">
                   {session.activity_name}
                 </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link to={`/groups/${session.group_id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link to={`/groups/${session.group_id}`} className="text-primary hover:underline">
                   {session.group_name}
                 </Link>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">{session.start_time}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">{session.end_time}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">{session.review_items_count}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-card-foreground">{session.start_time}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-card-foreground">{session.end_time}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-card-foreground">{session.review_items_count}</td>
             </tr>
           ))}
         </tbody>

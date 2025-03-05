@@ -12,6 +12,7 @@ import WordsTable, { type WordSortKey } from '@/components/WordsTable'
 import StudySessionsTable, { type StudySessionSortKey } from '@/components/StudySessionsTable'
 import Pagination from '@/components/Pagination'
 import { useNavigation } from '@/context/NavigationContext'
+import { Button } from '@/components/ui/button'
 
 export default function GroupShow() {
   const { id } = useParams<{ id: string }>()
@@ -97,67 +98,70 @@ export default function GroupShow() {
   }
 
   if (isLoading) {
-    return <div className="text-center py-4">Loading...</div>
+    return <div className="text-center py-4 text-muted-foreground">Loading...</div>
   }
 
   if (error || !group) {
-    return <div className="text-red-500 text-center py-4">{error || 'Group not found'}</div>
+    return <div className="text-destructive text-center py-4">{error || 'Group not found'}</div>
   }
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">{group.group_name}</h1>
-        <Link
-          to="/groups"
-          className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
-        >
-          Back to Groups
-        </Link>
+        <h1 className="text-2xl font-bold text-foreground">{group.group_name}</h1>
+        <Button variant="outline" asChild>
+          <Link to="/groups">
+            Back to Groups
+          </Link>
+        </Button>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+      <div className="bg-card text-card-foreground rounded-lg shadow overflow-hidden border border-border">
         <div className="p-6">
           <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Group Statistics</h2>
-            <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <h2 className="text-lg font-semibold text-foreground">Group Statistics</h2>
+            <div className="mt-4 p-4 bg-accent rounded-lg">
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Total Words</p>
-                  <p className="mt-1 text-2xl font-semibold text-blue-500">{group.word_count}</p>
+                  <p className="text-sm text-muted-foreground">Total Words</p>
+                  <p className="mt-1 text-2xl font-semibold text-primary">{group.word_count}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Words in Group</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-4">Words in Group</h2>
             <WordsTable
               words={words}
               sortKey={wordSortKey}
               sortDirection={wordSortDirection}
               onSort={handleWordSort}
             />
-            <Pagination
-              currentPage={wordsPage}
-              totalPages={wordsTotalPages}
-              onPageChange={setWordsPage}
-            />
+            <div className="mt-4">
+              <Pagination
+                currentPage={wordsPage}
+                totalPages={wordsTotalPages}
+                onPageChange={setWordsPage}
+              />
+            </div>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Study Sessions</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-4">Study Sessions</h2>
             <StudySessionsTable
               sessions={studySessions}
               sortKey={sessionSortKey}
               sortDirection={sessionSortDirection}
               onSort={handleSessionSort}
             />
-            <Pagination
-              currentPage={sessionsPage}
-              totalPages={sessionsTotalPages}
-              onPageChange={setSessionsPage}
-            />
+            <div className="mt-4">
+              <Pagination
+                currentPage={sessionsPage}
+                totalPages={sessionsTotalPages}
+                onPageChange={setSessionsPage}
+              />
+            </div>
           </div>
         </div>
       </div>

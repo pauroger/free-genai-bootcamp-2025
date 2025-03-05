@@ -86,24 +86,24 @@ export default function StudyActivityLaunch() {
   }
 
   if (loading) {
-    return <div className="text-center">Loading...</div>
+    return <div className="text-center text-muted-foreground">Loading...</div>
   }
 
   if (error) {
-    return <div className="text-red-500">Error: {error}</div>
+    return <div className="text-destructive">Error: {error}</div>
   }
 
   if (!launchData) {
-    return <div className="text-red-500">Activity not found</div>
+    return <div className="text-destructive">Activity not found</div>
   }
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">{launchData.activity.title}</h1>
+      <h1 className="text-2xl font-bold text-foreground">{launchData.activity.title}</h1>
       
       <div className="space-y-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium">Select Word Group</label>
+          <label className="text-sm font-medium text-foreground">Select Word Group</label>
           <Select onValueChange={setSelectedGroup} value={selectedGroup}>
             <SelectTrigger>
               <SelectValue placeholder="Select a word group" />

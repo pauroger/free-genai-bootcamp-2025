@@ -1,5 +1,14 @@
 import { useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function Settings() {
   const { theme, setTheme } = useTheme()
@@ -35,56 +44,62 @@ export default function Settings() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Settings</h1>
+      <h1 className="text-2xl font-bold text-foreground">Settings</h1>
       
-      <div className="flex items-center justify-between">
-        <span className="text-gray-700 dark:text-gray-300">Theme</span>
-        <select
+      <div className="flex items-center justify-between p-4 bg-card rounded-lg border border-border">
+        <span className="text-card-foreground">Theme</span>
+        <Select
           value={theme}
-          onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
-          className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onValueChange={(value) => setTheme(value as 'light' | 'dark' | 'system')}
         >
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-          <option value="system">System</option>
-        </select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select theme" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="light">Light</SelectItem>
+            <SelectItem value="dark">Dark</SelectItem>
+            <SelectItem value="system">System</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
-      <div>
-        <button
+      <div className="p-4 bg-card rounded-lg border border-border">
+        <h2 className="text-lg font-semibold mb-2 text-foreground">Reset Data</h2>
+        <p className="mb-4 text-muted-foreground">This will reset all study history and statistics.</p>
+        <Button 
+          variant="destructive"
           onClick={() => setShowResetDialog(true)}
-          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
         >
           Reset History
-        </button>
+        </Button>
       </div>
 
       {showResetDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Confirm Reset</h2>
-            <p className="mb-4 text-gray-600 dark:text-gray-400">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-card text-card-foreground p-6 rounded-lg border border-border max-w-md w-full">
+            <h2 className="text-xl font-bold mb-4 text-foreground">Confirm Reset</h2>
+            <p className="mb-4 text-muted-foreground">
               Type "reset me" to confirm database reset:
             </p>
-            <input
+            <Input
               type="text"
               value={resetConfirmation}
               onChange={(e) => setResetConfirmation(e.target.value)}
-              className="border rounded px-2 py-1 mb-4 w-full text-gray-800 dark:text-white dark:bg-gray-700"
+              className="mb-4"
             />
             <div className="flex justify-end space-x-2">
-              <button
+              <Button
+                variant="outline"
                 onClick={() => setShowResetDialog(false)}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="destructive"
                 onClick={handleReset}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
               >
                 Confirm Reset
-              </button>
+              </Button>
             </div>
           </div>
         </div>
