@@ -62,26 +62,34 @@ export default function StudyActivityLaunch() {
   }, [setCurrentStudyActivity])
 
   const handleLaunch = async () => {
-    if (!launchData?.activity || !selectedGroup) return;
+    if (!launchData?.activity) return;
     
-    try {
-      // Create a study session first
-      const result = await createStudySession(parseInt(selectedGroup), launchData.activity.id);
-      console.log("createStudySession result:", result);
-      const sessionId = result.session_id;
-      
-      // Replace any instances of $group_id with the actual group id and add session_id
-      const launchUrl = new URL(launchData.activity.launch_url);
-      launchUrl.searchParams.set('group_id', selectedGroup);
-      launchUrl.searchParams.set('session_id', sessionId.toString());
-      
-      // Open the modified URL in a new tab
-      window.open(launchUrl.toString(), '_blank');
-      
-      // Navigate to the session show page
-      navigate(`/sessions/${sessionId}`);
-    } catch (error) {
-      console.error('Failed to launch activity:', error);
+    // If activity is not id 1, or if a group is selected when required
+    if (launchData.activity.id !== 1 || selectedGroup) {
+      try {
+        // For activities other than id 1, use the first group or a default
+        const groupId = launchData.activity.id === 1 
+          ? parseInt(selectedGroup) 
+          : (launchData.groups[0]?.id || 1);
+        
+        // Create a study session first
+        const result = await createStudySession(groupId, launchData.activity.id);
+        console.log("createStudySession result:", result);
+        const sessionId = result.session_id;
+        
+        // Replace any instances of $group_id with the actual group id and add session_id
+        const launchUrl = new URL(launchData.activity.launch_url);
+        launchUrl.searchParams.set('group_id', groupId.toString());
+        launchUrl.searchParams.set('session_id', sessionId.toString());
+        
+        // Open the modified URL in a new tab
+        window.open(launchUrl.toString(), '_blank');
+        
+        // Navigate to the session show page
+        navigate(`/sessions/${sessionId}`);
+      } catch (error) {
+        console.error('Failed to launch activity:', error);
+      }
     }
   }
 
@@ -102,29 +110,40 @@ export default function StudyActivityLaunch() {
       <h1 className="text-2xl font-bold text-foreground">{launchData.activity.title}</h1>
       
       <div className="space-y-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground">Select Word Group</label>
-          <Select onValueChange={setSelectedGroup} value={selectedGroup}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a word group" />
-            </SelectTrigger>
-            <SelectContent>
-              {launchData.groups.map((group) => (
-                <SelectItem key={group.id} value={group.id.toString()}>
-                  {group.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {launchData.activity.id === 1 ? (
+          <>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">Select Word Group</label>
+              <Select onValueChange={setSelectedGroup} value={selectedGroup}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a word group" />
+                </SelectTrigger>
+                <SelectContent>
+                  {launchData.groups.map((group) => (
+                    <SelectItem key={group.id} value={group.id.toString()}>
+                      {group.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-        <Button 
-          onClick={handleLaunch}
-          disabled={!selectedGroup}
-          className="w-full"
-        >
-          Launch Now
-        </Button>
+            <Button 
+              onClick={handleLaunch}
+              disabled={!selectedGroup}
+              className="w-full"
+            >
+              Launch Now
+            </Button>
+          </>
+        ) : (
+          <Button 
+            onClick={handleLaunch}
+            className="w-full"
+          >
+            Launch Now
+          </Button>
+        )}
       </div>
     </div>
   )
