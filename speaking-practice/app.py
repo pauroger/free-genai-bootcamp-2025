@@ -233,7 +233,7 @@ def process_audio(audio_filepath, image_path):
                 "For each category, write a short comment (one or two sentences) about how the speaker performed. "
                 f"\n\n{image_instruction}\n\n"
                 "Then, based on the overall performance, assign an overall CEFR level for the speaker: A1, A2, B1, B2, C1, or C2. "
-                "Ensure the total response does not exceed 300 words. "
+                "Ensure the total response does not exceed 200 words. "
                 f"Transcript: {transcription}"
             )
             

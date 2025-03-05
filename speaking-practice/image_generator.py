@@ -2,9 +2,8 @@ import boto3
 import json
 import os
 import base64
-from typing import Dict, List, Optional
+from typing import Dict, List
 from datetime import datetime
-import tempfile
 from PIL import Image
 import io
 
@@ -216,9 +215,9 @@ if __name__ == "__main__":
     
     # Generate with custom features
     features = {
-        "time_of_day": "sunset",
-        "weather": "clear",
-        "animals": ["wolves", "eagles"]
+        "time_of_day": ["sunset", "sunrise", "day", "night"],
+        "weather": ["clear", "cloudy", "rainy", "snowy"],
+        "animals": ["wolves", "eagles", "bears", "goats", "dogs", "cats"]
     }
     
     custom_image = generator.generate_image(features=features)
