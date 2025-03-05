@@ -370,7 +370,7 @@ if __name__ == "__main__":
     ]
     
     demo.launch(
-        server_port=7860,
+        server_port=7861,
         server_name="127.0.0.1",
         show_error=True,
         allowed_paths=allowed_paths,  # Allow access to these paths

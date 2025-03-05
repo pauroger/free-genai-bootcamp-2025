@@ -37,24 +37,34 @@ export default function StudyActivityLaunch() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Add debug logging
+  console.log("StudyActivityLaunch mounted, id:", id)
+
   useEffect(() => {
+    console.log("Fetching launch data for activity:", id)
     fetch(`http://127.0.0.1:5000/study-activities/${id}/launch`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch launch data')
         return response.json()
       })
       .then(data => {
+        console.log("Received launch data:", data)
         setLaunchData(data)
         setCurrentStudyActivity(data.activity)
         setLoading(false)
+        
+        // For non-ID-1 activities, pre-select the first group
+        if (data.activity.id !== 1 && data.groups && data.groups.length > 0) {
+          setSelectedGroup(data.groups[0].id.toString())
+        }
       })
       .catch(err => {
+        console.error("Error fetching launch data:", err)
         setError(err.message)
         setLoading(false)
       })
   }, [id, setCurrentStudyActivity])
 
-  // Clean up when unmounting
   useEffect(() => {
     return () => {
       setCurrentStudyActivity(null)
@@ -62,39 +72,58 @@ export default function StudyActivityLaunch() {
   }, [setCurrentStudyActivity])
 
   const handleLaunch = async () => {
-    if (!launchData?.activity) {
-      console.error("No activity data available");
-      return;
-    }
-    console.log("Launch data:", launchData);
-    console.log("Launch URL from data:", launchData.activity.launch_url);
+    console.log("Launch button clicked")
     
-    // If activity is not id 1, or if a group is selected when required
-    if (launchData.activity.id !== 1 || selectedGroup) {
-      try {
-        // For activities other than id 1, use the first group or a default
-        const groupId = launchData.activity.id === 1 
-          ? parseInt(selectedGroup) 
-          : (launchData.groups[0]?.id || 1);
-        
-        // Create a study session first
-        const result = await createStudySession(groupId, launchData.activity.id);
-        console.log("createStudySession result:", result);
-        const sessionId = result.session_id;
-        
-        // Replace any instances of $group_id with the actual group id and add session_id
-        const launchUrl = new URL(launchData.activity.launch_url);
-        launchUrl.searchParams.set('group_id', groupId.toString());
-        launchUrl.searchParams.set('session_id', sessionId.toString());
-        
-        // Open the modified URL in a new tab
-        window.open(launchUrl.toString(), '_blank');
-        
-        // Navigate to the session show page
-        navigate(`/sessions/${sessionId}`);
-      } catch (error) {
-        console.error('Failed to launch activity:', error);
+    if (!launchData?.activity) {
+      console.error("No activity data available")
+      return
+    }
+    
+    console.log("Launch data:", launchData)
+    console.log("Selected group:", selectedGroup)
+    
+    try {
+      // For activities other than id 1, use first group or default
+      const groupId = launchData.activity.id === 1 
+        ? parseInt(selectedGroup) 
+        : (launchData.groups[0]?.id || 1)
+      
+      console.log("Using group ID:", groupId)
+      
+      // Create study session
+      const result = await createStudySession(groupId, launchData.activity.id)
+      console.log("Study session created:", result)
+      
+      if (!result || !result.session_id) {
+        throw new Error("Failed to get session ID from API")
       }
+      
+      const sessionId = result.session_id
+      
+      // Build launch URL
+      let launchUrlString = launchData.activity.launch_url
+      try {
+        const launchUrl = new URL(launchUrlString)
+        launchUrl.searchParams.set('group_id', groupId.toString())
+        launchUrl.searchParams.set('session_id', sessionId.toString())
+        launchUrlString = launchUrl.toString()
+      } catch (urlError) {
+        console.error("URL parsing error:", urlError)
+        // Fallback for invalid URLs
+        launchUrlString = `${launchData.activity.launch_url}?group_id=${groupId}&session_id=${sessionId}`
+      }
+      
+      console.log("Opening URL:", launchUrlString)
+      window.open(launchUrlString, '_blank')
+      
+      // Delay navigation slightly to ensure window.open works
+      setTimeout(() => {
+        console.log("Navigating to session:", sessionId)
+        navigate(`/sessions/${sessionId}`)
+      }, 100)
+    } catch (error) {
+      console.error('Failed to launch activity:', error)
+      setError(`Launch failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
     }
   }
 

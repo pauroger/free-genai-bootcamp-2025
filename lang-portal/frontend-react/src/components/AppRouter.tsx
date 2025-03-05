@@ -14,23 +14,8 @@ import Sessions from '@/pages/Sessions'
 import StudySessionShow from '@/pages/StudySessionShow'
 import Settings from '@/pages/Settings'
 
-// Conditional route component that checks the app ID
-// and either renders StudyActivityLaunch or redirects to the show page
 function ConditionalLaunchRoute() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  
-  useEffect(() => {
-    // Convert ID to number for comparison
-    const numId = parseInt(id, 10)
-    
-    // If ID is not 1 or 2, redirect to the show page
-    if (numId !== 1 && numId !== 2) {
-      navigate(`/study-activities/${id}`, { replace: true })
-    }
-  }, [id, navigate])
-  
-  // For IDs 1 and 2, render the launch page
+  // Simply render the launch component for all IDs
   return <StudyActivityLaunch />
 }
 
