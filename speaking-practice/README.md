@@ -5,7 +5,7 @@ image description exercises.
 
 Sample Song:
 
-![App Sample Screenshot](images/Speaking%20Tutor.png)
+![App Sample Screenshot](/lang-portal/frontend-react/public/SpeakingTutor.png)
 
 ## Features
 
