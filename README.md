@@ -42,3 +42,7 @@ complete beginner.
 ### Speaking Tutor
 
 ![Apps](./lang-portal/frontend-react/public/SpeakingTutor.png)
+
+### Chatting Tutor
+
+![Apps](./lang-portal/frontend-react/public/ChattingTutor.png)
