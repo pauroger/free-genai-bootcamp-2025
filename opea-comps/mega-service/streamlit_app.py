@@ -84,7 +84,7 @@ Always end your responses with a question or prompt to continue the conversation
 
 # App configuration
 with st.sidebar:
-    st.title("🇩🇪 German Tutor")
+    st.title("🇩🇪🇨🇭🇦🇹 Chat Tutor")
     
     # Server settings
     st.subheader("Server Settings")
@@ -138,7 +138,7 @@ Always end your responses with a question or prompt to continue the conversation
         st.rerun()
 
 # Display chat history
-st.title("German Language Tutor 🇩🇪")
+st.title("German Chatting Tutor 🇩🇪🇨🇭🇦🇹")
 
 # Display chat messages (only from display_messages list)
 for message in st.session_state.display_messages:
@@ -217,4 +217,4 @@ if prompt := st.chat_input("Schreib etwas auf Deutsch... (Write something in Ger
 
 # Add a footer
 st.markdown("---")
-st.markdown("Built with Streamlit • Powered by Llama 3.2 • German Language Tutor")
+st.markdown("Powered by Llama 3.2 • German Language Tutor")

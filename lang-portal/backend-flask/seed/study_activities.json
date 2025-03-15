@@ -3,5 +3,6 @@
   {"name": "Writing Tutor", "url": "http://localhost:8081", "preview_url": "/assets/study_activities/vocabulary-tutor.png"},
   {"name": "Listening Tutor", "url": "http://localhost:8502", "preview_url": "/assets/study_activities/listening-tutor.png"},
   {"name": "Singing Tutor", "url": "http://localhost:8501", "preview_url": "/assets/study_activities/singing-tutor.png"},
-  {"name": "Speaking Tutor", "url": "http://127.0.0.1:7861", "preview_url": "/assets/study_activities/speaking-tutor.png"}
+  {"name": "Speaking Tutor", "url": "http://127.0.0.1:7861", "preview_url": "/assets/study_activities/speaking-tutor.png"},
+  {"name": "Chatting Tutor", "url": "http://localhost:8503", "preview_url": "/assets/study_activities/chatting-tutor.png"}
 ]

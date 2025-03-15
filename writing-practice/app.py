@@ -10,20 +10,12 @@ MODEL_ID = "mistral.mistral-large-2402-v1:0"
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from themes.streamlit_theme import (
-    apply_custom_theme,
-    info_box,
-    success_box,
-    warning_box,
-    error_box,
-    card,
-    highlight
-)
+from themes.streamlit_theme import apply_custom_theme
 
 import streamlit as st
 
 st.set_page_config(
-    page_title="Writting Tutor",
+    page_title="Writing Tutor",
     page_icon="✍️",
 )
 

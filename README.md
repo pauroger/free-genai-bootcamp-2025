@@ -27,7 +27,7 @@ complete beginner.
 
 ![Apps](./lang-portal/frontend-react/public/VocabularyTutor.png)
 
-### Writting Tutor
+### Writing Tutor
 
 ![Apps](./lang-portal/frontend-react/public/WritingTutor.png)
 
