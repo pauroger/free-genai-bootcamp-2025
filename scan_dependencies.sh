@@ -99,55 +99,55 @@ function scan_python() {
     
     # Clean up duplicate package versions - keep highest version for each package
     python -c "
-import re
-import sys
+      import re
+      import sys
 
-reqs = {}
-with open('$repo_path/requirements.txt', 'r') as f:
-    lines = f.readlines()
+      reqs = {}
+      with open('$repo_path/requirements.txt', 'r') as f:
+          lines = f.readlines()
 
-for line in lines:
-    line = line.strip()
-    if not line:
-        continue
-    
-    # Get package name and version
-    match = re.match(r'([^=<>]+)([=<>]+)(.*)', line)
-    if match:
-        pkg, op, ver = match.groups()
-        pkg = pkg.strip()
-        ver = ver.strip()
-        
-        if pkg not in reqs:
-            reqs[pkg] = (op, ver)
-        else:
-            # Simple version comparison for ==
-            if op == '==':
-                curr_op, curr_ver = reqs[pkg]
-                if curr_op == '==':
-                    # Keep higher version
-                    v1 = [int(part) for part in ver.split('.')]
-                    v2 = [int(part) for part in curr_ver.split('.')]
-                    
-                    # Pad with zeros to equal length
-                    max_len = max(len(v1), len(v2))
-                    v1 += [0] * (max_len - len(v1))
-                    v2 += [0] * (max_len - len(v2))
-                    
-                    if v1 > v2:
-                        reqs[pkg] = (op, ver)
-    else:
-        # No version specified, just add the package
-        reqs[line] = ('', '')
+      for line in lines:
+          line = line.strip()
+          if not line:
+              continue
+          
+          # Get package name and version
+          match = re.match(r'([^=<>]+)([=<>]+)(.*)', line)
+          if match:
+              pkg, op, ver = match.groups()
+              pkg = pkg.strip()
+              ver = ver.strip()
+              
+              if pkg not in reqs:
+                  reqs[pkg] = (op, ver)
+              else:
+                  # Simple version comparison for ==
+                  if op == '==':
+                      curr_op, curr_ver = reqs[pkg]
+                      if curr_op == '==':
+                          # Keep higher version
+                          v1 = [int(part) for part in ver.split('.')]
+                          v2 = [int(part) for part in curr_ver.split('.')]
+                          
+                          # Pad with zeros to equal length
+                          max_len = max(len(v1), len(v2))
+                          v1 += [0] * (max_len - len(v1))
+                          v2 += [0] * (max_len - len(v2))
+                          
+                          if v1 > v2:
+                              reqs[pkg] = (op, ver)
+          else:
+              # No version specified, just add the package
+              reqs[line] = ('', '')
 
-    # Write cleaned requirements in alphabetical order
-with open('$repo_path/requirements.txt', 'w') as f:
-    for pkg, (op, ver) in sorted(reqs.items(), key=lambda x: x[0].lower()):
-        if op and ver:
-            f.write(f'{pkg}{op}{ver}\n')
-        else:
-            f.write(f'{pkg}\n')
-"
+          # Write cleaned requirements in alphabetical order
+      with open('$repo_path/requirements.txt', 'w') as f:
+          for pkg, (op, ver) in sorted(reqs.items(), key=lambda x: x[0].lower()):
+              if op and ver:
+                  f.write(f'{pkg}{op}{ver}\n')
+              else:
+                  f.write(f'{pkg}\n')
+    "
     
     pkg_count=$(wc -l < "$repo_path/requirements.txt")
     echo -e "${GREEN}Created consolidated Python requirements at:${NC} $repo_path/requirements.txt"

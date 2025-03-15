@@ -1,11 +1,11 @@
 import json
-from openai import OpenAI
 from duckduckgo_search import DDGS
 import requests
 from html2text import HTML2Text
 from dotenv import load_dotenv
 import os
-import re
+import openai
+
 
 # config
 def load_env():
@@ -65,7 +65,7 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
         dict: The analysis results in JSON format
     """
     OPENAI_API_KEY = load_env()
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = openai.api_key =OPENAI_API_KEY
     
     # Initialize the results dictionary
     results_data = {

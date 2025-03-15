@@ -14,7 +14,6 @@ from themes.streamlit_theme import (
     success_box,
     warning_box,
     error_box,
-    card,
     highlight
 )
 

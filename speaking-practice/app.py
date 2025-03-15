@@ -6,11 +6,9 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
-from openai import OpenAI
+import openai
 import shutil
 import sys
-from PIL import Image
-# Import the image generator from the existing app
 from image_generator import ImageGenerator
 
 sys.path.append(str(Path(__file__).parent.parent))
@@ -43,7 +41,7 @@ if not openai_api_key:
     client = None
 else:
     try:
-        client = OpenAI(api_key=openai_api_key)
+        client = openai.api_key =openai_api_key
         logger.info("OpenAI client initialized successfully")
     except Exception as e:
         logger.error(f"Failed to initialize OpenAI client: {str(e)}")

@@ -10,9 +10,8 @@ gradio==5.21.0
 gTTS==2.5.4
 html2text==2024.2.26
 invoke==2.2.0
-opea_comps==1.2
 openai==0.27.8
-pandas==2.0.3
+pandas==2.2.3
 Pillow==11.1.0
 pydub==0.25.1
 python-dotenv==1.0.1

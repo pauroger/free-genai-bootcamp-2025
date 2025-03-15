@@ -4,6 +4,14 @@
 experience with Generative AI through real-world projects. The official course
 site can be found [here]([https://genai.cloudprojectbootcamp.com/).
 
+## Set up
+
+Install dependencies:
+
+```bash
+make start
+```
+
 ## 🚀 Projects
 
 ### German Learning Portal
@@ -46,3 +54,11 @@ complete beginner.
 ### Chatting Tutor
 
 ![Apps](./lang-portal/frontend-react/public/ChattingTutor.png)
+
+## Depencencies
+
+If you make edits to the repo, you can update the requirements by running:
+
+```bash
+./scan_dependencies.sh
+```
