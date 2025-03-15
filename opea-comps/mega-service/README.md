@@ -38,32 +38,37 @@ python app.py
 ## Testing the App
 
 ```sh
-  curl -s -X POST http://localhost:8000/v1/example-service \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messages": [
-      {
-        "role": "user",
-        "content": "Hello, Who are you and what are your parameters?"
-      }
-    ],
-    "model": "llama3.2:1b",
-    "max_tokens": 100,
-    "temperature": 0.7
-  }' | grep '^data: {' | sed 's/^data: //' | jq --slurp '.' > output/$(date +%s)-response.json
+curl -s -X POST http://localhost:8000/v1/example-service \
+-H "Content-Type: application/json" \
+-d '{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Why more parameters in an LLM is better?"
+    }
+  ],
+  "streaming": false,
+  "model": "llama3.2:1b",
+  "max_tokens": 100,
+  "temperature": 0.7
+}' | grep '^data: {' | sed 's/^data: //' | jq --slurp '.' > output/$(date +%s)-response.json
 ```
 
 Request with combination of the response in the end:
 
 ```sh
 curl -s -X POST http://localhost:8000/v1/example-service \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messages": [
-      {"role": "user", "content": "Hello, Who are you and what are your parameters?"}
-    ],
-    "model": "llama3.2:1b",
-    "max_tokens": 100,
-    "temperature": 0.7
-  }' | grep '^data: {' | sed 's/^data:[ ]*//' | jq --slurp '{chunks: ., combined: ([.[] | .choices[].delta.content] | join(""))}' > output/$(date +%s)-response.json
+-H "Content-Type: application/json" \
+-d '{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Why more parameters in an LLM is better?"
+    }
+  ],
+  "streaming": true,
+  "model": "llama3.2:1b",
+  "max_tokens": 100,
+  "temperature": 0.7
+}' | grep '^data: {' | sed 's/^data: //' | jq -s 'reduce .[] as $item (""; . + ($item.choices[0].delta.content // ""))' | jq -R '{response: .}' > output/$(date +%s)-response.json
 ```
