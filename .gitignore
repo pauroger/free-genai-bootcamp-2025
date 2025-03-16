@@ -1,4 +1,6 @@
 /venv
+/gradio_env
+/opea_env
 .env
 /lang-portal/backend-flask/words.db
 /typing-tutor/words.db
@@ -17,3 +19,4 @@
 # /song-agent/songs/*
 themes/__pycache__
 speaking-practice/__pycache__
+.overmind.sock

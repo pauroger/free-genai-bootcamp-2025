@@ -16,8 +16,8 @@ if docker info > /dev/null 2>&1; then
     echo "Starting Docker containers in detached mode..."
     docker compose up -d
     
-    echo "Waiting for Docker containers to initialize (30 seconds)..."
-    sleep 30
+    echo "Waiting for Docker containers to initialize (10 seconds)..."
+    sleep 10
     
     echo "Pulling model..."
     curl http://localhost:9000/api/pull -d '{"model": "llama3.2:1b"}'

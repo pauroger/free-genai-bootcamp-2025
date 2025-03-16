@@ -4,9 +4,16 @@
 experience with Generative AI through real-world projects. The official course
 site can be found [here]([https://genai.cloudprojectbootcamp.com/).
 
-## Set up
+## Setup
 
-Install dependencies:
+```bash
+make setup
+```
+
+## Start Website Locally
+
+Have docker activated. This will start a container and download `llama3.2:1b` in
+it. Wait ~30 seconds after running the following:
 
 ```bash
 make start

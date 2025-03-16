@@ -1,5 +1,4 @@
 #!/bin/bash
-# setup.sh
 
 echo "Setting up project environment..."
 
@@ -19,30 +18,24 @@ nvm install node
 nvm use node
 npm install -g npm
 
-# Activate Python virtual environment if it exists
-if [ -d "venv" ]; then
-  echo "Activating virtual environment..."
-  source venv/bin/activate
-else
-  echo "Creating virtual environment..."
-  python -m venv venv
-  source venv/bin/activate
-fi
-
 # Upgrade pip
 pip install --upgrade pip
 
-# Uninstall conflicting dependencies
-pip uninstall -y gradio aiofiles pillow fastapi chromadb opea-comps
+echo "Installing Python dependencies..."
 
-# Install pandas with binary-only option to avoid compilation issues
-pip install --only-binary=pandas pandas==2.2.3
-
-# Install all other dependencies from requirements.txt
-echo "Installing dependencies from requirements.txt..."
+# Install base dependencies first
+python -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
-pip install --no-dependencies gradio==3.50.2
-pip install --no-dependencies opea-comps==1.2
-pip install aiofiles==23.2.0 
+
+# For gradio components
+python -m venv gradio_env
+source gradio_env/bin/activate
+pip install -r requirements.txt -r requirements_gradio.txt
+
+# For opea components
+python -m venv opea_env
+source opea_env/bin/activate
+pip install -r requirements.txt -r requirements_opea.txt
 
 echo "✅ Setup complete! Node.js and Python dependencies installed."
