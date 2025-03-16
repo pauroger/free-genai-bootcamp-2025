@@ -38,4 +38,16 @@ python -m venv opea_env
 source opea_env/bin/activate
 pip install -r requirements.txt -r requirements_opea.txt
 
+# Check if database file exists, initialize if not
+if [ ! -f "lang-portal/backend-flask/words.db" ]; then
+  echo "Database file not found. Initializing database..."
+  # Switch to the base virtual environment
+  source venv/bin/activate
+  # Navigate to the backend directory and run the init-db task
+  cd lang-portal/backend-flask && invoke init-db
+  # Return to the original directory
+  cd ../..
+  echo "Database initialized successfully."
+fi
+
 echo "✅ Setup complete! Node.js and Python dependencies installed."

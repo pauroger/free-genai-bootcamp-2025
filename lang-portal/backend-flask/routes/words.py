@@ -1,6 +1,5 @@
-from flask import request, jsonify, g
+from flask import request, jsonify
 from flask_cors import cross_origin
-import json
 
 def load(app):
   # Endpoint: GET /words with pagination (50 words per page)
@@ -31,10 +30,10 @@ def load(app):
       # Query to fetch words with sorting; note that we now select w.german and w.english
       cursor.execute(f'''
         SELECT w.id, w.german, w.english, 
-               COALESCE(r.correct_count, 0) AS correct_count,
-               COALESCE(r.wrong_count, 0) AS wrong_count
+              COALESCE(SUM(r.correct_count), 0) AS correct_count,
+              COALESCE(COUNT(r.id) - SUM(r.correct_count), 0) AS wrong_count
         FROM words w
-        LEFT JOIN word_reviews r ON w.id = r.word_id
+        LEFT JOIN word_review_items r ON w.id = r.word_id
         ORDER BY {sort_by} {order}
         LIMIT ? OFFSET ?
       ''', (words_per_page, offset))
@@ -80,10 +79,10 @@ def load(app):
       cursor.execute('''
         SELECT w.id, w.german, w.english,
                COALESCE(r.correct_count, 0) AS correct_count,
-               COALESCE(r.wrong_count, 0) AS wrong_count,
+               COALESCE(COUNT(r.id) - SUM(r.correct_count), 0) AS wrong_count
                GROUP_CONCAT(DISTINCT g.id || '::' || g.name) as groups
         FROM words w
-        LEFT JOIN word_reviews r ON w.id = r.word_id
+        LEFT JOIN word_review_items r ON w.id = r.word_id
         LEFT JOIN word_groups wg ON w.id = wg.word_id
         LEFT JOIN groups g ON wg.group_id = g.id
         WHERE w.id = ?

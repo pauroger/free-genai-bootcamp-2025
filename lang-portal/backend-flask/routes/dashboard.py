@@ -16,8 +16,8 @@ def load(app):
                     ss.group_id,
                     sa.name as activity_name,
                     ss.created_at,
-                    COUNT(CASE WHEN wri.correct = 1 THEN 1 END) as correct_count,
-                    COUNT(CASE WHEN wri.correct = 0 THEN 1 END) as wrong_count
+                    COUNT(CASE WHEN wri.correct_count = 1 THEN 1 END) as correct_count,
+                    COUNT(CASE WHEN wri.correct_count = 0 THEN 1 END) as wrong_count
                 FROM study_sessions ss
                 JOIN study_activities sa ON ss.study_activity_id = sa.id
                 LEFT JOIN word_review_items wri ON ss.id = wri.study_session_id
@@ -67,7 +67,7 @@ def load(app):
                     SELECT 
                         word_id,
                         COUNT(*) as total_attempts,
-                        SUM(CASE WHEN correct = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) as success_rate
+                        SUM(CASE WHEN correct_count = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) as success_rate
                     FROM word_review_items wri
                     JOIN study_sessions ss ON wri.study_session_id = ss.id
                     GROUP BY word_id
@@ -82,7 +82,7 @@ def load(app):
             # Get overall success rate
             cursor.execute('''
                 SELECT 
-                    SUM(CASE WHEN correct = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) as success_rate
+                    SUM(CASE WHEN correct_count = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) as success_rate
                 FROM word_review_items wri
                 JOIN study_sessions ss ON wri.study_session_id = ss.id
             ''')
