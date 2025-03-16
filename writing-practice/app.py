@@ -33,7 +33,7 @@ def parse_response(response):
 
 def generate_target_sentence():
     messages = [
-        {"role": "user", "content": "Generate an English sentence that is scoped to Goethe B1 grammar. Provide just the sentence."}
+        {"role": "user", "content": "Generate an English sentence that is scoped to Goethe B1 grammar. Provide just the sentence. Choose different topics everytime."}
     ]
     response = client.invoke_model(
         modelId=MODEL_ID,
@@ -41,7 +41,7 @@ def generate_target_sentence():
         accept='application/json',
         body=json.dumps({
             "messages": messages,
-            "max_tokens": 5000,
+            "max_tokens": 1000,
         })
     )
     result = parse_response(response)
@@ -75,7 +75,7 @@ def grade_submission(target_sentence, submission):
         accept='application/json',
         body=json.dumps({
             "messages": messages,
-            "max_tokens": 256,
+            "max_tokens": 5000,
         })
     )
     result = parse_response(response)
