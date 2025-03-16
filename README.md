@@ -2,9 +2,14 @@
 
 **GenAI Training and Hands-on Programming** This bootcamp provides hands-on
 experience with Generative AI through real-world projects. The official course
-site can be found [here]([https://genai.cloudprojectbootcamp.com/).
+site can be found [here](https://genai.cloudprojectbootcamp.com/).
 
 ## Setup
+
+Sets up a complete development environment for the project by installing and
+configuring Node.js via nvm, creating three separate Python virtual environments
+(Base, Gradio, and OPEA) with their respective dependencies, and initializing a
+SQLite database if one doesn't already exist.
 
 ```bash
 make setup
@@ -12,8 +17,9 @@ make setup
 
 ## Start Website Locally
 
-Have docker activated. This will start a container and download `llama3.2:1b` in
-it. Wait ~30 seconds after running the following:
+Start the microservices-based language learning system, checking for Docker
+availability to determine whether to launch the full system (including LLM
+services with Llama 3.2) or just core services.
 
 ```bash
 make start
