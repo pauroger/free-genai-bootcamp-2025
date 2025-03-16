@@ -32,11 +32,17 @@ fi
 # Upgrade pip
 pip install --upgrade pip
 
+# Uninstall conflicting dependencies
+pip uninstall -y gradio aiofiles pillow fastapi chromadb opea-comps
+
 # Install pandas with binary-only option to avoid compilation issues
 pip install --only-binary=pandas pandas==2.2.3
 
 # Install all other dependencies from requirements.txt
 echo "Installing dependencies from requirements.txt..."
 pip install -r requirements.txt
+pip install --no-dependencies gradio==3.50.2
+pip install --no-dependencies opea-comps==1.2
+pip install aiofiles==23.2.0 
 
 echo "✅ Setup complete! Node.js and Python dependencies installed."

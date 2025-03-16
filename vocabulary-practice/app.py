@@ -30,9 +30,9 @@ def fetch_random_word(current_group):
             log_message("No words found for this group.")
             return None, "🟡 No words found for this group.", None
         random_word = random.choice(words)
-        log_message("\nSelected random word: " + str(random_word))
+        log_message("Selected random word: " + str(random_word))
         english = random_word.get("english", "Unknown")
-        log_message("\nSelected random word english: " + str(english))
+        log_message("Selected random word english: " + str(english))
         german = random_word.get("german", "Unknown")
         word_id = random_word.get("id", None)
         log_message(f"Returning word - English: {english}, German: {german}, ID: {word_id}")
@@ -75,31 +75,31 @@ def init_game(request: gr.Request):
 
 def check_answer(user_input, english_word, correct_german, review_items, current_word_id):
     correct = user_input.strip().lower() == correct_german.lower()
-    log_message(f"\n\current_id: {current_word_id}")
-    log_message(f"\n\correct: {correct}")
+    log_message(f"current_id: {current_word_id}")
+    log_message(f"correct: {correct}")
     if correct:
         message = f"<p style='color:green;'>✅ Correct! '{english_word}' in German is '{correct_german}'.</p>"
     else:
         message = f"<p style='color:red;'>❌ Incorrect. '{english_word}' in German is '{correct_german}'.</p>"
     review_items = review_items or []
     review_items.append({"word_id": current_word_id, "correct": correct})
-    log_message(f"\n\review_items: {review_items}")
+    log_message(f"review_items: {review_items}")
     if correct:
         return gr.update(value=message, visible=True), gr.update(value="", visible=False), review_items
     else:
         return gr.update(value="", visible=False), gr.update(value=message, visible=True), review_items
 
 def save_study_session(study_session_id, review_items, current_group):
-    log_message(f"\n\study_session_id: {study_session_id}")
-    log_message(f"\nreview_items: {review_items}")
-    log_message(f"\n\current_group: {current_group}")
+    log_message(f"study_session_id: {study_session_id}")
+    log_message(f"review_items: {review_items}")
+    log_message(f"current_group: {current_group}")
     if not review_items:
         return study_session_id, []
     if not study_session_id:
         payload = {"group_id": current_group, "study_activity_id": 2}
         try:
             response = requests.post(f"{BACKEND_URL}/study_sessions", json=payload)
-            log_message(f"\n\response: {response}")
+            log_message(f"response: {response}")
             response.raise_for_status()
             data = response.json()
             study_session_id = data["session_id"]
@@ -107,11 +107,11 @@ def save_study_session(study_session_id, review_items, current_group):
             raise gr.Error(f"Failed to create study session: {e}")
     for item in review_items:
         payload = {"word_id": item["word_id"], "correct": item["correct"]}
-        log_message(f"\n\npayload: {payload}")
+        log_message(f"payload: {payload}")
         try:
             response = requests.post(f"{BACKEND_URL}/study_sessions/{study_session_id}/review", json=payload)
             response.raise_for_status()
-            log_message(f"\n\response: {response}")
+            log_message(f"response: {response}")
         except Exception as e:
             raise gr.Error("Failed to save study session")
     gr.Info("💾 Study session saved!")

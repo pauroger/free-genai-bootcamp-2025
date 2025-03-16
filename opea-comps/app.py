@@ -5,13 +5,8 @@ import sseclient
 import sys
 from pathlib import Path
 
-# Try to import the custom theme if available
-try:
-    sys.path.append(str(Path(__file__).parent.parent.parent))
-    from themes.streamlit_theme import apply_custom_theme
-    has_custom_theme = True
-except ImportError:
-    has_custom_theme = False
+sys.path.append(str(Path(__file__).parent.parent))
+from themes.streamlit_theme import apply_custom_theme
 
 # Set page config
 st.set_page_config(
@@ -21,8 +16,7 @@ st.set_page_config(
 )
 
 # Apply custom theme if available
-if has_custom_theme:
-    apply_custom_theme(primary_color="#90cdec")
+apply_custom_theme(primary_color="#90cdec")
 
 # Initialize session state for chat history
 if "messages" not in st.session_state:

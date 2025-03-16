@@ -6,7 +6,6 @@ duckduckgo_search==7.5.0
 fastapi==0.115.11
 Flask==3.1.0
 Flask_Cors==5.0.0
-gradio==3.50.2
 gTTS==2.5.4
 html2text==2024.2.26
 invoke==2.2.0

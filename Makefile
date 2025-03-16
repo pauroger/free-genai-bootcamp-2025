@@ -1,5 +1,5 @@
 setup:
 	bash ./setup.sh
 
-start: setup
-	overmind start
+start:
+	bash ./start.sh

@@ -1,0 +1,2 @@
+# Docker services
+chatting-practice-model: cd opea-comps && LLM_ENDPOINT_PORT=9000 docker compose up && curl http://localhost:9000/api/pull -d '{"model": "llama3.2:1b"}'
