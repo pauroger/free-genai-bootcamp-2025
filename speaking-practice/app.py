@@ -371,6 +371,6 @@ if __name__ == "__main__":
         server_port=7861,
         server_name="127.0.0.1",
         show_error=True,
-        allowed_paths=allowed_paths,  # Allow access to these paths
-        share=False  # Set to True if you want a public link
+        allowed_paths=allowed_paths,
+        share=False
     )
