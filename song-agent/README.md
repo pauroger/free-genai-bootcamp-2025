@@ -18,7 +18,6 @@ Sample Song:
 
 ## 📋 Requirements
 
-- Python 3.7+
 - OpenAI API key
 
 ## 🏃‍♀️ Running the Application

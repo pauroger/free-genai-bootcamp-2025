@@ -1,8 +1,9 @@
 # Writing Practice
 
-Sample Question:
+An AI-powered application for practicing English to German translations with
+immediate feedback.
 
-![App Sample Screenshot](images/Writting%20Practice.png)
+AI Model: AWS Bedrock (Mistral Large).
 
 ## Run Streamlit App
 
