@@ -2,6 +2,7 @@
 /gradio_env
 /opea_env
 .env
+.DS_Store
 /lang-portal/backend-flask/words.db
 /typing-tutor/words.db
 /lang-portal/backend-flask/routes/__pycache__/
