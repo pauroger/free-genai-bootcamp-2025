@@ -9,9 +9,12 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import shutil
 import sys
-from PIL import Image
-# Import the image generator from the existing app
 from image_generator import ImageGenerator
+
+load_dotenv(override=True)
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -20,38 +23,6 @@ from themes.gradio_theme import apply_custom_theme
 theme = apply_custom_theme(primary_color="#90cdec")
 
 import gradio as gr
-
-# Configure logging with console output for better debugging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("speaking_tutor")
-logger.setLevel(logging.INFO)
-for handler in logger.handlers[:]:
-    logger.removeHandler(handler)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-# Add console handler for immediate feedback
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setLevel(logging.INFO)
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-logger.info("Gradio application started")
-
-# Load environment variables
-load_dotenv()
-openai_api_key = os.getenv("OPENAI_API_KEY")
-if not openai_api_key:
-    logger.warning("OPENAI_API_KEY environment variable not found. Audio transcription will not work.")
-    client = None
-else:
-    try:
-        client = OpenAI(api_key=openai_api_key)
-        logger.info("OpenAI client initialized successfully")
-    except Exception as e:
-        logger.error(f"Failed to initialize OpenAI client: {str(e)}")
-        client = None
-
-# Create directory for recordings
-recordings_dir = Path("./recordings")
-recordings_dir.mkdir(exist_ok=True)
 
 # Initialize the image generator
 generator = ImageGenerator()
@@ -105,7 +76,6 @@ def build_prompt(category):
 # Function to generate image
 def generate_image(category):
     try:
-        logger.info(f"Generating image for category: {category}")
         custom_prompt, features, category_name = build_prompt(category)
         
         # Generate the image
@@ -122,36 +92,26 @@ def generate_image(category):
         # Copy the image using shutil (more reliable)
         shutil.copy2(image_path, temp_image_path)
         
-        logger.info(f"Original image at: {image_path}")
-        logger.info(f"Temp image for Gradio at: {temp_image_path}")
-        
         return str(temp_image_path)
     except Exception as e:
-        logger.error(f"Error generating image: {str(e)}")
-        logger.error(traceback.format_exc())
         return None
 
 # Function to process audio for German language evaluation
 def process_audio(audio_filepath, image_path):
-    logger.info(f"Process audio called with: {audio_filepath}")
     
     if audio_filepath is None:
-        logger.warning("No audio filepath provided")
         return "No audio recorded.", "No evaluation available."
     
     if not client:
-        logger.error("OpenAI API key not configured correctly")
         return "OpenAI API key not configured correctly.", "Evaluation not available without API key."
     
     try:
         # Verify the file exists
         if not os.path.exists(audio_filepath):
-            logger.error(f"Audio file does not exist: {audio_filepath}")
             return "Error: Audio file not found.", "Evaluation unavailable."
         
         # Log file information
         file_size = os.path.getsize(audio_filepath)
-        logger.info(f"Audio file exists. Size: {file_size} bytes")
         
         # Get image prompt context if available
         image_context = ""
@@ -159,7 +119,6 @@ def process_audio(audio_filepath, image_path):
             try:
                 # Extract the image filename to identify its category/prompt
                 image_filename = os.path.basename(image_path)
-                logger.info(f"Image filename for context: {image_filename}")
                 
                 # Try to determine what type of image was generated
                 if "landscape" in image_filename.lower():
@@ -183,16 +142,12 @@ def process_audio(audio_filepath, image_path):
                     else:
                         # For other categories
                         image_context = f"The image prompt was: {features}"
-                
-                logger.info(f"Image context: {image_context}")
+
             except Exception as e:
-                logger.error(f"Error getting image context: {str(e)}")
-                logger.error(traceback.format_exc())
                 # Continue without image context if there's an error
                 image_context = ""
         
         # Transcribe with OpenAI
-        logger.info("Sending audio to OpenAI for transcription")
         with open(audio_filepath, "rb") as audio_file:
             try:
                 transcript_response = client.audio.transcriptions.create(
@@ -201,21 +156,15 @@ def process_audio(audio_filepath, image_path):
                     language="de",
                     response_format="text"
                 )
-                # In the current OpenAI SDK, this should directly return the text
-                transcription = str(transcript_response)
-                logger.info(f"Transcription received: {transcription[:100] if transcription else 'Empty'}")
+                transcription = transcript_response
             except Exception as e:
-                logger.error(f"Transcription error: {str(e)}")
-                logger.error(traceback.format_exc())
                 return f"Error transcribing audio: {str(e)}", "Evaluation unavailable due to transcription error."
-        
+    
         # If the transcription is empty or too short
         if not transcription or len(transcription.strip()) < 5:
-            logger.warning("Transcription is empty or too short")
             return "No speech detected or transcription failed.", "Evaluation unavailable due to insufficient speech."
         
         # Evaluate with OpenAI
-        logger.info("Sending transcription to OpenAI for evaluation")
         try:
             # Include image context in evaluation if available
             image_instruction = ""
@@ -245,29 +194,25 @@ def process_audio(audio_filepath, image_path):
                 ]
             )
             evaluation = evaluation_response.choices[0].message.content.strip()
-            logger.info(f"Evaluation received: {evaluation[:100] if evaluation else 'Empty'}")
         except Exception as e:
-            logger.error(f"Evaluation error: {str(e)}")
-            logger.error(traceback.format_exc())
             return transcription, f"Error evaluating speech: {str(e)}"
         
         return transcription, evaluation
         
     except Exception as e:
         error_details = traceback.format_exc()
-        logger.error(f"Error processing audio: {str(e)}\n{error_details}")
         return f"Error processing audio: {str(e)}", "Evaluation unavailable due to error."
 
 # Create the Gradio interface
 css = """
-h1 {
-    margin-bottom: 1rem;
-    text-align: center;
-}
-.image-container img {
-    max-height: 400px;
-    object-fit: contain;
-}
+    h1 {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .image-container img {
+        max-height: 400px;
+        object-fit: contain;
+    }
 """
 
 with gr.Blocks(theme=theme, css=css) as demo:
@@ -373,6 +318,6 @@ if __name__ == "__main__":
         server_port=7861,
         server_name="127.0.0.1",
         show_error=True,
-        allowed_paths=allowed_paths,  # Allow access to these paths
-        share=False  # Set to True if you want a public link
+        allowed_paths=allowed_paths,
+        share=False
     )

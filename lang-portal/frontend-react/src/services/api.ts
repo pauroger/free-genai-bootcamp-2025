@@ -8,7 +8,7 @@ export interface Group {
 }
 
 export interface GroupsResponse {
-  groups: Group[];
+  groups?: Group[];
   total_pages: number;
   current_page: number;
 }
@@ -25,7 +25,7 @@ export interface Word {
   english: string;
   correct_count: number;
   wrong_count: number;
-  groups: WordGroup[];
+  groups?: WordGroup[];
 }
 
 export interface WordResponse {

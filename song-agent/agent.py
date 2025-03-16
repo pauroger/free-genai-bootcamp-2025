@@ -1,11 +1,11 @@
 import json
-from openai import OpenAI
 from duckduckgo_search import DDGS
 import requests
 from html2text import HTML2Text
 from dotenv import load_dotenv
 import os
-import re
+from openai import OpenAI
+
 
 # config
 def load_env():
@@ -17,7 +17,7 @@ def load_env():
 
 
 def search_web(query: str) -> str:
-    results = DDGS().text(query, max_results=10)
+    results = DDGS().text(query, max_results=5)
     if results:
         return [
             {
@@ -148,15 +148,18 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
                 meaning of new words. Focus on words that would be valuable for a
                 language learner.
 
-                Format your response as a JSON object with the following structure:
+                YOUR RESPONSE MUST BE VALID JSON. Do not include markdown
+                formatting, code blocks, or any text before or after the JSON.
+
+                Return your response as a single JSON object with this exact structure:
                 {{
                     "vocabulary_list": [
                         {{
                             "word": "word1",
                             "meaning": "meaning in {user_language}",
-                            "example": "example sentence in {user_language}"
+                            "example": "example sentence in {foreign_language}"
                         }},
-                        // more words...
+                        ...more words...
                     ],
                     "intent": "Explanation of what the song portrays, including themes and summary"
                 }}
@@ -164,6 +167,8 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
                 The user's native language is {user_language}. The
                 language of the foreign song the user is learning is
                 {foreign_language}.
+
+                IMPORTANT: Ensure all special characters are properly escaped in your JSON response.
             """,
         },
         {
@@ -180,6 +185,7 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
             model="gpt-4o-mini",
             messages=messages,
             tools=tools,
+            response_format={"type": "json_object"},  # Request JSON format explicitly
         )
 
         messages.append(completion.choices[0].message)
@@ -231,17 +237,41 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
         else:
             # Get the LLM's final response which should contain the vocabulary list and intent
             final_response = completion.choices[0].message.content
-            
+            # Log to file instead of console
+            with open('log.txt', 'a', encoding='utf-8') as log_file:
+                log_file.write("\n\n===== DEBUG: LLM RESPONSE =====\n")
+                log_file.write(f"Song: {song_title}\n")
+                log_file.write(final_response)
+                log_file.write("\n===============================\n")
+
+            # You can also keep the console output if desired
+            print(f"Logged response for '{song_title}' to log.txt")
             try:
                 # Try to parse the response as JSON
-                response_data = json.loads(final_response)
+                # First clean the response in case it has markdown or other non-JSON content
+                cleaned_response = final_response
+                
+                # Remove markdown code block markers if present
+                if cleaned_response.startswith("```json"):
+                    cleaned_response = cleaned_response.replace("```json", "", 1)
+                if cleaned_response.endswith("```"):
+                    cleaned_response = cleaned_response.rsplit("```", 1)[0]
+                    
+                # Strip whitespace
+                cleaned_response = cleaned_response.strip()
+                
+                # Try to parse JSON
+                response_data = json.loads(cleaned_response)
                 
                 # Extract vocabulary list and intent
                 if "vocabulary_list" in response_data:
                     results_data["extract_vocabulary"]["vocabulary_list"] = response_data["vocabulary_list"]
                 if "intent" in response_data:
                     results_data["intent"] = response_data["intent"]
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
+                print(f"JSON decode error: {e}")
+                print(f"Failed to parse response: {final_response[:100]}...")
+                
                 # If the response is not valid JSON, try to extract information manually
                 import re
                 
@@ -264,7 +294,6 @@ def run_language_tutor(song_title, user_language="English", foreign_language="Ge
                     results_data["intent"] = summary_match.group(1).strip()
             
             goal_achieved = True
-
     # Save results to JSON file
     os.makedirs('songs', exist_ok=True)
     with open(f'songs/{song_title}_song_analysis.json', 'w', encoding='utf-8') as f:

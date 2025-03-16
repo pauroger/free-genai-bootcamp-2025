@@ -117,11 +117,11 @@ def load(app):
               w.german,
               w.english,
               w.parts,
-              COALESCE(wr.correct_count, 0) as correct_count,
-              COALESCE(wr.wrong_count, 0) as wrong_count
+              COALESCE(SUM(wr.correct_count), 0) AS correct_count,
+              COALESCE(COUNT(wr.correct_count) - SUM(wr.correct_count), 0) AS wrong_count
         FROM words w
         JOIN word_groups wg ON w.id = wg.word_id
-        LEFT JOIN word_reviews wr ON w.id = wr.word_id
+        LEFT JOIN word_review_items wr ON w.id = wr.word_id
         WHERE wg.group_id = ?
         ORDER BY {sort_by} {order}
         LIMIT ? OFFSET ?
