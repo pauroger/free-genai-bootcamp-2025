@@ -19,7 +19,6 @@ from themes.streamlit_theme import (
 
 import streamlit as st
 
-# Set page config as the VERY FIRST Streamlit command
 st.set_page_config(
     page_title="Song Language Tutor",
     page_icon="🎵",
@@ -51,18 +50,31 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Helper functions
+def sanitize_filename(filename):
+    """Remove or replace characters that aren't suitable for filenames"""
+    # Replace spaces and special characters
+    sanitized = re.sub(r'[^\w\s-]', '', filename)
+    # Replace spaces with underscores
+    sanitized = re.sub(r'\s+', '_', sanitized)
+    return sanitized.lower()
+
 def check_if_song_exists(song_title):
     """Check if the song analysis file already exists"""
-    filename = f'songs/{song_title}_song_analysis.json'
+    filename = f'songs/{sanitize_filename(song_title)}_song_analysis.json'
     return os.path.exists(filename)
 
 def load_song_analysis(song_title):
     """Load the song analysis from the JSON file"""
-    filename = f'songs/{song_title}_song_analysis.json'
+    filename = f'songs/{sanitize_filename(song_title)}_song_analysis.json'
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
+        # Try the emergency version if regular version not found
+        emergency_file = f'songs/{sanitize_filename(song_title)}_emergency.json'
+        if os.path.exists(emergency_file):
+            with open(emergency_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
         error_box(f"File not found: {filename}")
         return None
     except json.JSONDecodeError:
