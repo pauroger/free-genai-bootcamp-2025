@@ -22,6 +22,7 @@ availability to determine whether to launch the full system (including LLM
 services with Llama 3.2) or just core services.
 
 ```bash
+# Remember to have Docker running, otherwise the ollama-server will not run.
 make start
 ```
 

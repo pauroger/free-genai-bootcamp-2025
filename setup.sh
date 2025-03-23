@@ -18,9 +18,6 @@ nvm install node
 nvm use node
 npm install -g npm
 
-# Upgrade pip
-pip install --upgrade pip
-
 echo "Installing Python dependencies..."
 
 # Install base dependencies first
@@ -49,5 +46,8 @@ if [ ! -f "lang-portal/backend-flask/words.db" ]; then
   cd ../..
   echo "Database initialized successfully."
 fi
+
+# Upgrade pip
+pip install --upgrade pip
 
 echo "✅ Setup complete! Node.js and Python dependencies installed."

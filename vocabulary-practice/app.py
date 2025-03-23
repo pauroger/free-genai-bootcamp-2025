@@ -41,7 +41,6 @@ def fetch_random_word(current_group):
         log_message(f"❌ Error fetching data: {e}")
         return None, f"❌ Error fetching data: {e}", None
 
-
 def generate_word(current_group):
     english_word, correct_german, word_id = fetch_random_word(current_group)
     if not english_word:
@@ -73,21 +72,26 @@ def init_game(request: gr.Request):
     english_word, correct_german, word_id = fetch_random_word(group_id)
     return session_id, group_id, english_word, "", correct_german, word_id
 
-def check_answer(user_input, english_word, correct_german, review_items, current_word_id):
+def check_answer_and_generate(user_input, english_word, correct_german, review_items, current_word_id, current_group):
+    # First check the answer
     correct = user_input.strip().lower() == correct_german.lower()
     log_message(f"current_id: {current_word_id}")
     log_message(f"correct: {correct}")
-    if correct:
-        message = f"<p style='color:green;'>✅ Correct! '{english_word}' in German is '{correct_german}'.</p>"
-    else:
-        message = f"<p style='color:red;'>❌ Incorrect. '{english_word}' in German is '{correct_german}'.</p>"
+    
     review_items = review_items or []
     review_items.append({"word_id": current_word_id, "correct": correct})
     log_message(f"review_items: {review_items}")
+    
+    # Generate new word BEFORE creating the message
+    new_english, _, new_german, new_id = generate_word(current_group)
+    
+    # Create message AFTER generating new word
     if correct:
-        return gr.update(value=message, visible=True), gr.update(value="", visible=False), review_items
+        message = f"<p style='color:green;'>✅ Correct! '{english_word}' in German is '{correct_german}'.</p>"
+        return gr.update(value=message, visible=True), gr.update(value="", visible=False), review_items, new_english, "", new_german, new_id
     else:
-        return gr.update(value="", visible=False), gr.update(value=message, visible=True), review_items
+        message = f"<p style='color:red;'>❌ Incorrect. '{english_word}' in German is '{correct_german}'.</p>"
+        return gr.update(value="", visible=False), gr.update(value=message, visible=True), review_items, new_english, "", new_german, new_id
 
 def save_study_session(study_session_id, review_items, current_group):
     log_message(f"study_session_id: {study_session_id}")
@@ -147,29 +151,27 @@ with gr.Blocks(
         save_button = gr.Button("Save Study Session", variant="primary")
     
     demo.load(fn=init_game, outputs=[study_session_state, current_group_state, english_output, answer_input, hidden_correct, hidden_id])
-    
-    check_button.click(fn=check_answer,
-                       inputs=[answer_input, english_output, hidden_correct, review_items_state, hidden_id],
-                       outputs=[result_success, result_error, review_items_state])
-    check_button.click(fn=generate_word,
-                       inputs=current_group_state,
-                       outputs=[english_output, answer_input, hidden_correct, hidden_id])
-    
-    save_button.click(fn=save_study_session,
-                      inputs=[study_session_state, review_items_state, current_group_state],
-                      outputs=[study_session_state, review_items_state])
-    save_button.click(lambda: gr.update(value="", visible=False), outputs=result_error)
+
+    check_button.click(
+        fn=check_answer_and_generate,
+        inputs=[answer_input, english_output, hidden_correct, review_items_state, hidden_id, current_group_state],
+        outputs=[result_success, result_error, review_items_state, english_output, answer_input, hidden_correct, hidden_id]
+    )
 
     save_notification = gr.Markdown(visible=False)
 
+    def handle_save(study_session_id, review_items, current_group):
+        # Save the session
+        new_session_id, new_items = save_study_session(study_session_id, review_items, current_group)
+        # Update notification
+        notification = "**💾 Study session saved successfully!**"
+        # Clear error message
+        return new_session_id, new_items, gr.update(value=notification, visible=True), gr.update(value="", visible=False)
+
     save_button.click(
-        fn=save_study_session,
+        fn=handle_save,
         inputs=[study_session_state, review_items_state, current_group_state],
-        outputs=[study_session_state, review_items_state]
-    )
-    save_button.click(
-        fn=lambda: gr.update(value="**💾 Study session saved successfully!**", visible=True),
-        outputs=save_notification
+        outputs=[study_session_state, review_items_state, save_notification, result_error]
     )
 
     check_button.click(

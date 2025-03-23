@@ -4,8 +4,8 @@ import re
 from typing import Dict, Optional
 from backend.vector_store import QuestionVectorStore
 
-MODEL_ID = "mistral.mistral-7b-instruct-v0:2"
-# MODEL_ID = "mistral.mixtral-8x7b-instruct-v0:1"
+# MODEL_ID = "mistral.mistral-7b-instruct-v0:2"
+MODEL_ID = "mistral.mixtral-8x7b-instruct-v0:1"
 # MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
 
 class QuestionGenerator:
@@ -215,7 +215,7 @@ class QuestionGenerator:
                 (z.B. Person A -> Person B). - Stelle sicher, dass die richtige
                 Antwort eindeutig aus dem Gespräch hervorgeht.
 
-                Gib NUR die Frage ohne zusätzlichen Text zurück.
+                REMEMBER!! -> Gib NUR die Frage ohne zusätzlichen Text zurück.
 
                 Neue Frage:
             """
@@ -234,7 +234,7 @@ class QuestionGenerator:
                 Generiere bitte eine neue Frage im exakt gleichen Format:
                 Situation, Frage und Antwortmöglichkeiten. Stelle sicher, dass
                 man die richtige Antwort aus der Situation klar erkennen kann.
-                Gib NUR die Frage ohne zusätzlichen Text zurück.
+                REMEMBER!! -> Gib NUR die Frage ohne zusätzlichen Text zurück.
 
                 Neue Frage:
             """
@@ -274,14 +274,6 @@ class QuestionGenerator:
             3. Option drei
             4. Option vier
 
-            Zusätzliche Anforderungen:
-            - Verwende zwei zufällige deutsche Vornamen (keine "None" oder leere Namen):
-              Person A (männlich) und Person B (weiblich).
-            - Die Unterhaltung soll ca. 200-350 Wörter lang sein.
-            - Füge eine leere Zeile ein, wenn der Sprecher wechselt (z.B. Person A -> Person B).
-            - Stelle sicher, dass die richtige Antwort eindeutig aus dem Gespräch hervorgeht.
-            - Keine zusätzlichen Erklärungen oder Texte, nur das Format oben.
-
             Neue Frage:
             """
         else:
@@ -297,7 +289,7 @@ class QuestionGenerator:
             3. Option drei
             4. Option vier
 
-            Bitte stelle sicher, dass die Situation genug Details enthält,
+            REMEMBER!! -> Bitte stelle sicher, dass die Situation genug Details enthält,
             um die richtige Antwort klar zu machen. Keine zusätzlichen Erklärungen
             oder Texte, nur das Format oben.
 

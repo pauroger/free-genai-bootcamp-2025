@@ -213,7 +213,7 @@ def render_interactive_stage():
         
         if st.session_state.feedback:
             correct = st.session_state.feedback.get('correct', False)
-            correct_answer = st.session_state.feedback.get('correct_answer', 1) - 1
+            correct_answer = (st.session_state.feedback.get('correct_answer') or 1) - 1
             selected_index = st.session_state.selected_answer - 1 if st.session_state.selected_answer else -1
             
             st.write("\n**Your Answer:**")
