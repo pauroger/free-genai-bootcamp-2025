@@ -15,6 +15,12 @@ SQLite database if one doesn't already exist.
 make setup
 ```
 
+Next, create a `.env` file containing:
+
+```bash
+OPENAI_API_KEY="<your_key>"
+```
+
 ## Start Website Locally
 
 Start the microservices-based language learning system, checking for Docker
