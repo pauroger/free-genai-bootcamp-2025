@@ -73,7 +73,6 @@ def init_game(request: gr.Request):
     return session_id, group_id, english_word, "", correct_german, word_id
 
 def check_answer_and_generate(user_input, english_word, correct_german, review_items, current_word_id, current_group):
-    # First check the answer
     correct = user_input.strip().lower() == correct_german.lower()
     log_message(f"current_id: {current_word_id}")
     log_message(f"correct: {correct}")
@@ -82,16 +81,35 @@ def check_answer_and_generate(user_input, english_word, correct_german, review_i
     review_items.append({"word_id": current_word_id, "correct": correct})
     log_message(f"review_items: {review_items}")
     
-    # Generate new word BEFORE creating the message
-    new_english, _, new_german, new_id = generate_word(current_group)
-    
-    # Create message AFTER generating new word
+    # Build the feedback message BEFORE fetching the new word
     if correct:
         message = f"<p style='color:green;'>✅ Correct! '{english_word}' in German is '{correct_german}'.</p>"
-        return gr.update(value=message, visible=True), gr.update(value="", visible=False), review_items, new_english, "", new_german, new_id
     else:
         message = f"<p style='color:red;'>❌ Incorrect. '{english_word}' in German is '{correct_german}'.</p>"
-        return gr.update(value="", visible=False), gr.update(value=message, visible=True), review_items, new_english, "", new_german, new_id
+    
+    # Now get the new word for the next round
+    new_english, _, new_german, new_id = generate_word(current_group)
+    
+    if correct:
+        return (
+            gr.update(value=message, visible=True),      # result_success
+            gr.update(value="", visible=False),           # result_error
+            review_items,                                 # review_items_state
+            new_english,                                  # english_output
+            "",                                           # answer_input (cleared)
+            new_german,                                   # hidden_correct (new word's german)
+            new_id                                        # hidden_id (new word's id)
+        )
+    else:
+        return (
+            gr.update(value="", visible=False),           # result_success
+            gr.update(value=message, visible=True),         # result_error
+            review_items,                                   # review_items_state
+            new_english,                                    # english_output
+            "",                                            # answer_input (cleared)
+            new_german,                                    # hidden_correct (new word's german)
+            new_id                                         # hidden_id (new word's id)
+        )
 
 def save_study_session(study_session_id, review_items, current_group):
     log_message(f"study_session_id: {study_session_id}")
