@@ -21,7 +21,10 @@ def log_message(message):
 def fetch_random_word(current_group):
     try:
         log_message(f"Fetching random word for group: {current_group}")
-        response = requests.get(f"{BACKEND_URL}/groups/{current_group}/words/raw")
+        response = requests.get(
+            f"{BACKEND_URL}/groups/{current_group}/words/raw",
+            timeout=5
+        )
         log_message(f"HTTP GET request to: {BACKEND_URL}/groups/{current_group}/words/raw, status code: {response.status_code}")
         response.raise_for_status()
         data = response.json()
@@ -196,7 +199,7 @@ with gr.Blocks(
         fn=lambda: gr.update(visible=False),
         outputs=save_notification
     )
-    
+
     gr.Markdown("Save progress and close the tab when finished.")
 
 demo.launch(server_port=6001, server_name="127.0.0.1", show_error=True)
